@@ -1,0 +1,54 @@
+
+/* ═══════════════════════════════════════════════
+   SECTION SCROLL — plein écran (JS only, no snap)
+   ═══════════════════════════════════════════════ */
+
+html.has-section-scroll{scroll-behavior:auto}
+html.has-section-scroll body{overscroll-behavior-y:none}
+
+.snap-section{
+  min-height:var(--snap-h);
+  box-sizing:border-box;
+  padding:var(--snap-pad-top) var(--gutter) var(--snap-pad-bottom);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  position:relative;
+  transition:opacity .7s var(--ease-out);
+  will-change:opacity;
+}
+
+html.has-section-scroll .snap-section:not(.is-active-section){
+  opacity:.42;
+}
+
+html.has-section-scroll .snap-section.is-active-section{
+  opacity:1;
+}
+
+html.has-section-scroll.is-scrolling .snap-section:not(.is-active-section){
+  opacity:.28;
+}
+
+.snap-section.latest,
+.snap-section.about,
+.snap-section.gallery,
+.snap-section.feed{padding:var(--snap-pad-top) var(--gutter) var(--snap-pad-bottom)}
+
+.snap-section.hero{padding-top:0;padding-bottom:0;justify-content:center}
+
+.snap-section.gallery,
+.snap-section.feed{justify-content:flex-start}
+
+@media(max-width:900px){
+  html.has-section-scroll .snap-section,
+  html.has-section-scroll .snap-section:not(.is-active-section),
+  html.has-section-scroll .snap-section.is-active-section{
+    opacity:1;
+    transition:none;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  html.has-section-scroll .snap-section{transition:none;opacity:1!important}
+}

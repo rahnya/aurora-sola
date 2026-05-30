@@ -1,7 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   initStarfield();
-  initHeader();
-  initReveal();
-  initLightbox();
-  initSmoothScroll();
+  initCursor();
+
+  initIntro(() => {
+    initHeader();
+    initReveal();
+    initLightbox();
+    initSectionScroll();
+    goToEntrySection();
+  });
 });

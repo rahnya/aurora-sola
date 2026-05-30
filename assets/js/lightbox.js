@@ -41,14 +41,18 @@ function initLightbox() {
     current = ((i % data.length) + data.length) % data.length;
     const d = data[current];
 
-    // Clone SVG from plate
-    const plate = document.querySelector('.gallery__plate[data-i="' + current + '"] .gallery__image-frame svg');
-    if (plate) {
-      const old = lbImage.querySelector('svg.lb-injected');
-      if (old) old.remove();
-      const clone = plate.cloneNode(true);
+    // Clone visuel depuis la plaque (SVG ou photo)
+    const frame = document.querySelector('.gallery__plate[data-i="' + current + '"] .gallery__image-frame');
+    const source = frame?.querySelector('svg, img');
+    if (source) {
+      lbImage.querySelectorAll('.lb-injected').forEach(el => el.remove());
+      const clone = source.cloneNode(true);
       clone.classList.add('lb-injected');
-      clone.style.cssText = 'position:absolute;inset:0;width:100%;height:100%';
+      if (clone.tagName === 'IMG') {
+        clone.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover';
+      } else {
+        clone.style.cssText = 'position:absolute;inset:0;width:100%;height:100%';
+      }
       lbImage.insertBefore(clone, lbImage.firstChild);
     }
 

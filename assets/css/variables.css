@@ -2,6 +2,7 @@
    §1 — DESIGN TOKENS
    ═══════════════════════════════════════════════ */
 :root {
+  /* Couleurs */
   --c-lavender:#EEE9FF;--c-lavender-mid:#B6A5FF;--c-navy:#292762;--c-gold:#E8C76A;
   --c-void:#060418;--c-deep:#0a0824;--c-deep-warm:#12103a;--c-navy-soft:#1c1a4f;
   --t-on-dark:var(--c-lavender);--t-on-dark-mid:rgba(238,233,255,0.70);--t-on-dark-low:rgba(238,233,255,0.42);
@@ -9,7 +10,55 @@
   --line-dark:rgba(182,165,255,0.10);--line-dark-2:rgba(182,165,255,0.22);
   --line-light:rgba(41,39,98,0.12);--line-light-2:rgba(41,39,98,0.24);
   --line-gold:rgba(232,199,106,0.55);
-  --ff-display:'Cinzel','Times New Roman',serif;--ff-body:'Montserrat',system-ui,sans-serif;
-  --ease-out:cubic-bezier(0.16,1,0.3,1);--ease-in-out:cubic-bezier(0.65,0,0.35,1);
-  --container:1320px;--gutter:clamp(1.25rem,4vw,4rem);
+
+  /* Typographies */
+  --ff-display:'Cinzel','Times New Roman',serif;
+  --ff-body:'Montserrat',system-ui,sans-serif;
+
+  /* Échelle typo — mobile → laptop → desktop */
+  --text-xs:clamp(0.625rem,0.59rem + 0.14vw,0.6875rem);
+  --text-sm:clamp(0.6875rem,0.64rem + 0.18vw,0.8125rem);
+  --text-base:clamp(0.875rem,0.83rem + 0.2vw,1rem);
+  --text-md:clamp(0.9375rem,0.88rem + 0.24vw,1.0625rem);
+  --text-lg:clamp(1rem,0.94rem + 0.26vw,1.125rem);
+
+  --title-hero:clamp(2.75rem,1.7rem + 4.2vw,5.5rem);
+  --title-section:clamp(1.625rem,1.22rem + 1.65vw,3rem);
+  --title-card:clamp(1rem,0.92rem + 0.38vw,1.3125rem);
+  --title-stat:clamp(1.875rem,1.35rem + 1.75vw,3rem);
+  --title-display:clamp(3rem,1.6rem + 5.5vw,7.25rem);
+
+  --track-label:0.28em;
+  --track-meta:0.22em;
+  --track-wide:0.32em;
+  --leading-tight:1.08;
+  --leading-display:0.96;
+  --leading-body:1.72;
+
+  /* Largeurs de lecture — harmonisées */
+  --container:1200px;
+  --prose-sm:clamp(17rem,15rem + 4vw,22rem);
+  --prose-md:clamp(24rem,20rem + 5vw,32rem);
+  --prose-lg:clamp(28rem,24rem + 5vw,36rem);
+  --prose-xl:clamp(38rem,32rem + 7vw,52rem);
+  --meta-width:clamp(34rem,30rem + 8vw,40rem);
+  --sidebar-width:clamp(16rem,14rem + 4vw,18.75rem);
+
+  /* Espacements — respiration cohérente */
+  --gutter:clamp(1.25rem,1rem + 2.2vw,3rem);
+  --space-section-y:clamp(4rem,3rem + 3.5vh,7rem);
+  --space-head:clamp(1.5rem,1.1rem + 1.15vw,2.75rem);
+  --space-block:clamp(1.125rem,0.95rem + 0.45vw,1.625rem);
+  --space-element:clamp(0.625rem,0.55rem + 0.28vw,0.875rem);
+  --gap-grid:clamp(1.25rem,0.85rem + 1.1vw,2.25rem);
+  --gap-grid-lg:clamp(1.75rem,1.05rem + 1.85vw,3.5rem);
+
+  /* Plein écran sections */
+  --snap-h:100dvh;
+  --snap-pad-top:clamp(4.5rem,3.4rem + 3.2vh,5.75rem);
+  --snap-pad-bottom:clamp(1.25rem,1rem + 0.75vh,2rem);
+
+  /* Motion */
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+  --ease-in-out:cubic-bezier(0.65,0,0.35,1);
 }

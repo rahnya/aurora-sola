@@ -6,7 +6,7 @@
      1. Ajouter un objet dans le tableau GALLERY_DATA ci-dessous
      2. Ajouter le <article class="gallery__plate" data-i="N"> correspondant
         dans index.html (section galerie), avec le même index N
-   Chaque légende expose : lieu (loc), date, astronaute (op) — requis EVT01-C
+   Chaque légende expose : lieu (loc), date, astronaute (op) - requis EVT01-C
    ═══════════════════════════════════════════════════════════════════ */
 const GALLERY_DATA = [
   {
