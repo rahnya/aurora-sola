@@ -9,6 +9,7 @@
 }
 @media(max-width:900px){
   .header__nav,.header__sub{display:none}
+  .header__toggle{display:flex}
   .hero__meta{grid-template-columns:repeat(2,1fr);gap:1.25rem 2px;padding-top:1.5rem}
   .about__columns{grid-template-columns:1fr;gap:2.5rem}
   .about__stats{grid-template-columns:repeat(2,1fr);gap:2rem}

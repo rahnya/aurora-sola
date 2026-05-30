@@ -6,6 +6,8 @@ function initLightbox() {
   const lbNext = document.getElementById('lbNext');
   const lbDots = document.getElementById('lbDots');
   if (!lb || !lbImage) return;
+  const data = (typeof GALLERY_DATA !== "undefined") ? GALLERY_DATA : [];
+  if (!data.length) return;
 
   const fields = {
     id: document.getElementById('lbId'),

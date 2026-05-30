@@ -3,13 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOLA — Centre de Contrôle Aurora / Odyssey IV / Kepler-452c</title>
-<meta name="description" content="Plateforme officielle de communication du Programme AURORA. Cellule SOLA. Liaison Odyssey IV — Kepler-452c.">
+<title>SOLIA — Centre de Contrôle Aurora / Odyssey IV / Kepler-452c</title>
+<meta name="description" content="Plateforme officielle de communication du Programme AURORA. Cellule SOLIA. Liaison Odyssey IV — Kepler-452c.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="theme-color" content="#060418">
+<meta name="author" content="Cellule SOLIA · Centre de Contrôle Aurora">
+<link rel="canonical" href="https://example.com/">
+<!-- Favicon SVG inline (étoile dorée SOLIA) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23060418'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23B6A5FF' stroke-width='1' opacity='.5'/%3E%3Cpath d='M16 7 L17 13 L23 16 L17 19 L16 25 L15 19 L9 16 L15 13 Z' fill='%23E8C76A'/%3E%3C/svg%3E">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="SOLIA — Centre de Contrôle Aurora">
+<meta property="og:description" content="Plateforme officielle de communication de la mission Odyssey IV vers Kepler-452c. Programme AURORA.">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SOLIA — Centre de Contrôle Aurora">
+<meta name="twitter:description" content="Liaison officielle Odyssey IV — Kepler-452c. Programme AURORA, 2079.">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/variables.css">
 <link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/main.css">
 <link rel="stylesheet" href="assets/css/header.css">
 <link rel="stylesheet" href="assets/css/hero.css">
 <link rel="stylesheet" href="assets/css/latest.css">
@@ -21,6 +35,8 @@
 <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
+<a href="#top" class="skip-link">Aller au contenu</a>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
 <!-- ═══════ ATMOSPHERE ═══════ -->
 <div class="atmosphere"><canvas class="atmosphere__stars" id="starfield"></canvas><div class="atmosphere__vignette"></div></div>
@@ -33,26 +49,41 @@
       <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13.5" stroke="#B6A5FF" stroke-width=".6" opacity=".35"/><circle cx="16" cy="16" r="8" stroke="#B6A5FF" stroke-width=".6" opacity=".55"/><circle cx="16" cy="16" r="2.4" fill="#EEE9FF"/><path d="M16 5.5 L16.6 8.4 L17 7.5 L17.5 9 L20 8.5 L18 10.5 Z" fill="#E8C76A"/></svg>
     </div>
     <div class="header__brand-text">
-      <div class="header__name">SOLA</div>
+      <div class="header__name">SOLIA</div>
       <div class="header__sub">Centre de Contrôle Aurora</div>
     </div>
   </a>
   <nav class="header__nav">
-    <a href="#latest">Transmissions</a>
-    <a href="#about">À propos</a>
-    <a href="#gallery">Archive visuelle</a>
-    <a href="#feed">Chronologie</a>
+    <a href="#latest" data-nav-link>Transmissions</a>
+    <a href="#about" data-nav-link>À propos</a>
+    <a href="#gallery" data-nav-link>Archive visuelle</a>
+    <a href="#feed" data-nav-link>Chronologie</a>
   </nav>
+  <button class="header__toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">
+    <span></span><span></span><span></span>
+  </button>
   <div class="header__status">
     <span class="header__pulse"></span>
     <span class="header__status-text">Liaison active</span>
   </div>
 </header>
 
+<!-- ═══════ MENU MOBILE ═══════ -->
+<nav class="mobile-nav" id="mobileNav" aria-hidden="true" aria-label="Navigation principale">
+  <div class="mobile-nav__list">
+    <a href="#latest"><span class="idx">01</span>Transmissions</a>
+    <a href="#about"><span class="idx">02</span>À propos</a>
+    <a href="#gallery"><span class="idx">03</span>Archive visuelle</a>
+    <a href="#feed"><span class="idx">04</span>Chronologie</a>
+  </div>
+  <div class="mobile-nav__foot">Programme AURORA · Cellule SOLIA · Liaison active</div>
+</nav>
+
 <!-- ═══════ HERO ═══════ -->
 <section class="hero" id="top" data-component="hero">
+  <div class="hero__glow"></div>
   <div class="hero__container">
-    <div class="hero__eyebrow"><span>Programme AURORA · Cellule SOLA</span></div>
+    <div class="hero__eyebrow"><span>Programme AURORA · Cellule SOLIA · Liaison active</span></div>
     <h1 class="hero__title">
       <span class="hero__title-line">Échos</span>
       <span class="hero__title-line hero__title-line--accent">d'un monde</span>
@@ -129,13 +160,13 @@
 <section class="about" id="about" data-component="about">
   <div class="about__deco"></div>
   <div class="about__container">
-    <header class="about__head reveal"><div class="eyebrow eyebrow--light"><span class="num">01</span><span>À propos · Cellule SOLA</span></div></header>
+    <header class="about__head reveal"><div class="eyebrow eyebrow--light"><span class="num">01</span><span>À propos · Cellule SOLIA</span></div></header>
     <h2 class="about__quote reveal reveal--d1"><span class="about__quote-text">Nous ne communiquons pas <em>sur</em> l'histoire. Nous la racontons.<span class="about__quote-end"> »</span></span></h2>
     <div class="about__columns">
       <div class="about__col reveal reveal--d1">
         <h3 class="about__col-title">Positionnement</h3>
         <p>En 2079, l'Odyssey IV entre en orbite autour de <strong>Kepler-452c</strong>. Pour la première fois dans l'histoire, un équipage humain observe un monde à 1 400 années-lumière de la Terre.</p>
-        <p>SOLA est le lien officiel entre cet équipage et les <strong>8 milliards de témoins</strong> sur Terre. Face aux rumeurs et aux spéculations, une seule source fait autorité : le Centre de Contrôle Aurora.</p>
+        <p>SOLIA est le lien officiel entre cet équipage et les <strong>8 milliards de témoins</strong> sur Terre. Face aux rumeurs et aux spéculations, une seule source fait autorité : le Centre de Contrôle Aurora.</p>
       </div>
       <div class="about__col reveal reveal--d2">
         <h3 class="about__col-title">Ton & rigueur</h3>
@@ -185,7 +216,7 @@
             <circle cx="1100" cy="500" r="520" fill="none" stroke="#B6A5FF" stroke-width=".8" opacity=".45"/>
           </svg>
         </div></div>
-        <div class="gallery__caption"><div class="gallery__caption-top"><span class="gallery__caption-id">KEP-452C-001</span><span class="gallery__caption-class">Public</span></div><h3 class="gallery__caption-title">Première lumière</h3><div class="gallery__caption-meta"><span>Orbite basse · Hémisphère jour</span><span class="sep"></span><span class="date">29.05.2079</span></div></div>
+        <div class="gallery__caption"><div class="gallery__caption-top"><span class="gallery__caption-id">KEP-452C-001</span><span class="gallery__caption-class">Public</span></div><h3 class="gallery__caption-title">Première lumière</h3><div class="gallery__caption-meta"><span>Orbite basse · Hémisphère jour</span><span class="sep"></span><span class="date">29.05.2079</span></div><div class="gallery__caption-author"><span class="role">Astronaute</span>Lt. A. Laurent</div></div>
       </article>
 
       <!-- Plate 2 — Vallée d'Aurelia -->
@@ -205,7 +236,7 @@
             <ellipse cx="780" cy="700" rx="280" ry="6" fill="#E8C76A" opacity=".22"/>
           </svg>
         </div></div>
-        <div class="gallery__caption"><div class="gallery__caption-top"><span class="gallery__caption-id">KEP-452C-002</span><span class="gallery__caption-class">Public</span></div><h3 class="gallery__caption-title">Vallée d'Aurelia</h3><div class="gallery__caption-meta"><span>Zone Alpha · Plateau central</span><span class="sep"></span><span class="date">29.05.2079</span></div></div>
+        <div class="gallery__caption"><div class="gallery__caption-top"><span class="gallery__caption-id">KEP-452C-002</span><span class="gallery__caption-class">Public</span></div><h3 class="gallery__caption-title">Vallée d'Aurelia</h3><div class="gallery__caption-meta"><span>Zone Alpha · Plateau central</span><span class="sep"></span><span class="date">29.05.2079</span></div><div class="gallery__caption-author"><span class="role">Astronaute</span>Lt. A. Laurent</div></div>
       </article>
 
       <!-- Plate 3 — Limbe atmosphérique -->
@@ -221,7 +252,7 @@
             <g fill="#E8C76A" opacity=".55"><circle cx="250" cy="690" r="1.2"/><circle cx="420" cy="685" r="1"/><circle cx="600" cy="690" r="1.4"/><circle cx="780" cy="685" r="1"/></g>
           </svg>
         </div></div>
-        <div class="gallery__caption"><div class="gallery__caption-top"><span class="gallery__caption-id">KEP-452C-003</span><span class="gallery__caption-class">Public</span></div><h3 class="gallery__caption-title">Limbe atmosphérique</h3><div class="gallery__caption-meta"><span>Terminator est</span><span class="sep"></span><span class="date">29.05.2079</span></div></div>
+        <div class="gallery__caption"><div class="gallery__caption-top"><span class="gallery__caption-id">KEP-452C-003</span><span class="gallery__caption-class">Public</span></div><h3 class="gallery__caption-title">Limbe atmosphérique</h3><div class="gallery__caption-meta"><span>Terminator est</span><span class="sep"></span><span class="date">29.05.2079</span></div><div class="gallery__caption-author"><span class="role">Astronaute</span>Cdt. E. Ripley</div></div>
       </article>
 
       <!-- Plate 4 — Formations stratifiées -->
@@ -239,7 +270,7 @@
             <rect x="0" y="450" width="1600" height="6" fill="#E8C76A" opacity=".18"/>
           </svg>
         </div></div>
-        <div class="gallery__caption"><div class="gallery__caption-top"><span class="gallery__caption-id">KEP-452C-004</span><span class="gallery__caption-class">Public</span></div><h3 class="gallery__caption-title">Formations stratifiées</h3><div class="gallery__caption-meta"><span>Site K4A · Massif Sud</span><span class="sep"></span><span class="date">29.05.2079</span></div></div>
+        <div class="gallery__caption"><div class="gallery__caption-top"><span class="gallery__caption-id">KEP-452C-004</span><span class="gallery__caption-class">Public</span></div><h3 class="gallery__caption-title">Formations stratifiées</h3><div class="gallery__caption-meta"><span>Site K4A · Massif Sud</span><span class="sep"></span><span class="date">29.05.2079</span></div><div class="gallery__caption-author"><span class="role">Astronaute</span>Dr. S. Patel</div></div>
       </article>
 
       <!-- Plate 5 — Coucher double panoramique -->
@@ -260,7 +291,7 @@
             <polygon points="280,850 320,790 360,850" fill="#0a0828"/><polygon points="1320,850 1370,790 1410,850" fill="#0a0828"/>
           </svg>
         </div></div>
-        <div class="gallery__caption"><div class="gallery__caption-top"><span class="gallery__caption-id">KEP-452C-005</span><span class="gallery__caption-class">Public</span></div><h3 class="gallery__caption-title">Coucher double sur Cassini</h3><div class="gallery__caption-meta"><span>Horizon ouest · Plateau Cassini</span><span class="sep"></span><span class="date">29.05.2079</span></div></div>
+        <div class="gallery__caption"><div class="gallery__caption-top"><span class="gallery__caption-id">KEP-452C-005</span><span class="gallery__caption-class">Public</span></div><h3 class="gallery__caption-title">Coucher double sur Cassini</h3><div class="gallery__caption-meta"><span>Horizon ouest · Plateau Cassini</span><span class="sep"></span><span class="date">29.05.2079</span></div><div class="gallery__caption-author"><span class="role">Astronaute</span>Spc. N. Davis</div></div>
       </article>
 
     </div>
@@ -291,7 +322,7 @@
         <article class="feed__item" data-id="EVT-00"><div class="feed__item-id">EVT-00</div><div class="feed__item-date"><div>27.05.2079</div><div class="time">08:00 UTC</div></div><div class="feed__item-content"><h3 class="feed__item-title">Entrée en orbite — Kepler-452c</h3><div class="feed__item-author">Mission · Manœuvre orbitale</div></div><div class="feed__item-tag feed__item-tag--event">Événement</div><span class="feed__item-arrow">→</span></article>
       </div>
     </div>
-    <div class="feed__foot"><span>Archive complète disponible sur demande auprès du CCA.</span><a href="#">Contacter la cellule SOLA →</a></div>
+    <div class="feed__foot"><span>Archive complète disponible sur demande auprès du CCA.</span><a href="#">Contacter la cellule SOLIA →</a></div>
   </div>
 </section>
 
@@ -299,9 +330,9 @@
 <footer class="site-footer" data-component="site-footer">
   <div class="site-footer__container">
     <div class="site-footer__sub">Cellule de communication officielle</div>
-    <h2 class="site-footer__display">SOLA</h2>
+    <h2 class="site-footer__display">SOLIA</h2>
     <div class="site-footer__columns">
-      <div class="site-footer__col"><h4>Cellule SOLA</h4><p>Plateforme officielle de communication du Programme AURORA. Le lien officiel entre l'Odyssey IV et la Terre depuis le 29 mai 2079.</p></div>
+      <div class="site-footer__col"><h4>Cellule SOLIA</h4><p>Plateforme officielle de communication du Programme AURORA. Le lien officiel entre l'Odyssey IV et la Terre depuis le 29 mai 2079.</p></div>
       <div class="site-footer__col"><h4>Mission Aurora</h4><ul class="site-footer__list"><li>Programme AURORA</li><li>Vaisseau Odyssey IV</li><li>Destination Kepler-452c</li><li>Équipage 06 PAX</li></ul></div>
       <div class="site-footer__col"><h4>Accès</h4><ul class="site-footer__list"><li>Archive publique</li><li>Demande presse</li><li>Contact CCA</li><li>Mentions légales</li></ul></div>
     </div>
@@ -347,6 +378,7 @@
 <script src="assets/js/starfield.js"></script>
 <script src="assets/js/header.js"></script>
 <script src="assets/js/reveal.js"></script>
+<script src="assets/data/gallery-data.js"></script>
 <script src="assets/js/lightbox.js"></script>
 <script src="assets/js/smooth-scroll.js"></script>
 <script src="assets/js/main.js"></script>

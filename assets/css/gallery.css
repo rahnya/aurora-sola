@@ -34,3 +34,10 @@
 .gallery__caption-meta{display:flex;align-items:center;gap:.8rem;font-size:11px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--t-on-dark-mid);margin-top:.25rem}
 .gallery__caption-meta .sep{width:12px;height:1px;background:var(--line-gold)}
 .gallery__caption-meta .date{color:var(--c-gold);font-variant-numeric:tabular-nums}
+
+/* ═══════════════════════════════════════════════
+   AMÉLIORATION — légende astronaute (requis EVT01-C)
+   ═══════════════════════════════════════════════ */
+.gallery__caption-author{display:flex;align-items:center;gap:.55rem;font-size:10.5px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--t-on-dark-low);margin-top:.5rem}
+.gallery__caption-author::before{content:'';width:14px;height:14px;border:1px solid var(--line-gold);border-radius:50%;flex-shrink:0;background:radial-gradient(circle,var(--c-gold) 0%,transparent 70%);background-size:5px 5px;background-repeat:no-repeat;background-position:center}
+.gallery__caption-author .role{color:var(--c-lavender-mid)}

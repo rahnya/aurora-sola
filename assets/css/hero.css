@@ -29,3 +29,10 @@
 .hero__scroll-line{width:1px;height:50px;background:var(--line-dark-2);position:relative;overflow:hidden}
 .hero__scroll-line::after{content:'';position:absolute;inset:0 0 auto 0;height:40%;background:linear-gradient(to bottom,var(--c-gold),transparent);animation:scrollLine 2.6s var(--ease-in-out) infinite}
 @keyframes scrollLine{0%{transform:translateY(-100%)}100%{transform:translateY(250%)}}
+
+/* ═══════════════════════════════════════════════
+   AMÉLIORATIONS — halo respirant + lueur d'horizon
+   ═══════════════════════════════════════════════ */
+.hero__visual::before{content:'';position:absolute;inset:-12%;border-radius:50%;background:radial-gradient(circle,rgba(182,165,255,.12) 0%,transparent 62%);filter:blur(8px);animation:heroHalo 7s var(--ease-in-out) infinite;pointer-events:none;z-index:-1}
+@keyframes heroHalo{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.9;transform:scale(1.05)}}
+.hero__glow{position:absolute;left:50%;bottom:-30%;width:140%;height:60%;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(232,199,106,.10) 0%,transparent 60%);pointer-events:none;z-index:1}
