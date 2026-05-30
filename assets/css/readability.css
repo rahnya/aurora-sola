@@ -1,0 +1,205 @@
+/* ═══════════════════════════════════════════════
+   § READABILITY — rhythm, contraste, prose responsive
+   Harmonise marges / typo / padding sur toutes les sections
+   ═══════════════════════════════════════════════ */
+
+/* Conteneurs sections — pleine largeur utile */
+.latest__container,
+.about__container,
+.gallery__container,
+.feed__container,
+.journal__container,
+.discovery__container,
+.crise__container,
+.eva-portal__container{
+  width:100%;
+}
+
+/* En-têtes de section — marge basse généreuse */
+.latest__head,
+.gallery__head,
+.feed__head,
+.journal__head,
+.crise__head,
+.discovery__head{
+  margin-bottom:clamp(1.5rem,1.15rem + 1.4vw,2.75rem);
+}
+
+.latest__head,
+.gallery__head,
+.feed__head,
+.journal__head{
+  gap:clamp(1.25rem,1rem + 1.5vw,2.5rem);
+}
+
+/* Titres — interlignage confortable */
+.latest__title,
+.gallery__title,
+.feed__title,
+.journal__title,
+.crise__title,
+.eva-portal__title,
+.about__quote{
+  line-height:1.15;
+}
+
+/* Corps de texte — fond sombre */
+.hero__lead,
+.latest__excerpt,
+.gallery__intro p,
+.feed__intro p,
+.journal__intro p,
+.discovery__lead,
+.dtimeline__desc,
+.dfaq__a p,
+.dupdate__text,
+.jrow__nature p,
+.feed__item-author,
+.eva-portal__lead,
+.cfeed__body p,
+.cdenial__text,
+.cproof__desc,
+.cvideo__caption p,
+.cfaq__a p{
+  font-size:var(--text-md);
+  line-height:var(--leading-body);
+  color:var(--t-on-dark);
+}
+
+.hero__lead{
+  font-size:var(--text-lg);
+  max-width:var(--prose-lg);
+  color:var(--t-on-dark-mid);
+}
+
+.latest__excerpt{
+  font-size:var(--text-lg);
+  max-width:var(--prose-xl);
+}
+
+/* Intros latérales — plus larges, alignées au contenu */
+.gallery__intro p,
+.feed__intro p,
+.journal__intro p{
+  max-width:var(--prose-md);
+}
+
+.discovery__head{
+  max-width:none;
+  width:100%;
+}
+
+.discovery__lead{
+  max-width:var(--prose-xl);
+  font-size:var(--text-lg);
+}
+
+.discovery__faq,
+.dtimeline__desc,
+.dupdate__text{
+  max-width:none;
+}
+
+.dfaq__a p,
+.dupdate__text{
+  font-size:var(--text-md);
+  color:var(--t-on-dark);
+}
+
+/* Thème clair — À propos */
+.about__col p{
+  font-size:var(--text-md);
+  line-height:var(--leading-body);
+  color:var(--t-on-light);
+  max-width:none;
+  margin-bottom:var(--space-block);
+}
+
+.about__quote{
+  margin:var(--space-block) 0 var(--space-head);
+  padding-left:clamp(1rem,0.85rem + 0.6vw,1.5rem);
+}
+
+.about__columns{
+  margin-bottom:clamp(1.5rem,1.15rem + 1.2vw,2.5rem);
+}
+
+.about__stat{
+  padding-top:var(--space-block);
+}
+
+/* Fil chronologique / listes — padding vertical */
+.feed__item{
+  padding:clamp(1.125rem,1rem + 0.65vw,1.75rem) 0;
+  gap:clamp(1rem,0.85rem + 0.9vw,1.85rem);
+}
+
+.feed__item-title,
+.jrow__nature h4,
+.gallery__caption-title{
+  line-height:1.22;
+  margin-bottom:.4rem;
+}
+
+.jrow{
+  padding:clamp(1.125rem,1rem + 0.65vw,1.75rem) 0;
+}
+
+.jrow__nature p{
+  max-width:var(--prose-xl);
+}
+
+.journal__legend{
+  margin-bottom:clamp(1rem,0.85rem + 0.6vw,1.5rem);
+  gap:clamp(0.85rem,0.7rem + 0.5vw,1.25rem);
+}
+
+/* Galerie — légendes */
+.gallery__grid{
+  gap:clamp(1.25rem,1rem + 1vw,2rem);
+}
+
+.gallery__caption{
+  gap:var(--space-element);
+  padding-top:.15rem;
+}
+
+.gallery__caption-meta{
+  font-size:var(--text-sm);
+  color:var(--t-on-dark-mid);
+}
+
+/* Portail EVA */
+.eva-portal__lead{
+  font-size:var(--text-md);
+  color:var(--t-on-dark);
+  max-width:var(--prose-lg);
+  margin-bottom:clamp(1.25rem,1rem + 0.8vw,1.875rem);
+}
+
+.eva-portal__content{
+  max-width:var(--prose-xl);
+}
+
+/* Sections longues — padding bas confortable */
+.snap-section.latest,
+.snap-section.crise,
+.snap-section.about,
+.snap-section.gallery,
+.snap-section.discovery,
+.snap-section.journal,
+.snap-section.feed,
+.snap-section.eva-portal{
+  padding-bottom:clamp(2rem,1.5rem + 2vh,3.5rem);
+}
+
+/* Labels / meta — lisibles sans être énormes */
+.crise__block-label,
+.discovery__block-label,
+.feed__group-label{
+  color:var(--t-on-dark-mid);
+}
+
+.eyebrow{
+  margin-bottom:clamp(0.75rem,0.65rem + 0.4vw,1.125rem);
+}

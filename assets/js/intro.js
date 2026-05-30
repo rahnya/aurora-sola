@@ -83,6 +83,7 @@ function initIntro(onComplete) {
 
 function runIntroLoader(delay, duration) {
   const fill = document.getElementById('introLoaderFill');
+  const percent = document.getElementById('introLoaderPercent');
   if (!fill || !duration) return;
 
   setTimeout(() => {
@@ -90,7 +91,9 @@ function runIntroLoader(delay, duration) {
 
     function tick(now) {
       const progress = Math.min(1, (now - start) / duration);
-      fill.style.width = `${progress * 100}%`;
+      const pct = Math.round(progress * 100);
+      fill.style.width = `${pct}%`;
+      if (percent) percent.textContent = `${pct}\u00a0%`;
       if (progress < 1) requestAnimationFrame(tick);
     }
 

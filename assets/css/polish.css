@@ -1,0 +1,77 @@
+/* ═══════════════════════════════════════════════
+   §POLISH — retouches espacement / header / responsive
+   Chargée en dernier : surcharge ciblée, réversible.
+   Le dégagement haut se base sur la hauteur RÉELLE du
+   header + barre système (mesurées en JS : --header-h,
+   --sysbar-h) → air constant et fiable sur tout écran.
+   ═══════════════════════════════════════════════ */
+
+/* ── 1. Espace de respiration sous le header (par palier) ── */
+:root{
+  --head-gap:clamp(1.5rem,1.1rem + 1.6vh,2.75rem);   /* air confortable sous le header */
+  --snap-clear-bottom:clamp(1.75rem,1.25rem + 1.2vh,2.75rem);
+  --bottom-safe:3.5rem;                               /* place pour les boutons fixes du bas */
+}
+@media(max-width:900px){:root{--head-gap:clamp(1.1rem,.85rem + 1.2vh,1.85rem);--snap-clear-bottom:clamp(1.5rem,1.15rem + 1vh,2.25rem);--bottom-safe:3rem}}
+@media(max-width:600px){:root{--head-gap:clamp(.9rem,.7rem + 1vh,1.5rem);--snap-clear-bottom:clamp(1.35rem,1.05rem + .65vh,1.75rem);--bottom-safe:2.5rem}}
+
+:root{
+  --snap-pad-top:calc(var(--sysbar-h,0px) + var(--header-h,84px) + var(--head-gap));
+  --snap-pad-bottom:calc(var(--snap-clear-bottom) + var(--bottom-safe));
+}
+
+/* ── 2. Écrans peu hauts : ancrer en haut les sections centrées
+   pour que le titre reste toujours visible ── */
+@media(max-height:920px){
+  html.has-section-scroll .snap-section.latest,
+  html.has-section-scroll .snap-section.about,
+  html.has-section-scroll .snap-section.eva{justify-content:flex-start}
+}
+
+/* ── 3. HERO — titre dégagé du header, contenu qui tient ── */
+.snap-section.hero{
+  padding-top:calc(var(--sysbar-h,0px) + var(--header-h,84px) + clamp(.75rem,1.5vh,1.85rem));
+  padding-bottom:clamp(2rem,1.5rem + 2.5vh,3.5rem);
+}
+.hero__visual{width:clamp(170px,21vw,290px);margin-bottom:var(--space-block)}
+.hero__lead{margin-bottom:var(--space-head)}
+@media(max-height:920px){
+  .snap-section.hero{justify-content:flex-start}
+  .hero__visual{width:clamp(120px,15vh,190px);margin-bottom:var(--space-element)}
+  .hero__eyebrow{margin-bottom:var(--space-block)}
+  .hero__title{margin-bottom:var(--space-element)}
+  .hero__lead{margin-bottom:var(--space-block)}
+}
+@media(max-height:820px){
+  .hero__title{font-size:clamp(2rem,1.35rem + 2.8vw,3.25rem)}
+  .hero__visual{width:clamp(110px,13vh,160px)}
+}
+@media(max-height:720px){.hero__scroll{display:none}}
+
+/* ── 4. Navigation — éviter le tassement / retour à la ligne ── */
+@media(min-width:901px) and (max-width:1400px){
+  .header__nav{gap:clamp(.8rem,1.4vw,1.3rem)}
+  .header__nav a{font-size:var(--text-xs)}
+}
+@media(min-width:901px) and (max-width:1120px){
+  .header__status-text{display:none}
+}
+
+/* ── 5. Cohérence d'air dans les en-têtes de section ── */
+.latest__head,.gallery__head,.feed__head,.journal__head,.crise__head,.discovery__head{
+  margin-bottom:clamp(1.75rem,1.3rem + 1.5vw,2.85rem);
+}
+
+/* ── 6. Écrans courts : compacter la « dernière transmission »
+   pour que le lien d'archive passe au-dessus des boutons fixes ── */
+@media(max-height:860px){
+  .latest__article-num{font-size:clamp(2.25rem,1.4rem + 3.5vw,4rem)}
+  .latest__excerpt{font-size:var(--text-md);line-height:1.6;margin-bottom:var(--space-element)}
+  .latest__title{margin-bottom:var(--space-element)}
+  .latest__byline{margin-bottom:var(--space-element)}
+}
+
+/* ── 7. Boutons fixes du bas sur très petit écran ── */
+@media(max-width:420px){
+  .cca-console__toggle{padding:.5rem .7rem;font-size:10px}
+}

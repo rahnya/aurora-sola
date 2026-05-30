@@ -9,37 +9,43 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <meta name="theme-color" content="#060418">
 <meta name="author" content="Cellule SOLA · Centre de Contrôle Aurora">
-<link rel="canonical" href="https://example.com/">
-<!-- Favicon SVG inline (étoile dorée SOLA) -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23060418'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23B6A5FF' stroke-width='1' opacity='.5'/%3E%3Cpath d='M16 7 L17 13 L23 16 L17 19 L16 25 L15 19 L9 16 L15 13 Z' fill='%23E8C76A'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://rahnya.github.io/aurora-sola/">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://rahnya.github.io/aurora-sola/">
 <meta property="og:title" content="SOLA - Centre de Contrôle Aurora">
 <meta property="og:description" content="Plateforme officielle de communication de la mission Odyssey IV vers Kepler-452c. Programme AURORA.">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://rahnya.github.io/aurora-sola/">
 <meta name="twitter:title" content="SOLA - Centre de Contrôle Aurora">
 <meta name="twitter:description" content="Liaison officielle Odyssey IV - Kepler-452c. Programme AURORA, 2079.">
+<!-- Favicon SVG inline (étoile dorée SOLA) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23060418'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23B6A5FF' stroke-width='1' opacity='.5'/%3E%3Cpath d='M16 7 L17 13 L23 16 L17 19 L16 25 L15 19 L9 16 L15 13 Z' fill='%23E8C76A'/%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/variables.css">
-<link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/main.css">
-<link rel="stylesheet" href="assets/css/header.css">
-<link rel="stylesheet" href="assets/css/hero.css">
-<link rel="stylesheet" href="assets/css/latest.css">
-<link rel="stylesheet" href="assets/css/about.css">
-<link rel="stylesheet" href="assets/css/gallery.css">
-<link rel="stylesheet" href="assets/css/feed.css">
-<link rel="stylesheet" href="assets/css/discovery.css">
-<link rel="stylesheet" href="assets/css/eva.css">
-<link rel="stylesheet" href="assets/css/journal.css">
-<link rel="stylesheet" href="assets/css/systems.css">
-<link rel="stylesheet" href="assets/css/footer.css">
-<link rel="stylesheet" href="assets/css/lightbox.css">
-<link rel="stylesheet" href="assets/css/intro.css">
-<link rel="stylesheet" href="assets/css/section-scroll.css">
-<link rel="stylesheet" href="assets/css/responsive.css">
-<link rel="stylesheet" href="assets/css/cursor.css">
+<link rel="stylesheet" href="assets/css/variables.css?v=read-v1">
+<link rel="stylesheet" href="assets/css/base.css?v=read-v1">
+<link rel="stylesheet" href="assets/css/main.css?v=1bde7f5">
+<link rel="stylesheet" href="assets/css/header.css?v=evt11d-r2">
+<link rel="stylesheet" href="assets/css/hero.css?v=1bde7f5">
+<link rel="stylesheet" href="assets/css/latest.css?v=1bde7f5">
+<link rel="stylesheet" href="assets/css/crise.css?v=evt11d-r2">
+<link rel="stylesheet" href="assets/css/about.css?v=1bde7f5">
+<link rel="stylesheet" href="assets/css/gallery.css?v=1bde7f5">
+<link rel="stylesheet" href="assets/css/feed.css?v=1bde7f5">
+<link rel="stylesheet" href="assets/css/discovery.css?v=1bde7f5">
+<link rel="stylesheet" href="assets/css/eva.css?v=1bde7f5">
+<link rel="stylesheet" href="assets/css/eva-page.css?v=1bde7f5">
+<link rel="stylesheet" href="assets/css/journal.css?v=1bde7f5">
+<link rel="stylesheet" href="assets/css/systems.css?v=1bde7f5">
+<link rel="stylesheet" href="assets/css/footer.css?v=1bde7f5">
+<link rel="stylesheet" href="assets/css/lightbox.css?v=1bde7f5">
+<link rel="stylesheet" href="assets/css/intro.css?v=1bde7f5">
+<link rel="stylesheet" href="assets/css/section-scroll.css?v=read-v1">
+<link rel="stylesheet" href="assets/css/readability.css?v=read-v1">
+<link rel="stylesheet" href="assets/css/responsive.css?v=read-v1">
+<link rel="stylesheet" href="assets/css/cursor.css?v=1bde7f5">
+<link rel="stylesheet" href="assets/css/polish.css?v=polish1">
 </head>
 <body data-alert="confidential" data-eva="live">
 <div class="site-cursor" id="siteCursor" aria-hidden="true"><span class="site-cursor__ring"></span><span class="site-cursor__dot"></span></div>
@@ -47,8 +53,11 @@
   <div class="intro__inner">
     <img src="assets/images/sola-logo.png" alt="SOLA" class="intro__logo" width="220" height="73">
     <p class="intro__tagline">Programme Aurora · Cellule TSAi</p>
-    <div class="intro__loader" aria-hidden="true">
-      <div class="intro__loader-fill" id="introLoaderFill"></div>
+    <div class="intro__progress">
+      <div class="intro__loader" aria-hidden="true">
+        <div class="intro__loader-fill" id="introLoaderFill"></div>
+      </div>
+      <p class="intro__percent" id="introLoaderPercent" aria-hidden="true">0&nbsp;%</p>
     </div>
   </div>
 </div>
@@ -60,30 +69,47 @@
   <!-- Alerte signal -->
   <div class="sysbar__band sysbar__alert">
     <span class="sysbar__dot"></span>
-    <span class="conf-only">Veille · signal anormal en analyse<span class="conf-tag">Confidentiel</span></span>
-    <span class="public-only">Alerte · signal anormal détecté — Vallée d'Aurelia, secteur 7</span>
-    <span class="sysbar__update">Dernière mise à jour · 30.05 · 16:01 UTC</span>
-    <a href="#discovery" class="sysbar__cta public-only">En savoir plus</a>
+    <span class="conf-only">Situation critique · réponse coordonnée en cours<span class="conf-tag">Confidentiel</span></span>
+    <span class="public-only">Alerte médias · #AuroraAlien · deepfake en circulation</span>
+    <span class="sysbar__update">Dernière mise à jour · 30.05 · 19:45 UTC</span>
+    <a href="#crise" class="sysbar__cta public-only">Centre de crise</a>
   </div>
   <!-- Communications dégradées -->
   <div class="sysbar__band sysbar__degraded">
     <span class="sysbar__dot"></span>
-    <span>Communications dégradées · Tempête solaire M4</span>
+    <span class="sysbar__degraded-tag">Liaison dégradée</span>
+    <span class="sysbar__degraded-main">Communications dégradées · Tempête solaire M4</span>
     <span class="sysbar__sep" aria-hidden="true"></span>
-    <span>Débit 10 %</span>
-    <span class="sysbar__update">Protocole COM-DEGRAD actif</span>
+    <span class="sysbar__degraded-stat" data-degrade-corrupt>Débit 10 %</span>
+    <span class="sysbar__update sysbar__degraded-meta" data-degrade-corrupt>Protocole COM-DEGRAD actif</span>
   </div>
 </div>
 
-<!-- ═══════ MODE DÉGRADÉ : EFFETS ═══════ -->
+<!-- ═══════ MODE DÉGRADÉ : EFFETS VHS ═══════ -->
 <div class="degrade-fx" aria-hidden="true">
+  <canvas class="degrade-fx__canvas" id="degradeVhsCanvas"></canvas>
+  <div class="degrade-fx__tint"></div>
+  <div class="degrade-fx__chroma degrade-fx__chroma--red"></div>
+  <div class="degrade-fx__chroma degrade-fx__chroma--cyan"></div>
   <div class="degrade-fx__noise"></div>
   <div class="degrade-fx__scan"></div>
+  <div class="degrade-fx__bands" aria-hidden="true">
+    <i class="degrade-fx__band"></i>
+    <i class="degrade-fx__band"></i>
+    <i class="degrade-fx__band"></i>
+    <i class="degrade-fx__band"></i>
+    <i class="degrade-fx__band"></i>
+    <i class="degrade-fx__band"></i>
+    <i class="degrade-fx__band"></i>
+    <i class="degrade-fx__band"></i>
+    <i class="degrade-fx__band"></i>
+    <i class="degrade-fx__band"></i>
+  </div>
+  <div class="degrade-fx__vignette"></div>
 </div>
 
 <!-- ═══════ ATMOSPHERE ═══════ -->
 <div class="atmosphere"><canvas class="atmosphere__stars" id="starfield"></canvas><div class="atmosphere__vignette"></div></div>
-<div class="atmosphere__grain"></div>
 
 <!-- ═══════ HEADER ═══════ -->
 <header class="header" id="siteHeader" data-component="site-header">
@@ -92,9 +118,10 @@
   </a>
   <nav class="header__nav">
     <a href="#latest" data-nav-link>Transmissions</a>
+    <a href="#crise" data-nav-link>Crise</a>
     <a href="#about" data-nav-link>À propos</a>
     <a href="#gallery" data-nav-link>Archive</a>
-    <a href="#eva" data-nav-link>EVA</a>
+    <a href="eva.html" data-nav-link>EVA</a>
     <a href="#discovery" data-nav-link>Découverte</a>
     <a href="#journal" data-nav-link>Journal</a>
     <a href="#feed" data-nav-link>Chronologie</a>
@@ -104,7 +131,7 @@
   </button>
   <div class="header__status">
     <span class="header__pulse"></span>
-    <span class="header__status-text">Liaison active</span>
+    <span class="header__status-text" data-degrade-corrupt data-degrade-alt="Liaison instable">Liaison active</span>
   </div>
 </header>
 
@@ -112,21 +139,22 @@
 <nav class="mobile-nav" id="mobileNav" aria-hidden="true" aria-label="Navigation principale">
   <div class="mobile-nav__list">
     <a href="#latest"><span class="idx">01</span>Transmissions</a>
-    <a href="#about"><span class="idx">02</span>À propos</a>
-    <a href="#gallery"><span class="idx">03</span>Archive visuelle</a>
-    <a href="#eva"><span class="idx">04</span>EVA · Secteur 7</a>
-    <a href="#discovery"><span class="idx">05</span>Découverte</a>
-    <a href="#journal"><span class="idx">06</span>Journal de bord</a>
-    <a href="#feed"><span class="idx">07</span>Chronologie</a>
+    <a href="#crise"><span class="idx">02</span>Centre de crise</a>
+    <a href="#about"><span class="idx">03</span>À propos</a>
+    <a href="#gallery"><span class="idx">04</span>Archive visuelle</a>
+    <a href="eva.html"><span class="idx">05</span>EVA · Secteur 7</a>
+    <a href="#discovery"><span class="idx">06</span>Découverte</a>
+    <a href="#journal"><span class="idx">07</span>Journal de bord</a>
+    <a href="#feed"><span class="idx">08</span>Chronologie</a>
   </div>
-  <div class="mobile-nav__foot">Programme AURORA · Cellule SOLA · Liaison active</div>
+  <div class="mobile-nav__foot">Programme AURORA · Cellule SOLA · <span data-degrade-corrupt data-degrade-alt="Liaison instable">Liaison active</span></div>
 </nav>
 
 <!-- ═══════ HERO ═══════ -->
 <section class="hero snap-section" id="top" data-component="hero">
   <div class="hero__glow"></div>
   <div class="hero__container">
-    <div class="hero__eyebrow"><span>Programme AURORA · Cellule SOLA · Liaison active</span></div>
+    <div class="hero__eyebrow"><span>Programme AURORA · Cellule SOLA · <span data-degrade-corrupt data-degrade-alt="Liaison instable">Liaison active</span></span></div>
     <h1 class="hero__title">
       <span class="hero__title-line">Échos</span>
       <span class="hero__title-line hero__title-line--accent">d'un monde</span>
@@ -199,6 +227,154 @@
         </div>
       </aside>
     </div>
+  </div>
+</section>
+
+<!-- ═══════ CENTRE DE CRISE (EVT11-D) ═══════ -->
+<section class="crise snap-section" id="crise" data-component="crisis-center">
+  <div class="crise__container">
+
+    <header class="crise__head">
+      <span class="crise__flag">Événement · EVT-11 · Centre de crise</span>
+      <h2 class="crise__title">Centre de crise en ligne</h2>
+      <p class="crise__lead">Informations vérifiées par le Centre de Contrôle Aurora. Source unique officielle — démentis, preuves et mises à jour horodatées. En situation de crise médiatique, seules les publications de cette section font autorité.</p>
+    </header>
+
+    <div class="crise__feed-block">
+      <div class="crise__block-label">Fil de mission · horodaté UTC</div>
+      <div class="cfeed">
+        <article class="cfeed__item cfeed__item--priority">
+          <div class="cfeed__time">18:47 UTC<span class="d">30.05.2079</span></div>
+          <div class="cfeed__body">
+            <h4>Situation critique · #AuroraAlien</h4>
+            <p>Hashtag repris par quatre médias TV nationaux sans validation CCA. Réponse coordonnée en cours sur tous les canaux officiels SOLA.</p>
+            <span class="cfeed__tag">Priorité CCA</span>
+          </div>
+        </article>
+        <article class="cfeed__item">
+          <div class="cfeed__time">19:02 UTC<span class="d">30.05.2079</span></div>
+          <div class="cfeed__body">
+            <h4>Appels standard CCA · +2000 %</h4>
+            <p>Pic d'appels entre 18:30 et 19:30 UTC. Ne pas relayer d'informations non vérifiées. Seule la cellule SOLA confirme ou infirme les faits.</p>
+          </div>
+        </article>
+        <article class="cfeed__item">
+          <div class="cfeed__time">19:15 UTC<span class="d">30.05.2079</span></div>
+          <div class="cfeed__body">
+            <h4>Démenti · deepfake « alien à bord »</h4>
+            <p>Vidéo en circulation montrant une entité non identifiée dans l'Odyssey IV : <strong>fausse</strong>. Analyse CCA · incohérences lumineuses et métadonnées altérées.</p>
+            <span class="cfeed__tag">Démenti officiel</span>
+          </div>
+        </article>
+        <article class="cfeed__item">
+          <div class="cfeed__time">19:28 UTC<span class="d">30.05.2079</span></div>
+          <div class="cfeed__body">
+            <h4>Communiqué vie privée · Dr. S. Patel</h4>
+            <p>Des journalistes se sont présentés au domicile d'un proche du Dr. S. Patel sur Terre. Le CCA condamne ces intrusions. Aucune information familiale ne constitue une source officielle.</p>
+          </div>
+        </article>
+        <article class="cfeed__item">
+          <div class="cfeed__time">19:45 UTC<span class="d">30.05.2079</span></div>
+          <div class="cfeed__body">
+            <h4>Message vidéo équipage · en préparation</h4>
+            <p>Point presse coordonné. Transmission officielle de la Cdt. E. Ripley prévue à 20:00 UTC pour répondre à la désinformation.</p>
+            <span class="cfeed__tag">En cours</span>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="crise__denials-block">
+      <div class="crise__block-label">Démentis officiels</div>
+      <div class="cdenials">
+        <article class="cdenial">
+          <div class="cdenial__meta"><span class="cdenial__id">DEM-01</span><span class="cdenial__when">30.05 · 19:15 UTC</span><span class="cdenial__badge">Vérifié CCA</span></div>
+          <h3 class="cdenial__title">« Alien à bord de l'Odyssey IV »</h3>
+          <p class="cdenial__text">La vidéo en circulation est un deepfake. Aucun contact visuel non identifié n'a été enregistré à bord. Ne pas partager.</p>
+        </article>
+        <article class="cdenial">
+          <div class="cdenial__meta"><span class="cdenial__id">DEM-02</span><span class="cdenial__when">30.05 · 19:28 UTC</span><span class="cdenial__badge">Vérifié CCA</span></div>
+          <h3 class="cdenial__title">Rumeurs via proches de l'équipage</h3>
+          <p class="cdenial__text">Les proches des membres d'équipage ne sont pas des porte-parole de la mission. Toute sollicitation à domicile est non autorisée.</p>
+        </article>
+        <article class="cdenial">
+          <div class="cdenial__meta"><span class="cdenial__id">DEM-03</span><span class="cdenial__when">30.05 · 18:47 UTC</span><span class="cdenial__badge">Vérifié CCA</span></div>
+          <h3 class="cdenial__title">Hashtag #AuroraAlien · reprises médias</h3>
+          <p class="cdenial__text">Reprises télévisées sans validation CCA. Le signal de Kepler-452c reste en analyse — aucune conclusion sur une origine intelligente n'a été établie.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="crise__proofs-block">
+      <div class="crise__block-label">Preuves vérifiées</div>
+      <div class="cproofs">
+        <article class="cproof">
+          <span class="cproof__meta">EVT11-D-001 · 30.05 · 19:12 UTC</span>
+          <h3 class="cproof__title">Analyse deepfake CCA</h3>
+          <p class="cproof__desc">Rapport technique · comparaison frame par frame · incohérences lumineuses et synchronisation labiale.</p>
+        </article>
+        <article class="cproof">
+          <span class="cproof__meta">TX-077 · 29.05 · 22:13 UTC</span>
+          <h3 class="cproof__title">Transmission vérifiée · plateau Cassini</h3>
+          <p class="cproof__desc">Dernière transmission officielle de la Cdt. E. Ripley — source Odyssey IV authentifiée.</p>
+          <a href="#latest" class="cproof__link">Voir la transmission →</a>
+        </article>
+        <article class="cproof">
+          <span class="cproof__meta">Spectre · 30.05 · 11:30 UTC</span>
+          <h3 class="cproof__title">Relevé signal · Vallée d'Aurelia</h3>
+          <p class="cproof__desc">Données brutes validées par l'équipe scientifique — sans interprétation médiatique.</p>
+          <a href="#discovery" class="cproof__link">Voir les données →</a>
+        </article>
+        <article class="cproof">
+          <span class="cproof__meta">Archive · 29.05 · 14:23 UTC</span>
+          <h3 class="cproof__title">Image KEP-452C-001 · première lumière</h3>
+          <p class="cproof__desc">Capture authentifiée Lt. A. Laurent — orbite basse, instrument Camera Alpha.</p>
+          <a href="#gallery" class="cproof__link">Voir l'archive →</a>
+        </article>
+      </div>
+    </div>
+
+    <div class="crise__video-block">
+      <div class="crise__block-label">Vidéo · message équipage</div>
+      <div class="cvideo">
+        <div class="cvideo__frame" role="img" aria-label="Message vidéo officiel · Cdt. E. Ripley · prévu 20:00 UTC">
+          <div class="cvideo__play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="cvideo__caption">
+          <h4>Message officiel · équipage Odyssey IV</h4>
+          <p>« Ici la Commander Ripley. L'équipage va bien. Les systèmes sont nominaux. La vidéo montrant une entité à bord est fausse. Faites confiance uniquement aux transmissions du Centre de Contrôle Aurora. »</p>
+          <span class="when">Cdt. E. Ripley · 30.05.2079 · 20:00 UTC · prévu</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="crise__faq">
+      <div class="crise__block-label">Questions fréquentes</div>
+      <details class="cfaq">
+        <summary class="cfaq__q">La vidéo de l'« alien » est-elle réelle ?<span class="cfaq__sign" aria-hidden="true"></span></summary>
+        <div class="cfaq__a"><p>Non. Le CCA a identifié un deepfake. Ne la partagez pas et signalez les comptes qui la diffusent.</p></div>
+      </details>
+      <details class="cfaq">
+        <summary class="cfaq__q">Pourquoi #AuroraAlien est partout à la télé ?<span class="cfaq__sign" aria-hidden="true"></span></summary>
+        <div class="cfaq__a"><p>Des médias ont repris des spéculations sans attendre la validation CCA. Seules les informations publiées ici ou via les canaux SOLA officiels font autorité.</p></div>
+      </details>
+      <details class="cfaq">
+        <summary class="cfaq__q">L'équipage ou leurs proches sont-ils en danger ?<span class="cfaq__sign" aria-hidden="true"></span></summary>
+        <div class="cfaq__a"><p>L'équipage est en sécurité. Le harcèlement de proches sur Terre est condamné par le CCA et ne constitue pas une source d'information fiable.</p></div>
+      </details>
+      <details class="cfaq">
+        <summary class="cfaq__q">Comment obtenir une information vérifiée ?<span class="cfaq__sign" aria-hidden="true"></span></summary>
+        <div class="cfaq__a"><p>Consultez ce centre de crise, le fil horodaté ci-dessus, ou contactez le standard CCA. N'utilisez pas les réseaux sociaux comme source primaire.</p></div>
+      </details>
+    </div>
+
+    <footer class="crise__foot">
+      <span>Centre de Contrôle Aurora · Cellule SOLA</span>
+      <span>Réponse coordonnée · <b>tous canaux officiels</b></span>
+    </footer>
+
   </div>
 </section>
 
@@ -289,91 +465,26 @@
   </div>
 </section>
 
-<!-- ═══════ SUIVI EVA EN DIRECT (EVT08-C · secteur 7) ═══════ -->
-<section class="eva snap-section" id="eva" data-component="eva-live">
-  <div class="eva__container">
-    <header class="eva__head reveal">
-      <div>
+<!-- ═══════ PORTAIL EVA → page dédiée (EVT08-C) ═══════ -->
+<section class="eva-portal snap-section" id="eva" data-component="eva-portal">
+  <div class="eva-portal__glow" aria-hidden="true"></div>
+  <div class="eva-portal__container">
+    <div class="eva-portal__layout">
+      <div class="eva-portal__content reveal">
         <div class="eyebrow"><span class="num">03</span><span>Suivi EVA · EVT-08</span></div>
-        <h2 class="eva__title">Sortie extravéhiculaire<br><em>Secteur 7, en direct.</em></h2>
-      </div>
-      <span class="eva__status">
-        <span class="eva__status-dot"></span>
-        <span class="live">EVA en cours</span><span class="done">EVA terminée</span>
-      </span>
-    </header>
-
-    <div class="eva__grid">
-
-      <!-- Fil horodaté -->
-      <div class="eva__feed reveal reveal--d1">
-        <div class="eva__block-label">Fil de mission · horodaté UTC</div>
-        <div class="efeed">
-          <div class="efeed__item">
-            <div class="efeed__time">11:33</div>
-            <div class="efeed__body">
-              <h4>Approche du secteur 7</h4>
-              <p>Visibilité correcte, sol stable. Laurent et Wong progressent vers la zone repérée lors du survol.</p>
-              <span class="efeed__author">Lt. A. Laurent · EVA</span>
-            </div>
-          </div>
-          <div class="efeed__item">
-            <div class="efeed__time">11:41</div>
-            <div class="efeed__body">
-              <h4>Reflet lumineux détecté</h4>
-              <p>Un élément réfléchit la lumière à environ 200 mètres. La surface n'est pas rocheuse. Progression maintenue.</p>
-              <span class="efeed__author">Lt. A. Laurent · EVA</span>
-            </div>
-          </div>
-          <div class="efeed__item efeed__item--live">
-            <div class="efeed__time">11:52</div>
-            <div class="efeed__body">
-              <h4>Formation cristalline observée</h4>
-              <p>Structure translucide d'environ 3 mètres de haut. Elle présente une pulsation lumineuse faible mais régulière. Captation d'images en cours.</p>
-              <span class="efeed__author">Lt. A. Laurent · EVA</span>
-              <span class="efeed__tag">Transmission en direct</span>
-            </div>
-          </div>
+        <h2 class="eva-portal__title">Sortie extravéhiculaire<br><em>Secteur 7 · page dédiée</em></h2>
+        <p class="eva-portal__lead">Tableau de bord en direct : fil horodaté, carte de progression et flux images. Interface séparée du site principal, conformément au protocole CCA.</p>
+        <div class="eva-portal__meta">
+          <span class="eva-portal__badge"><span class="eva-portal__badge-dot"></span>EVA en cours</span>
+          <span class="eva-portal__tag">Interface mission</span>
         </div>
+        <a href="eva.html" class="eva-portal__cta">Accéder au suivi EVA en direct<span aria-hidden="true">→</span></a>
       </div>
-
-      <!-- Carte + données -->
-      <div class="eva__side">
-        <article class="epanel reveal reveal--d2">
-          <div class="epanel__head">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.4 7-11a7 7 0 1 0-14 0c0 4.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
-            <span class="epanel__heading">Localisation · Secteur 7</span>
-          </div>
-          <svg class="emap" viewBox="0 0 360 210" role="img" aria-label="Carte du secteur 7 et progression de l'EVA">
-            <line class="emap__grid" x1="0" y1="70" x2="360" y2="70"/>
-            <line class="emap__grid" x1="0" y1="140" x2="360" y2="140"/>
-            <line class="emap__grid" x1="120" y1="0" x2="120" y2="210"/>
-            <line class="emap__grid" x1="240" y1="0" x2="240" y2="210"/>
-            <path class="emap__blob" d="M55,95 C38,66 70,38 108,42 C140,45 152,26 192,32 C236,39 252,28 286,48 C318,67 336,86 326,118 C318,144 334,162 296,176 C258,189 238,196 196,188 C152,180 124,196 96,172 C70,150 50,142 52,118 C53,104 70,112 55,95 Z"/>
-            <path class="emap__path" d="M92,150 Q140,130 175,118 T232,96"/>
-            <circle class="emap__base" cx="92" cy="150" r="5"/>
-            <circle class="emap__ring" cx="232" cy="96" r="5"/>
-            <circle class="emap__target" cx="232" cy="96" r="5"/>
-            <text class="emap__label base" x="82" y="168">Module</text>
-            <text class="emap__label target" x="218" y="84">Cible</text>
-          </svg>
-          <div class="emap__coords"><span>19.78°N / 142.31°E</span><span>Distance · ~200 m</span></div>
-        </article>
-
-        <article class="epanel reveal reveal--d3">
-          <div class="epanel__head">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="m3 14 5-4 4 3 4-4 5 4"/></svg>
-            <span class="epanel__heading">Images &amp; données</span>
-          </div>
-          <div class="edata">
-            <div class="edata__slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg><span>En attente</span></div>
-            <div class="edata__slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg><span>En attente</span></div>
-            <div class="edata__slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg><span>En attente</span></div>
-          </div>
-          <p class="edata__note">Les visuels et relevés de l'EVA s'afficheront ici au fur et à mesure de leur réception, dès validation par le CCA.</p>
-        </article>
-      </div>
-
+      <figure class="eva-portal__visual reveal reveal--d2">
+        <div class="eva-portal__visual-frame">
+          <img src="assets/images/eva-en-direct.png" alt="EVA en direct — Laurent et Wong, secteur 7 · Kepler-452c" width="640" height="960" loading="lazy" decoding="async">
+        </div>
+      </figure>
     </div>
   </div>
 </section>
@@ -661,12 +772,13 @@
       <div class="site-footer__end">
         <nav class="site-footer__nav" aria-label="Navigation pied de page">
           <a href="#latest">Transmissions</a>
+          <a href="#crise">Centre de crise</a>
           <a href="#about">À propos</a>
           <a href="#gallery">Archive</a>
+          <a href="eva.html">EVA</a>
           <a href="#feed">Chronologie</a>
-          <a href="#">Mentions légales</a>
         </nav>
-        <span class="site-footer__meta">© 2079 · ASI · <span class="site-footer__status"><span class="site-footer__pulse"></span>Liaison active</span></span>
+        <span class="site-footer__meta">© 2079 · ASI · <span class="site-footer__status"><span class="site-footer__pulse"></span><span data-degrade-corrupt data-degrade-alt="Liaison instable">Liaison active</span></span></span>
       </div>
     </div>
     <p class="site-footer__credit">Direction artistique · <span>Solar Capsule</span> · Mission Aurora</p>
@@ -708,17 +820,18 @@
     <button class="lightbox__btn" id="lbNext">Suivant<svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="0" y1="5" x2="13" y2="5"/><path d="M9 1 L13 5 L9 9"/></svg></button>
   </div>
 </div>
+<!-- ═══════ TOGGLE MODE DÉGRADÉ (EVT04-C) ═══════ -->
+<button class="deg-toggle deg-toggle--locked" id="degToggle" type="button" role="switch"
+  aria-pressed="false" aria-label="Déverrouiller le protocole COM-DEGRAD · tempête solaire">
+  <span class="deg-toggle__cipher" aria-hidden="true">▮</span>
+  <span class="deg-toggle__dot" aria-hidden="true"></span>
+  <span class="deg-toggle__label" aria-hidden="true"></span>
+</button>
+
 <!-- ═══════ CONSOLE DE DÉMONSTRATION (états du site) ═══════ -->
 <div class="cca-console" id="ccaConsole">
   <div class="cca-console__panel" role="dialog" aria-label="Console CCA">
     <div class="cca-console__head">Console CCA · démonstration</div>
-
-    <div class="cca-field">
-      <div class="cca-field__label">
-        <span>Mode dégradé · tempête solaire</span>
-        <button class="cca-switch" id="ccaDegraded" role="switch" aria-pressed="false" aria-label="Activer le mode dégradé"></button>
-      </div>
-    </div>
 
     <div class="cca-field">
       <div class="cca-field__label"><span>État d'alerte · signal</span></div>
@@ -737,7 +850,7 @@
       </div>
     </div>
 
-    <p class="cca-console__note">Contrôles de démonstration : ils pilotent l'état du site (alerte signal, communications dégradées, suivi EVA) et illustrent son évolution en temps réel.</p>
+    <p class="cca-console__note">Contrôles de démonstration : alerte signal et suivi EVA en temps réel.</p>
   </div>
   <button class="cca-console__toggle" id="ccaConsoleToggle" aria-expanded="false">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" stroke-linecap="round"/></svg>
@@ -745,15 +858,16 @@
   </button>
 </div>
 
-<script src="assets/js/intro.js"></script>
-<script src="assets/js/starfield.js"></script>
-<script src="assets/js/header.js"></script>
-<script src="assets/js/reveal.js"></script>
-<script src="assets/data/gallery-data.js"></script>
-<script src="assets/js/lightbox.js"></script>
-<script src="assets/js/section-scroll.js"></script>
-<script src="assets/js/cursor.js"></script>
-<script src="assets/js/systems.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/intro.js?v=1bde7f5"></script>
+<script src="assets/js/starfield.js?v=1bde7f5"></script>
+<script src="assets/js/header.js?v=1bde7f5"></script>
+<script src="assets/js/reveal.js?v=1bde7f5"></script>
+<script src="assets/data/gallery-data.js?v=1bde7f5"></script>
+<script src="assets/js/lightbox.js?v=1bde7f5"></script>
+<script src="assets/js/section-scroll.js?v=1bde7f5"></script>
+<script src="assets/js/cursor.js?v=1bde7f5"></script>
+<script src="assets/js/degrade-vhs.js?v=1bde7f5"></script>
+<script src="assets/js/systems.js?v=1bde7f5"></script>
+<script src="assets/js/main.js?v=1bde7f5"></script>
 </body>
 </html>

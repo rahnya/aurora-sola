@@ -3,10 +3,10 @@
    ═══════════════════════════════════════════════ */
 :root {
   /* Couleurs */
-  --c-lavender:#EEE9FF;--c-lavender-mid:#B6A5FF;--c-navy:#292762;--c-gold:#E8C76A;
+  --c-lavender:#EEE9FF;--c-lavender-mid:#B6A5FF;--c-lavender-alt:#C9BEF8;--c-navy:#292762;--c-gold:#E8C76A;
   --c-void:#060418;--c-deep:#0a0824;--c-deep-warm:#12103a;--c-navy-soft:#1c1a4f;
-  --t-on-dark:var(--c-lavender);--t-on-dark-mid:rgba(238,233,255,0.70);--t-on-dark-low:rgba(238,233,255,0.42);
-  --t-on-light:var(--c-navy);--t-on-light-mid:rgba(41,39,98,0.72);--t-on-light-low:rgba(41,39,98,0.42);
+  --t-on-dark:var(--c-lavender);--t-on-dark-mid:rgba(238,233,255,0.82);--t-on-dark-low:rgba(238,233,255,0.52);
+  --t-on-light:var(--c-navy);--t-on-light-mid:rgba(41,39,98,0.82);--t-on-light-low:rgba(41,39,98,0.52);
   --line-dark:rgba(182,165,255,0.10);--line-dark-2:rgba(182,165,255,0.22);
   --line-light:rgba(41,39,98,0.12);--line-light-2:rgba(41,39,98,0.24);
   --line-gold:rgba(232,199,106,0.55);
@@ -15,51 +15,75 @@
   --ff-display:'Cinzel','Times New Roman',serif;
   --ff-body:'Montserrat',system-ui,sans-serif;
 
-  /* Échelle typo — mobile → laptop → desktop */
-  --text-xs:clamp(0.625rem,0.59rem + 0.14vw,0.6875rem);
-  --text-sm:clamp(0.6875rem,0.64rem + 0.18vw,0.8125rem);
-  --text-base:clamp(0.875rem,0.83rem + 0.2vw,1rem);
-  --text-md:clamp(0.9375rem,0.88rem + 0.24vw,1.0625rem);
-  --text-lg:clamp(1rem,0.94rem + 0.26vw,1.125rem);
+  /* Échelle typo — mobile → laptop → desktop (lisibilité prioritaire) */
+  --text-xs:clamp(0.6875rem,0.64rem + 0.16vw,0.75rem);
+  --text-sm:clamp(0.8125rem,0.76rem + 0.2vw,0.9375rem);
+  --text-base:clamp(0.9375rem,0.88rem + 0.24vw,1.0625rem);
+  --text-md:clamp(1rem,0.94rem + 0.28vw,1.125rem);
+  --text-lg:clamp(1.0625rem,1rem + 0.32vw,1.25rem);
 
   --title-hero:clamp(2.75rem,1.7rem + 4.2vw,5.5rem);
   --title-section:clamp(1.625rem,1.22rem + 1.65vw,3rem);
-  --title-card:clamp(1rem,0.92rem + 0.38vw,1.3125rem);
+  --title-card:clamp(1.0625rem,0.96rem + 0.4vw,1.375rem);
   --title-stat:clamp(1.875rem,1.35rem + 1.75vw,3rem);
   --title-display:clamp(3rem,1.6rem + 5.5vw,7.25rem);
 
-  --track-label:0.28em;
-  --track-meta:0.22em;
-  --track-wide:0.32em;
-  --leading-tight:1.08;
-  --leading-display:0.96;
-  --leading-body:1.72;
+  --track-label:0.24em;
+  --track-meta:0.18em;
+  --track-wide:0.28em;
+  --leading-tight:1.18;
+  --leading-display:0.98;
+  --leading-body:1.75;
 
   /* Largeurs de lecture — harmonisées */
   --container:1200px;
-  --prose-sm:clamp(17rem,15rem + 4vw,22rem);
-  --prose-md:clamp(24rem,20rem + 5vw,32rem);
-  --prose-lg:clamp(28rem,24rem + 5vw,36rem);
-  --prose-xl:clamp(38rem,32rem + 7vw,52rem);
-  --meta-width:clamp(34rem,30rem + 8vw,40rem);
-  --sidebar-width:clamp(16rem,14rem + 4vw,18.75rem);
+  --prose-sm:clamp(20rem,18rem + 4vw,28rem);
+  --prose-md:clamp(26rem,22rem + 5vw,36rem);
+  --prose-lg:clamp(30rem,26rem + 5vw,40rem);
+  --prose-xl:clamp(40rem,34rem + 7vw,56rem);
+  --meta-width:clamp(34rem,30rem + 8vw,42rem);
+  --sidebar-width:clamp(16rem,14rem + 4vw,20rem);
 
   /* Espacements — respiration cohérente */
-  --gutter:clamp(1.25rem,1rem + 2.2vw,3rem);
-  --space-section-y:clamp(4rem,3rem + 3.5vh,7rem);
-  --space-head:clamp(1.5rem,1.1rem + 1.15vw,2.75rem);
-  --space-block:clamp(1.125rem,0.95rem + 0.45vw,1.625rem);
-  --space-element:clamp(0.625rem,0.55rem + 0.28vw,0.875rem);
-  --gap-grid:clamp(1.25rem,0.85rem + 1.1vw,2.25rem);
-  --gap-grid-lg:clamp(1.75rem,1.05rem + 1.85vw,3.5rem);
+  --gutter:clamp(1.35rem,1.1rem + 2.5vw,3.25rem);
+  --space-section-y:clamp(4.5rem,3.25rem + 3.5vh,7.5rem);
+  --space-head:clamp(1.75rem,1.25rem + 1.4vw,3rem);
+  --space-block:clamp(1.25rem,1.05rem + 0.55vw,1.875rem);
+  --space-element:clamp(0.75rem,0.65rem + 0.32vw,1rem);
+  --gap-grid:clamp(1.35rem,1rem + 1.2vw,2.5rem);
+  --gap-grid-lg:clamp(2rem,1.2rem + 2vw,3.75rem);
 
   /* Plein écran sections */
   --snap-h:100vh;
   --snap-h:100dvh;
-  --snap-pad-top:clamp(4.5rem,3.4rem + 3.2vh,5.75rem);
-  --snap-pad-bottom:clamp(1.25rem,1rem + 0.75vh,2rem);
+  --snap-pad-top:clamp(5rem,3.75rem + 3.5vh,6.5rem);
+  --snap-pad-bottom:clamp(1.75rem,1.25rem + 1.2vh,2.75rem);
 
   /* Motion */
   --ease-out:cubic-bezier(0.16,1,0.3,1);
   --ease-in-out:cubic-bezier(0.65,0,0.35,1);
+  --ease-chill:cubic-bezier(0.22,1,0.36,1);
+
+  /* Apparitions — amplitude réduite pour ne pas gêner la lecture */
+  --motion-reveal:3.2s;
+  --motion-reveal-y:24px;
+  --motion-reveal-x:28px;
+  --motion-stagger-1:.4s;
+  --motion-stagger-2:.85s;
+  --motion-stagger-3:1.3s;
+  --motion-stagger-4:1.75s;
+  --motion-stagger-5:2.2s;
+  --motion-hero:2.4s;
+  --motion-page:1.8s;
+  --motion-section:1.2s;
+
+  /* Mode dégradé — charte DA (lavande · or · marine) */
+  --deg-gold:var(--c-gold);
+  --deg-lavender:var(--c-lavender-mid);
+  --deg-lavender-soft:var(--c-lavender-alt);
+  --deg-ink:var(--c-navy);
+  --deg-gold-rgb:232,199,106;
+  --deg-lavender-rgb:182,165,255;
+  --deg-lavender-soft-rgb:201,190,248;
+  --deg-ink-rgb:41,39,98;
 }

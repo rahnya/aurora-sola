@@ -78,13 +78,13 @@ function initLightbox() {
     show(i);
     lb.classList.add('is-active');
     lb.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('is-locked');
+    document.body.classList.add('is-locked', 'is-lightbox-open');
   }
 
   function close() {
     lb.classList.remove('is-active');
     lb.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('is-locked');
+    document.body.classList.remove('is-locked', 'is-lightbox-open');
   }
 
   // Bind plates

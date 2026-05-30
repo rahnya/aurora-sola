@@ -10,7 +10,7 @@ function initCursor() {
   const root = document.documentElement;
   root.classList.add('has-custom-cursor');
 
-  const interactive = 'a,button,.gallery__plate,.feed__item,input,textarea,select,label,[role="button"]';
+  const interactive = 'a,button,.gallery__plate,.feed__item,.lightbox__btn,.lightbox__close,.lightbox__dot,input,textarea,select,label,[role="button"]';
   let targetX = window.innerWidth / 2;
   let targetY = window.innerHeight / 2;
   let currentX = targetX;
@@ -23,9 +23,9 @@ function initCursor() {
   }
 
   function updateVisibility() {
+    const lightboxOpen = document.body.classList.contains('is-lightbox-open');
     const hidden = document.body.classList.contains('is-intro')
-      || document.body.classList.contains('is-locked')
-      || document.getElementById('lightbox')?.classList.contains('is-active');
+      || (document.body.classList.contains('is-locked') && !lightboxOpen);
     setHidden(hidden);
   }
 
@@ -56,7 +56,9 @@ function initCursor() {
   document.addEventListener('mouseleave', () => setHidden(true));
   document.addEventListener('mouseenter', () => {
     updateVisibility();
-    if (!document.body.classList.contains('is-intro') && !document.body.classList.contains('is-locked')) {
+    const lightboxOpen = document.body.classList.contains('is-lightbox-open');
+    if (!document.body.classList.contains('is-intro')
+      && (!document.body.classList.contains('is-locked') || lightboxOpen)) {
       setHidden(false);
     }
   });

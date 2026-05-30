@@ -4,19 +4,19 @@
    ═══════════════════════════════════════════════ */
 .hero{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse 100% 80% at 50% 100%,rgba(232,199,106,.06) 0%,transparent 60%),radial-gradient(ellipse 80% 60% at 20% 20%,rgba(182,165,255,.05) 0%,transparent 50%),linear-gradient(180deg,var(--c-void),var(--c-deep) 50%,var(--c-deep-warm));z-index:2}
 .hero__container{position:relative;width:100%;max-width:var(--container);text-align:center;z-index:2;padding:0 var(--gutter)}
-body.is-intro-done .hero__eyebrow{animation:heroFade 1s .4s var(--ease-out) forwards}
-body.is-intro-done .hero__title-line{animation:heroLine 1.2s var(--ease-out) forwards}
-body.is-intro-done .hero__title-line:nth-child(1){animation-delay:.5s}
-body.is-intro-done .hero__title-line:nth-child(2){animation-delay:.65s}
-body.is-intro-done .hero__title-line:nth-child(3){animation-delay:.8s}
-body.is-intro-done .hero__visual{animation:heroPlanet 1.6s .7s var(--ease-out) forwards}
-body.is-intro-done .hero__lead{animation:heroFade 1s .95s var(--ease-out) forwards}
-body.is-intro-done .hero__meta{animation:heroFade 1s 1.1s var(--ease-out) forwards}
-body.is-intro-done .hero__scroll{animation:heroFade 1s 1.5s var(--ease-out) forwards}
+body.is-intro-done .hero__eyebrow{animation:heroFade var(--motion-hero) .65s var(--ease-chill) forwards}
+body.is-intro-done .hero__title-line{animation:heroLine var(--motion-hero) var(--ease-chill) forwards}
+body.is-intro-done .hero__title-line:nth-child(1){animation-delay:.8s}
+body.is-intro-done .hero__title-line:nth-child(2){animation-delay:1.1s}
+body.is-intro-done .hero__title-line:nth-child(3){animation-delay:1.4s}
+body.is-intro-done .hero__visual{animation:heroPlanet calc(var(--motion-hero) + .5s) 1.05s var(--ease-chill) forwards}
+body.is-intro-done .hero__lead{animation:heroFade var(--motion-hero) 1.65s var(--ease-chill) forwards}
+body.is-intro-done .hero__meta{animation:heroFade var(--motion-hero) 1.95s var(--ease-chill) forwards}
+body.is-intro-done .hero__scroll{animation:heroFade var(--motion-hero) 2.45s var(--ease-chill) forwards}
 .hero__eyebrow{display:inline-flex;align-items:center;gap:var(--space-element);font-size:var(--text-sm);font-weight:500;letter-spacing:var(--track-wide);text-transform:uppercase;color:var(--c-gold);margin-bottom:var(--space-head);opacity:0}
 .hero__eyebrow::before,.hero__eyebrow::after{content:'';width:clamp(28px,4vw,40px);height:1px;background:var(--line-gold)}
 .hero__title{font-family:var(--ff-display);font-weight:500;font-size:var(--title-hero);line-height:var(--leading-display);letter-spacing:.01em;color:var(--c-lavender);margin-bottom:var(--space-block)}
-.hero__title-line{display:block;opacity:0;transform:translateY(32px)}
+.hero__title-line{display:block;opacity:0;transform:translateY(var(--motion-reveal-y))}
 .hero__title-line--accent{color:var(--c-gold);font-style:italic;font-weight:400}
 @keyframes heroLine{to{opacity:1;transform:translateY(0)}}
 @keyframes heroFade{to{opacity:1}}

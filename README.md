@@ -3,8 +3,14 @@
 Plateforme officielle de communication de la cellule **SOLA** (CCA).
 Mission Odyssey IV → Kepler-452c · Programme AURORA · 2079.
 
-Couvre les missions **SOC-03** (site vitrine), **EVT01-C** (galerie photo)
-et **EVT09-D** (section découverte).
+Couvre les missions **SOC-03** (site vitrine), **EVT01-C** (galerie photo),
+**EVT09-D** (section découverte) et **EVT11-D** (centre de crise en ligne).
+
+## Liens officiels
+
+- **Dépôt GitHub** : [github.com/rahnya/aurora-sola](https://github.com/rahnya/aurora-sola)  
+  (`github.com/rahnya/aurora-solia` redirige vers ce dépôt)
+- **Site live (GitHub Pages)** : [rahnya.github.io/aurora-sola](https://rahnya.github.io/aurora-sola/)
 
 ## Lancer
 Site statique 100 % autonome. Ouvrir `index.html` dans un navigateur,
@@ -52,6 +58,17 @@ inconnue dans la Vallée d'Aurelia). Tout est dans `#discovery` (`index.html`) e
   prochains relevés au fil de l'analyse.
 - Le lien de nav (desktop + mobile) et l'entrée dans `SECTION_IDS`
   (`assets/js/section-scroll.js`) sont déjà câblés.
+
+## Centre de crise — EVT11-D
+Section urgence `#crise` (après `#latest`, avant `#about`) — source unique
+officielle en situation de crise médiatique. Styles : `assets/css/crise.css`.
+- **Sysbar** : CTA public « Centre de crise » → `#crise` ; horodatage mission.
+- **Fil horodaté** : articles `.cfeed__item` avec heure UTC + date.
+- **Démentis** : blocs `.cdenial` (DEM-01, DEM-02, …).
+- **Preuves** : cartes `.cproof` avec liens internes (`#latest`, `#discovery`, `#gallery`).
+- **Vidéo équipage** : placeholder `.cvideo__frame` (sans lecteur externe).
+- **FAQ** : `<details class="cfaq">` natifs — pas de classes `.reveal`, design sobre.
+- Nav header / mobile / footer + entrée `crise` dans `SECTION_IDS` après `latest`.
 
 ## Corrections & améliorations (éd. 5)
 - 🐛 **Lightbox réparée** : `gallery-data.js` n'était jamais chargé → la visionneuse plantait. Désormais branché.

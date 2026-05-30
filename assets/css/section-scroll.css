@@ -14,7 +14,7 @@ html.has-section-scroll body{overscroll-behavior-y:none}
   flex-direction:column;
   justify-content:center;
   position:relative;
-  transition:opacity .7s var(--ease-out);
+  transition:opacity var(--motion-section) var(--ease-chill);
   will-change:opacity;
 }
 
@@ -30,16 +30,37 @@ html.has-section-scroll.is-scrolling .snap-section:not(.is-active-section){
   opacity:.28;
 }
 
+/* Centre de crise : toujours lisible (pas de fade section) */
+html.has-section-scroll .snap-section.crise,
+html.has-section-scroll .snap-section.discovery,
+html.has-section-scroll .snap-section.journal,
+html.has-section-scroll .snap-section.feed,
+html.has-section-scroll .snap-section.about,
+html.has-section-scroll .snap-section.gallery,
+html.has-section-scroll.is-scrolling .snap-section.crise,
+html.has-section-scroll.is-scrolling .snap-section.discovery,
+html.has-section-scroll.is-scrolling .snap-section.journal,
+html.has-section-scroll.is-scrolling .snap-section.feed,
+html.has-section-scroll.is-scrolling .snap-section.about,
+html.has-section-scroll.is-scrolling .snap-section.gallery{
+  opacity:1!important;
+  transition:none;
+}
+
 .snap-section.latest,
+.snap-section.crise,
 .snap-section.about,
 .snap-section.gallery,
 .snap-section.discovery,
+.snap-section.journal,
 .snap-section.feed{padding:var(--snap-pad-top) var(--gutter) var(--snap-pad-bottom)}
 
 .snap-section.hero{padding-top:0;padding-bottom:0;justify-content:center}
 
 .snap-section.gallery,
+.snap-section.crise,
 .snap-section.discovery,
+.snap-section.journal,
 .snap-section.feed{justify-content:flex-start}
 
 @media(max-width:900px){

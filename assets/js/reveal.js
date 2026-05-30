@@ -11,7 +11,7 @@ function initReveal() {
         io.unobserve(e.target);
       }
     });
-  }, { threshold: 0.06, rootMargin: '0px 0px -6% 0px' });
+  }, { threshold: 0.06, rootMargin: '0px 0px -3% 0px' });
 
   els.forEach(el => io.observe(el));
 }
@@ -36,6 +36,8 @@ function autoTagRevealElements() {
   });
 
   tag('.feed__foot');
+  tag('.site-footer__wrap');
+  tag('.site-footer__credit', 'reveal--d1');
 }
 
 function tag(el, extra) {
