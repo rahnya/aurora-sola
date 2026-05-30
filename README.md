@@ -47,8 +47,3 @@ assets/
 - ♿ **Accessibilité** : lien d'évitement, focus visible, aria sur menu/lightbox.
 - 🔗 **Partage** : Open Graph / Twitter Card, favicon SVG, theme-color.
 - ✨ Halo respirant + lueur d'horizon sur le hero.
-
-## Note
-La marque est orthographiée « SOLIA » dans tous les fichiers (votre version).
-L'identité visuelle de référence (SOC-01) indique « SOLIA » : si « SOLIA » est
-une coquille, un rechercher/remplacer global SOLIA → SOLIA suffit.
