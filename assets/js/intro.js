@@ -1,31 +1,84 @@
+function isSafariBrowser() {
+  const ua = navigator.userAgent;
+  return /Safari/i.test(ua) && !/Chrome|CriOS|Chromium|Edg|OPR|Firefox|FxiOS/i.test(ua);
+}
+
 function initIntro(onComplete) {
   const intro = document.getElementById('intro');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let finished = false;
+  let holdTimer;
+  let exitTimer;
+  let safetyTimer;
+
+  if (isSafariBrowser()) {
+    document.documentElement.classList.add('is-safari');
+  }
+
+  function finishIntro() {
+    if (finished) return;
+    finished = true;
+
+    clearTimeout(holdTimer);
+    clearTimeout(exitTimer);
+    clearTimeout(safetyTimer);
+
+    const node = document.getElementById('intro');
+    if (node) {
+      node.classList.add('is-exiting');
+      node.remove();
+    }
+
+    document.body.classList.remove('is-intro', 'is-locked');
+    document.body.classList.add('is-intro-done');
+
+    try {
+      onComplete?.();
+    } catch (err) {
+      console.error('Intro callback error:', err);
+    }
+  }
 
   if (!intro || reduced) {
     document.body.classList.add('is-intro-done');
-    onComplete?.();
+    try {
+      onComplete?.();
+    } catch (err) {
+      console.error('Intro callback error:', err);
+    }
     return;
   }
 
   document.body.classList.add('is-intro', 'is-locked');
 
-  const holdMs = 3800;
-  const exitMs = 1400;
-  const loadDelay = 1700;
-  const loadMs = holdMs - loadDelay - 200;
+  const holdMs = isSafariBrowser() ? 2800 : 3800;
+  const exitMs = 1200;
+  const loadDelay = isSafariBrowser() ? 900 : 1700;
+  const loadMs = Math.max(800, holdMs - loadDelay - 200);
 
   runIntroLoader(loadDelay, loadMs);
 
-  setTimeout(() => intro.classList.add('is-exiting'), holdMs);
+  holdTimer = setTimeout(() => {
+    const node = document.getElementById('intro');
+    if (node) node.classList.add('is-exiting');
+  }, holdMs);
 
-  setTimeout(() => {
+  exitTimer = setTimeout(() => {
     window.scrollTo(0, 0);
-    intro.remove();
-    document.body.classList.remove('is-intro', 'is-locked');
-    document.body.classList.add('is-intro-done');
-    onComplete?.();
+    finishIntro();
   }, holdMs + exitMs);
+
+  safetyTimer = setTimeout(finishIntro, holdMs + exitMs + 2500);
+
+  window.addEventListener('pageshow', e => {
+    if (e.persisted) finishIntro();
+  }, { once: true });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && !finished) {
+      safetyTimer = setTimeout(finishIntro, 1500);
+    }
+  }, { once: true });
 }
 
 function runIntroLoader(delay, duration) {

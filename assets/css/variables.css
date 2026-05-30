@@ -54,6 +54,7 @@
   --gap-grid-lg:clamp(1.75rem,1.05rem + 1.85vw,3.5rem);
 
   /* Plein écran sections */
+  --snap-h:100vh;
   --snap-h:100dvh;
   --snap-pad-top:clamp(4.5rem,3.4rem + 3.2vh,5.75rem);
   --snap-pad-bottom:clamp(1.25rem,1rem + 0.75vh,2rem);

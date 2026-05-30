@@ -2,8 +2,9 @@
 /* ═══════════════════════════════════════════════
    INTRO — écran d'ouverture (minimal)
    ═══════════════════════════════════════════════ */
-.intro{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;background:var(--c-void);overflow:hidden;transition:opacity 1s var(--ease-out),visibility 1s}
+.intro{position:fixed;top:0;right:0;bottom:0;left:0;z-index:999;display:flex;align-items:center;justify-content:center;background:var(--c-void);overflow:hidden;-webkit-transition:opacity 1s var(--ease-out),visibility 1s;transition:opacity 1s var(--ease-out),visibility 1s}
 .intro.is-exiting{opacity:0;visibility:hidden;pointer-events:none}
+html.is-safari .intro__logo{animation:introLogoIn 1.2s var(--ease-out) .2s forwards!important}
 .intro__inner{display:flex;flex-direction:column;align-items:center;gap:var(--space-block);text-align:center;padding:var(--gutter)}
 .intro__logo{display:block;height:clamp(48px,9vw,76px);width:auto;object-fit:contain;opacity:0;filter:brightness(0) invert(1);animation:introLogoIn 1.2s var(--ease-out) .2s forwards,introLogoColor 4.5s var(--ease-in-out) 1.3s infinite}
 .intro__tagline{font-size:var(--text-xs);font-weight:400;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--t-on-dark-low);opacity:0;animation:introFade 1s var(--ease-out) .9s forwards}
