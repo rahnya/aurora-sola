@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOLIA - Centre de Contrôle Aurora / Odyssey IV / Kepler-452c</title>
-<meta name="description" content="Plateforme officielle de communication du Programme AURORA. Cellule SOLIA. Liaison Odyssey IV - Kepler-452c.">
+<title>SOLA - Centre de Contrôle Aurora / Odyssey IV / Kepler-452c</title>
+<meta name="description" content="Plateforme officielle de communication du Programme AURORA. Cellule SOLA. Liaison Odyssey IV - Kepler-452c.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <meta name="theme-color" content="#060418">
-<meta name="author" content="Cellule SOLIA · Centre de Contrôle Aurora">
+<meta name="author" content="Cellule SOLA · Centre de Contrôle Aurora">
 <link rel="canonical" href="https://example.com/">
-<!-- Favicon SVG inline (étoile dorée SOLIA) -->
+<!-- Favicon SVG inline (étoile dorée SOLA) -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23060418'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23B6A5FF' stroke-width='1' opacity='.5'/%3E%3Cpath d='M16 7 L17 13 L23 16 L17 19 L16 25 L15 19 L9 16 L15 13 Z' fill='%23E8C76A'/%3E%3C/svg%3E">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="SOLIA - Centre de Contrôle Aurora">
+<meta property="og:title" content="SOLA - Centre de Contrôle Aurora">
 <meta property="og:description" content="Plateforme officielle de communication de la mission Odyssey IV vers Kepler-452c. Programme AURORA.">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="SOLIA - Centre de Contrôle Aurora">
+<meta name="twitter:title" content="SOLA - Centre de Contrôle Aurora">
 <meta name="twitter:description" content="Liaison officielle Odyssey IV - Kepler-452c. Programme AURORA, 2079.">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/variables.css">
@@ -30,6 +30,10 @@
 <link rel="stylesheet" href="assets/css/about.css">
 <link rel="stylesheet" href="assets/css/gallery.css">
 <link rel="stylesheet" href="assets/css/feed.css">
+<link rel="stylesheet" href="assets/css/discovery.css">
+<link rel="stylesheet" href="assets/css/eva.css">
+<link rel="stylesheet" href="assets/css/journal.css">
+<link rel="stylesheet" href="assets/css/systems.css">
 <link rel="stylesheet" href="assets/css/footer.css">
 <link rel="stylesheet" href="assets/css/lightbox.css">
 <link rel="stylesheet" href="assets/css/intro.css">
@@ -37,7 +41,7 @@
 <link rel="stylesheet" href="assets/css/responsive.css">
 <link rel="stylesheet" href="assets/css/cursor.css">
 </head>
-<body>
+<body data-alert="confidential" data-eva="live">
 <div class="site-cursor" id="siteCursor" aria-hidden="true"><span class="site-cursor__ring"></span><span class="site-cursor__dot"></span></div>
 <div class="intro" id="intro" role="presentation" aria-hidden="true">
   <div class="intro__inner">
@@ -51,6 +55,32 @@
 <a href="#top" class="skip-link">Aller au contenu</a>
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
+<!-- ═══════ BARRE SYSTÈME (alerte EVT06-C · mode dégradé EVT04-C) ═══════ -->
+<div class="sysbar" id="systemBar" role="region" aria-label="État des systèmes">
+  <!-- Alerte signal -->
+  <div class="sysbar__band sysbar__alert">
+    <span class="sysbar__dot"></span>
+    <span class="conf-only">Veille · signal anormal en analyse<span class="conf-tag">Confidentiel</span></span>
+    <span class="public-only">Alerte · signal anormal détecté — Vallée d'Aurelia, secteur 7</span>
+    <span class="sysbar__update">Dernière mise à jour · 30.05 · 16:01 UTC</span>
+    <a href="#discovery" class="sysbar__cta public-only">En savoir plus</a>
+  </div>
+  <!-- Communications dégradées -->
+  <div class="sysbar__band sysbar__degraded">
+    <span class="sysbar__dot"></span>
+    <span>Communications dégradées · Tempête solaire M4</span>
+    <span class="sysbar__sep" aria-hidden="true"></span>
+    <span>Débit 10 %</span>
+    <span class="sysbar__update">Protocole COM-DEGRAD actif</span>
+  </div>
+</div>
+
+<!-- ═══════ MODE DÉGRADÉ : EFFETS ═══════ -->
+<div class="degrade-fx" aria-hidden="true">
+  <div class="degrade-fx__noise"></div>
+  <div class="degrade-fx__scan"></div>
+</div>
+
 <!-- ═══════ ATMOSPHERE ═══════ -->
 <div class="atmosphere"><canvas class="atmosphere__stars" id="starfield"></canvas><div class="atmosphere__vignette"></div></div>
 <div class="atmosphere__grain"></div>
@@ -63,7 +93,10 @@
   <nav class="header__nav">
     <a href="#latest" data-nav-link>Transmissions</a>
     <a href="#about" data-nav-link>À propos</a>
-    <a href="#gallery" data-nav-link>Archive visuelle</a>
+    <a href="#gallery" data-nav-link>Archive</a>
+    <a href="#eva" data-nav-link>EVA</a>
+    <a href="#discovery" data-nav-link>Découverte</a>
+    <a href="#journal" data-nav-link>Journal</a>
     <a href="#feed" data-nav-link>Chronologie</a>
   </nav>
   <button class="header__toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">
@@ -81,16 +114,19 @@
     <a href="#latest"><span class="idx">01</span>Transmissions</a>
     <a href="#about"><span class="idx">02</span>À propos</a>
     <a href="#gallery"><span class="idx">03</span>Archive visuelle</a>
-    <a href="#feed"><span class="idx">04</span>Chronologie</a>
+    <a href="#eva"><span class="idx">04</span>EVA · Secteur 7</a>
+    <a href="#discovery"><span class="idx">05</span>Découverte</a>
+    <a href="#journal"><span class="idx">06</span>Journal de bord</a>
+    <a href="#feed"><span class="idx">07</span>Chronologie</a>
   </div>
-  <div class="mobile-nav__foot">Programme AURORA · Cellule SOLIA · Liaison active</div>
+  <div class="mobile-nav__foot">Programme AURORA · Cellule SOLA · Liaison active</div>
 </nav>
 
 <!-- ═══════ HERO ═══════ -->
 <section class="hero snap-section" id="top" data-component="hero">
   <div class="hero__glow"></div>
   <div class="hero__container">
-    <div class="hero__eyebrow"><span>Programme AURORA · Cellule SOLIA · Liaison active</span></div>
+    <div class="hero__eyebrow"><span>Programme AURORA · Cellule SOLA · Liaison active</span></div>
     <h1 class="hero__title">
       <span class="hero__title-line">Échos</span>
       <span class="hero__title-line hero__title-line--accent">d'un monde</span>
@@ -170,13 +206,13 @@
 <section class="about snap-section" id="about" data-component="about">
   <div class="about__deco"></div>
   <div class="about__container">
-    <header class="about__head reveal"><div class="eyebrow eyebrow--light"><span class="num">01</span><span>À propos · Cellule SOLIA</span></div></header>
+    <header class="about__head reveal"><div class="eyebrow eyebrow--light"><span class="num">01</span><span>À propos · Cellule SOLA</span></div></header>
     <h2 class="about__quote reveal reveal--d1">Nous ne communiquons pas <em>sur</em> l'histoire. Nous la racontons.</h2>
     <div class="about__columns">
       <div class="about__col reveal reveal--d1">
         <h3 class="about__col-title">Positionnement</h3>
         <p>En 2079, l'Odyssey IV entre en orbite autour de <strong>Kepler-452c</strong>. Pour la première fois dans l'histoire, un équipage humain observe un monde à 1 400 années-lumière de la Terre.</p>
-        <p>SOLIA est le lien officiel entre cet équipage et les <strong>8 milliards de témoins</strong> sur Terre. Face aux rumeurs et aux spéculations, une seule source fait autorité : le Centre de Contrôle Aurora.</p>
+        <p>SOLA est le lien officiel entre cet équipage et les <strong>8 milliards de témoins</strong> sur Terre. Face aux rumeurs et aux spéculations, une seule source fait autorité : le Centre de Contrôle Aurora.</p>
       </div>
       <div class="about__col reveal reveal--d2">
         <h3 class="about__col-title">Ton & rigueur</h3>
@@ -253,12 +289,346 @@
   </div>
 </section>
 
+<!-- ═══════ SUIVI EVA EN DIRECT (EVT08-C · secteur 7) ═══════ -->
+<section class="eva snap-section" id="eva" data-component="eva-live">
+  <div class="eva__container">
+    <header class="eva__head reveal">
+      <div>
+        <div class="eyebrow"><span class="num">03</span><span>Suivi EVA · EVT-08</span></div>
+        <h2 class="eva__title">Sortie extravéhiculaire<br><em>Secteur 7, en direct.</em></h2>
+      </div>
+      <span class="eva__status">
+        <span class="eva__status-dot"></span>
+        <span class="live">EVA en cours</span><span class="done">EVA terminée</span>
+      </span>
+    </header>
+
+    <div class="eva__grid">
+
+      <!-- Fil horodaté -->
+      <div class="eva__feed reveal reveal--d1">
+        <div class="eva__block-label">Fil de mission · horodaté UTC</div>
+        <div class="efeed">
+          <div class="efeed__item">
+            <div class="efeed__time">11:33</div>
+            <div class="efeed__body">
+              <h4>Approche du secteur 7</h4>
+              <p>Visibilité correcte, sol stable. Laurent et Wong progressent vers la zone repérée lors du survol.</p>
+              <span class="efeed__author">Lt. A. Laurent · EVA</span>
+            </div>
+          </div>
+          <div class="efeed__item">
+            <div class="efeed__time">11:41</div>
+            <div class="efeed__body">
+              <h4>Reflet lumineux détecté</h4>
+              <p>Un élément réfléchit la lumière à environ 200 mètres. La surface n'est pas rocheuse. Progression maintenue.</p>
+              <span class="efeed__author">Lt. A. Laurent · EVA</span>
+            </div>
+          </div>
+          <div class="efeed__item efeed__item--live">
+            <div class="efeed__time">11:52</div>
+            <div class="efeed__body">
+              <h4>Formation cristalline observée</h4>
+              <p>Structure translucide d'environ 3 mètres de haut. Elle présente une pulsation lumineuse faible mais régulière. Captation d'images en cours.</p>
+              <span class="efeed__author">Lt. A. Laurent · EVA</span>
+              <span class="efeed__tag">Transmission en direct</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte + données -->
+      <div class="eva__side">
+        <article class="epanel reveal reveal--d2">
+          <div class="epanel__head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.4 7-11a7 7 0 1 0-14 0c0 4.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <span class="epanel__heading">Localisation · Secteur 7</span>
+          </div>
+          <svg class="emap" viewBox="0 0 360 210" role="img" aria-label="Carte du secteur 7 et progression de l'EVA">
+            <line class="emap__grid" x1="0" y1="70" x2="360" y2="70"/>
+            <line class="emap__grid" x1="0" y1="140" x2="360" y2="140"/>
+            <line class="emap__grid" x1="120" y1="0" x2="120" y2="210"/>
+            <line class="emap__grid" x1="240" y1="0" x2="240" y2="210"/>
+            <path class="emap__blob" d="M55,95 C38,66 70,38 108,42 C140,45 152,26 192,32 C236,39 252,28 286,48 C318,67 336,86 326,118 C318,144 334,162 296,176 C258,189 238,196 196,188 C152,180 124,196 96,172 C70,150 50,142 52,118 C53,104 70,112 55,95 Z"/>
+            <path class="emap__path" d="M92,150 Q140,130 175,118 T232,96"/>
+            <circle class="emap__base" cx="92" cy="150" r="5"/>
+            <circle class="emap__ring" cx="232" cy="96" r="5"/>
+            <circle class="emap__target" cx="232" cy="96" r="5"/>
+            <text class="emap__label base" x="82" y="168">Module</text>
+            <text class="emap__label target" x="218" y="84">Cible</text>
+          </svg>
+          <div class="emap__coords"><span>19.78°N / 142.31°E</span><span>Distance · ~200 m</span></div>
+        </article>
+
+        <article class="epanel reveal reveal--d3">
+          <div class="epanel__head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="m3 14 5-4 4 3 4-4 5 4"/></svg>
+            <span class="epanel__heading">Images &amp; données</span>
+          </div>
+          <div class="edata">
+            <div class="edata__slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg><span>En attente</span></div>
+            <div class="edata__slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg><span>En attente</span></div>
+            <div class="edata__slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg><span>En attente</span></div>
+          </div>
+          <p class="edata__note">Les visuels et relevés de l'EVA s'afficheront ici au fur et à mesure de leur réception, dès validation par le CCA.</p>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ DÉCOUVERTE (EVT-09 · événement majeur) ═══════ -->
+<section class="discovery snap-section" id="discovery" data-component="discovery">
+  <div class="discovery__beacon" aria-hidden="true"></div>
+  <div class="discovery__container">
+
+    <!-- En-tête monumental -->
+    <header class="discovery__head reveal">
+      <span class="discovery__flag">Événement majeur · EVT-09</span>
+      <h2 class="discovery__title">La Découverte<em>Une structure d'origine inconnue.</em></h2>
+      <p class="discovery__lead">Le <strong>30 mai 2079</strong>, l'équipage de l'Odyssey IV a confirmé l'existence d'une <strong>structure cristalline</strong> dans la Vallée d'Aurelia : 3,2 mètres de haut, une luminescence rythmée par un cycle de 47 secondes, et un champ électromagnétique faible mais mesurable. C'est elle qui était à l'origine du signal capté au matin. Une découverte scientifique majeure — un phénomène d'origine inconnue, sans équivalent répertorié. Cette section retrace la découverte, ses données, et sera enrichie au fil de l'analyse.</p>
+    </header>
+
+    <!-- Chronologie de la détection -->
+    <div class="discovery__timeline reveal reveal--d1">
+      <div class="discovery__block-label">Chronologie de la détection</div>
+      <ol class="dtimeline">
+        <li class="dtimeline__step">
+          <div class="dtimeline__time">08:47:22 UTC</div>
+          <h3 class="dtimeline__title">Première captation</h3>
+          <p class="dtimeline__desc">L'antenne longue portée enregistre un pic d'amplitude de 0,87. Le signal émerge brutalement du bruit de fond, sur une fréquence non répertoriée.</p>
+        </li>
+        <li class="dtimeline__step">
+          <div class="dtimeline__time">08:51:04 UTC</div>
+          <h3 class="dtimeline__title">Fin de l'émission</h3>
+          <p class="dtimeline__desc">Après 3 min 42 s, le signal cesse aussi nettement qu'il avait commencé. Aucune dégradation progressive : une coupure franche.</p>
+        </li>
+        <li class="dtimeline__step">
+          <div class="dtimeline__time">09:18:00 UTC</div>
+          <h3 class="dtimeline__title">Triangulation de la source</h3>
+          <p class="dtimeline__desc">Le recoupement des relevés localise l'origine dans la Vallée d'Aurelia, Secteur 7 — une zone déjà repérée lors du survol basse altitude.</p>
+        </li>
+        <li class="dtimeline__step">
+          <div class="dtimeline__time">11:30:00 UTC</div>
+          <h3 class="dtimeline__title">Analyse spectrale</h3>
+          <p class="dtimeline__desc">La structure du signal se révèle périodique et non aléatoire. À ce stade, l'équipe scientifique écarte les causes naturelles connues.</p>
+        </li>
+        <li class="dtimeline__step dtimeline__step--live">
+          <div class="dtimeline__time">En cours</div>
+          <h3 class="dtimeline__title">Surveillance continue</h3>
+          <p class="dtimeline__desc">La zone est sous observation permanente. Le CCA attend une éventuelle seconde émission pour confirmer et caractériser la source.</p>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Données scientifiques -->
+    <div class="discovery__data">
+
+      <!-- Spectre -->
+      <article class="dcard dcard--spectrum reveal reveal--d1">
+        <div class="dcard__head">
+          <span class="dcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3l2-7 4 14 3-9 2 4h4"/></svg></span>
+          <span class="dcard__heading">Spectre du signal</span>
+        </div>
+        <svg class="dcard__spectrum" viewBox="0 0 560 200" preserveAspectRatio="none" role="img" aria-label="Courbe spectrale du signal détecté">
+          <defs>
+            <linearGradient id="discSpecFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#B6A5FF" stop-opacity=".45"/>
+              <stop offset="100%" stop-color="#B6A5FF" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path class="fill" d="M0,162 C40,152 60,120 90,128 C115,134 130,94 160,102 C185,108 200,58 230,56 C255,54 268,28 290,26 C312,24 325,70 350,72 C372,74 388,46 410,56 C432,66 446,108 470,112 C495,116 510,142 540,150 L560,156 L560,200 L0,200 Z"/>
+          <path class="line" d="M0,162 C40,152 60,120 90,128 C115,134 130,94 160,102 C185,108 200,58 230,56 C255,54 268,28 290,26 C312,24 325,70 350,72 C372,74 388,46 410,56 C432,66 446,108 470,112 C495,116 510,142 540,150 L560,156"/>
+        </svg>
+        <div class="dcard__spectrum-foot">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3l2-7 4 14 3-9 2 4h4"/></svg>Fréquence inconnue</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3" stroke-linecap="round"/></svg>Durée <b>3 min 42 s</b></span>
+        </div>
+      </article>
+
+      <!-- Indicateurs -->
+      <article class="dcard reveal reveal--d2">
+        <div class="dcard__head">
+          <span class="dcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 19V11M12 19V5M19 19v-6"/></svg></span>
+          <span class="dcard__heading">Indicateurs du signal</span>
+        </div>
+        <div class="dmetrics">
+          <div class="dmetric">
+            <svg class="dmetric__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 12c3 0 3-6 6-6s3 12 6 12 3-6 6-6"/></svg>
+            <span class="dmetric__label">Amplitude max</span><span class="dmetric__value">0,87</span>
+          </div>
+          <div class="dmetric">
+            <svg class="dmetric__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 6.4 15.4" stroke-linecap="round"/></svg>
+            <span class="dmetric__label">Intensité</span><span class="dmetric__value">72 %</span>
+          </div>
+          <div class="dmetric">
+            <svg class="dmetric__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3" stroke-linecap="round"/></svg>
+            <span class="dmetric__label">Durée</span><span class="dmetric__value">3 min 42 s</span>
+          </div>
+          <div class="dmetric">
+            <svg class="dmetric__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/></svg>
+            <span class="dmetric__label">Statut</span><span class="dmetric__value">Signal détecté</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Localisation & timeline -->
+      <article class="dcard reveal reveal--d3">
+        <div class="dcard__head">
+          <span class="dcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.4 7-11a7 7 0 1 0-14 0c0 4.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <span class="dcard__heading">Localisation &amp; repère</span>
+        </div>
+        <div class="dcard__loc">
+          <div class="dcard__loc-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3" stroke-linecap="round"/></svg><b>Secteur 7</b></div>
+          <div class="dcard__loc-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 18l5-9 4 6 3-4 6 7H3Z"/></svg><b>Vallée d'Aurelia</b></div>
+        </div>
+        <svg class="dmap" viewBox="0 0 360 220" role="img" aria-label="Carte de la zone, source détectée">
+          <path class="dmap__blob" d="M60,90 C40,60 70,30 110,34 C140,37 150,18 190,24 C235,31 250,20 285,40 C320,60 340,80 330,115 C322,145 340,165 300,180 C260,195 240,205 195,196 C150,188 120,205 90,180 C62,157 50,150 52,125 C53,108 75,110 60,90 Z"/>
+          <circle class="dmap__ring" cx="200" cy="118" r="4"/>
+          <circle class="dmap__ring r2" cx="200" cy="118" r="4"/>
+          <circle class="dmap__ring r3" cx="200" cy="118" r="4"/>
+          <circle class="dmap__core" cx="200" cy="118" r="5"/>
+          <text class="dmap__pin-label" x="218" y="122">Source détectée</text>
+        </svg>
+        <div class="dtimebar">
+          <div class="dtimebar__track">
+            <span class="dtimebar__fill"></span>
+            <span class="dtimebar__node start"></span>
+            <span class="dtimebar__node end"></span>
+          </div>
+          <div class="dtimebar__meta"><span>08:47:22 UTC</span><span><b>3 min 42 s</b></span><span>08:51:04 UTC</span></div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- FAQ public -->
+    <div class="discovery__faq reveal">
+      <div class="discovery__block-label">Questions fréquentes</div>
+
+      <details class="dfaq">
+        <summary class="dfaq__q">Qu'est-ce qui a été détecté exactement ?<span class="dfaq__sign" aria-hidden="true"></span></summary>
+        <div class="dfaq__a"><p>Un signal radio structuré, d'une durée de 3 min 42 s, sur une fréquence ne correspondant à aucune source connue — ni instrument de bord, ni phénomène atmosphérique répertorié. Sa structure périodique le distingue d'un bruit aléatoire.</p></div>
+      </details>
+
+      <details class="dfaq">
+        <summary class="dfaq__q">D'où provient le signal ?<span class="dfaq__sign" aria-hidden="true"></span></summary>
+        <div class="dfaq__a"><p>La triangulation situe la source dans la Vallée d'Aurelia, en Secteur 7, à la surface de Kepler-452c. C'est la même zone survolée à basse altitude par l'Odyssey IV, où des formations rocheuses stratifiées avaient déjà été observées.</p></div>
+      </details>
+
+      <details class="dfaq">
+        <summary class="dfaq__q">Est-ce la preuve d'une vie extraterrestre ?<span class="dfaq__sign" aria-hidden="true"></span></summary>
+        <div class="dfaq__a"><p>Non, et il est essentiel de rester prudent. Un signal structuré et inexpliqué n'équivaut pas à une origine intelligente. De nombreux phénomènes naturels peuvent produire des émissions régulières. L'équipe scientifique poursuit l'analyse avant toute conclusion. Aucune hypothèse n'est écartée, aucune n'est confirmée.</p></div>
+      </details>
+
+      <details class="dfaq">
+        <summary class="dfaq__q">Le signal présente-t-il un danger pour l'équipage ?<span class="dfaq__sign" aria-hidden="true"></span></summary>
+        <div class="dfaq__a"><p>Aucun risque n'a été identifié. L'Odyssey IV reste en orbite stable, tous ses systèmes sont nominaux, et l'équipage des six membres se porte bien. La détection est une opération d'observation à distance.</p></div>
+      </details>
+
+      <details class="dfaq">
+        <summary class="dfaq__q">Pourra-t-on capter le signal à nouveau ?<span class="dfaq__sign" aria-hidden="true"></span></summary>
+        <div class="dfaq__a"><p>C'est l'enjeu actuel. La zone est placée sous surveillance continue. Une seconde émission permettrait de confirmer la source, d'affiner sa localisation et d'étudier une éventuelle régularité dans le temps.</p></div>
+      </details>
+
+      <details class="dfaq">
+        <summary class="dfaq__q">Comment ces données ont-elles été obtenues ?<span class="dfaq__sign" aria-hidden="true"></span></summary>
+        <div class="dfaq__a"><p>Par les capteurs et l'antenne longue portée de l'Odyssey IV, puis transmises au Centre de Contrôle Aurora. Les relevés sont consolidés et vérifiés par la cellule SOLA avant publication. Les valeurs présentées ici correspondent au premier rapport validé.</p></div>
+      </details>
+    </div>
+
+    <!-- Espace futures mises à jour -->
+    <div class="discovery__updates reveal">
+      <div class="dupdate">
+        <span class="dupdate__badge">Analyse en cours</span>
+        <div>
+          <h3 class="dupdate__title">Cette section évoluera</h3>
+          <p class="dupdate__text">Les prochaines transmissions, relevés spectraux complémentaires et conclusions de l'équipe scientifique seront publiés ici dès leur validation par le CCA. Chaque mise à jour sera datée et archivée.</p>
+          <p class="dupdate__next">Prochaine mise à jour attendue · <b>dès la prochaine fenêtre de liaison</b></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════ JOURNAL DE BORD TECHNIQUE (EVT02-B) ═══════ -->
+<section class="journal snap-section" id="journal" data-component="tech-log">
+  <div class="journal__container">
+    <header class="journal__head">
+      <div class="reveal">
+        <div class="eyebrow"><span class="num">04</span><span>Journal de bord · technique</span></div>
+        <h2 class="journal__title">Journal de bord<br><em>technique.</em></h2>
+      </div>
+      <div class="journal__intro reveal reveal--d1"><p>Suivi transparent des incidents techniques de l'Odyssey IV. Chaque entrée évolue de « en cours » à « résolu ». Le journal s'enrichira à chaque nouvel événement.</p></div>
+    </header>
+
+    <div class="journal__legend reveal reveal--d1">
+      <span><i class="lg-faible"></i>Gravité faible</span>
+      <span><i class="lg-moyenne"></i>Moyenne</span>
+      <span><i class="lg-haute"></i>Haute</span>
+    </div>
+
+    <div class="jtable reveal reveal--d2">
+      <div class="jtable__headrow">
+        <div>Réf.</div><div>Date / Heure</div><div>Nature &amp; résolution</div><div>Gravité</div><div>Statut</div>
+      </div>
+
+      <div class="jrow">
+        <div class="jrow__id">INC-02</div>
+        <div class="jrow__date">29.05.2079<span class="t">22:00 UTC</span></div>
+        <div class="jrow__nature">
+          <h4>Défaillance capteur thermique · module 3</h4>
+          <p><b>Résolution —</b> Capteur redondant, sans effet sur la mission. Diagnostic puis réparation par Davis et Laurent en ~4 h. Systèmes nominaux.</p>
+        </div>
+        <div class="jrow__meta">
+          <span class="jbadge jbadge--faible"><i></i>Faible</span>
+          <span class="jbadge jbadge--resolu"><i></i>Résolu</span>
+        </div>
+      </div>
+
+      <div class="jrow">
+        <div class="jrow__id">INC-04</div>
+        <div class="jrow__date">30.05.2079<span class="t">03:00 UTC</span></div>
+        <div class="jrow__nature">
+          <h4>Tempête solaire · classe M4</h4>
+          <p><b>Résolution —</b> Protocole COM-DEGRAD activé, débit réduit à 10 % durant 6 à 8 h. Communications stabilisées à 06:00 UTC, décroissance confirmée.</p>
+        </div>
+        <div class="jrow__meta">
+          <span class="jbadge jbadge--moyenne"><i></i>Moyenne</span>
+          <span class="jbadge jbadge--resolu"><i></i>Résolu</span>
+        </div>
+      </div>
+
+      <div class="jrow">
+        <div class="jrow__id">INC-05</div>
+        <div class="jrow__date">30.05.2079<span class="t">11:30 UTC</span></div>
+        <div class="jrow__nature">
+          <h4>Recalibration de l'antenne longue portée</h4>
+          <p><b>En cours —</b> Ajustement de routine après la perturbation solaire afin de fiabiliser les relevés. Fin estimée sous 2 h, aucun impact opérationnel.</p>
+        </div>
+        <div class="jrow__meta">
+          <span class="jbadge jbadge--faible"><i></i>Faible</span>
+          <span class="jbadge jbadge--encours"><i></i>En cours</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="journal__foot reveal">
+      <span>Centre de Contrôle Aurora · Maintenance Odyssey IV</span>
+      <span><b>3 incidents</b> · journal extensible</span>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════ FEED (zone extensible) ═══════ -->
 <section class="feed snap-section" id="feed" data-component="transmission-feed">
   <div class="feed__container">
     <header class="feed__head">
       <div class="reveal">
-        <div class="eyebrow"><span class="num">03</span><span>Chronologie · Mission Aurora</span></div>
+        <div class="eyebrow"><span class="num">04</span><span>Chronologie · Mission Aurora</span></div>
         <h2 class="feed__title">Suivez la mission<br><em>au fil des transmissions.</em></h2>
       </div>
       <div class="feed__intro reveal reveal--d1"><p>Chronologie publique des transmissions officielles et des événements clés du programme. Mise à jour à chaque liaison reçue depuis l'Odyssey IV.</p></div>
@@ -277,7 +647,7 @@
         <article class="feed__item" data-id="EVT-00"><div class="feed__item-id">EVT-00</div><div class="feed__item-date"><div>27.05.2079</div><div class="time">08:00 UTC</div></div><div class="feed__item-content"><h3 class="feed__item-title">Entrée en orbite - Kepler-452c</h3><div class="feed__item-author">Mission · Manœuvre orbitale</div></div><div class="feed__item-tag feed__item-tag--event">Événement</div><span class="feed__item-arrow">→</span></article>
       </div>
     </div>
-    <div class="feed__foot"><span>Archive complète disponible sur demande auprès du CCA.</span><a href="#">Contacter la cellule SOLIA →</a></div>
+    <div class="feed__foot"><span>Archive complète disponible sur demande auprès du CCA.</span><a href="#">Contacter la cellule SOLA →</a></div>
   </div>
 </section>
 
@@ -338,6 +708,43 @@
     <button class="lightbox__btn" id="lbNext">Suivant<svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="0" y1="5" x2="13" y2="5"/><path d="M9 1 L13 5 L9 9"/></svg></button>
   </div>
 </div>
+<!-- ═══════ CONSOLE DE DÉMONSTRATION (états du site) ═══════ -->
+<div class="cca-console" id="ccaConsole">
+  <div class="cca-console__panel" role="dialog" aria-label="Console CCA">
+    <div class="cca-console__head">Console CCA · démonstration</div>
+
+    <div class="cca-field">
+      <div class="cca-field__label">
+        <span>Mode dégradé · tempête solaire</span>
+        <button class="cca-switch" id="ccaDegraded" role="switch" aria-pressed="false" aria-label="Activer le mode dégradé"></button>
+      </div>
+    </div>
+
+    <div class="cca-field">
+      <div class="cca-field__label"><span>État d'alerte · signal</span></div>
+      <div class="cca-seg" id="ccaAlert">
+        <button data-val="off">Inactif</button>
+        <button data-val="confidential">Confidentiel</button>
+        <button data-val="public">Public</button>
+      </div>
+    </div>
+
+    <div class="cca-field">
+      <div class="cca-field__label"><span>Statut EVA · secteur 7</span></div>
+      <div class="cca-seg" id="ccaEva">
+        <button data-val="live">En cours</button>
+        <button data-val="done">Terminée</button>
+      </div>
+    </div>
+
+    <p class="cca-console__note">Contrôles de démonstration : ils pilotent l'état du site (alerte signal, communications dégradées, suivi EVA) et illustrent son évolution en temps réel.</p>
+  </div>
+  <button class="cca-console__toggle" id="ccaConsoleToggle" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" stroke-linecap="round"/></svg>
+    Console CCA
+  </button>
+</div>
+
 <script src="assets/js/intro.js"></script>
 <script src="assets/js/starfield.js"></script>
 <script src="assets/js/header.js"></script>
@@ -346,6 +753,7 @@
 <script src="assets/js/lightbox.js"></script>
 <script src="assets/js/section-scroll.js"></script>
 <script src="assets/js/cursor.js"></script>
+<script src="assets/js/systems.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

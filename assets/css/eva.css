@@ -1,0 +1,104 @@
+/* ═══════════════════════════════════════════════
+   §11 — SUIVI EVA EN DIRECT (EVT08-C · secteur 7)
+   Tableau de bord : statut, fil horodaté, carte,
+   espace images/données.
+   ═══════════════════════════════════════════════ */
+.eva{position:relative;background:var(--c-deep-warm);z-index:5;overflow:hidden}
+.eva__container{max-width:var(--container);margin:0 auto;width:100%}
+.eva__head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;
+  gap:var(--gap-grid);margin-bottom:var(--space-head)}
+.eva__title{font-family:var(--ff-display);font-weight:500;font-size:var(--title-section);
+  line-height:var(--leading-tight);color:var(--c-lavender);margin-top:var(--space-element)}
+.eva__title em{font-style:italic;font-weight:400;color:var(--c-gold)}
+
+/* statut EVA */
+.eva__status{display:inline-flex;align-items:center;gap:.6rem;padding:.5rem .95rem;
+  border:1px solid var(--line-dark-2);border-radius:999px;font-size:var(--text-sm);
+  font-weight:600;letter-spacing:var(--track-label);text-transform:uppercase;white-space:nowrap}
+.eva__status-dot{width:8px;height:8px;border-radius:50%;flex:none}
+.eva__status .live{display:inline}.eva__status .done{display:none}
+body[data-eva="live"] .eva__status{color:#7ee0b0;border-color:rgba(126,224,176,.45);
+  background:rgba(126,224,176,.06)}
+body[data-eva="live"] .eva__status-dot{background:#7ee0b0;
+  box-shadow:0 0 0 0 rgba(126,224,176,.55);animation:evaPing 2s var(--ease-out) infinite}
+body[data-eva="done"] .eva__status{color:var(--t-on-dark-mid)}
+body[data-eva="done"] .eva__status-dot{background:var(--t-on-dark-low)}
+body[data-eva="done"] .eva__status .live{display:none}
+body[data-eva="done"] .eva__status .done{display:inline}
+@keyframes evaPing{0%{box-shadow:0 0 0 0 rgba(126,224,176,.5)}70%,100%{box-shadow:0 0 0 8px rgba(126,224,176,0)}}
+
+.eva__grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);
+  gap:var(--gap-grid);align-items:start}
+
+/* fil horodaté */
+.eva__feed{border-top:1px solid var(--line-dark)}
+.eva__block-label{display:flex;align-items:center;gap:var(--space-element);
+  font-size:var(--text-xs);font-weight:600;letter-spacing:var(--track-wide);
+  text-transform:uppercase;color:var(--t-on-dark-low);padding:var(--space-block) 0 var(--space-element)}
+.eva__block-label::before{content:'';width:20px;height:1px;background:var(--c-gold)}
+.efeed{display:grid;gap:0}
+.efeed__item{display:grid;grid-template-columns:84px minmax(0,1fr);gap:var(--gap-grid);
+  padding:var(--space-block) 0;border-bottom:1px solid var(--line-dark);position:relative}
+.efeed__time{font-size:var(--text-sm);font-weight:600;letter-spacing:var(--track-meta);
+  color:var(--c-gold);font-variant-numeric:tabular-nums;white-space:nowrap}
+.efeed__body h4{font-family:var(--ff-display);font-size:var(--title-card);font-weight:500;
+  color:var(--c-lavender);line-height:var(--leading-tight);margin-bottom:.25rem}
+.efeed__body p{font-size:var(--text-base);line-height:var(--leading-body);font-weight:300;
+  color:var(--t-on-dark-mid)}
+.efeed__author{display:block;margin-top:.35rem;font-size:var(--text-xs);font-weight:500;
+  letter-spacing:var(--track-meta);text-transform:uppercase;color:var(--t-on-dark-low)}
+.efeed__item--live .efeed__time{position:relative}
+.efeed__item--live .efeed__time::after{content:'';position:absolute;left:-14px;top:.35em;
+  width:7px;height:7px;border-radius:50%;background:#7ee0b0;
+  box-shadow:0 0 0 0 rgba(126,224,176,.55);animation:evaPing 2s var(--ease-out) infinite}
+body[data-eva="done"] .efeed__item--live .efeed__time::after{animation:none;background:var(--t-on-dark-low)}
+.efeed__tag{display:inline-block;margin-top:.5rem;padding:.25rem .6rem;border-radius:999px;
+  border:1px solid rgba(126,224,176,.35);font-size:var(--text-xs);font-weight:500;
+  letter-spacing:var(--track-label);text-transform:uppercase;color:#7ee0b0}
+
+/* colonne droite : carte + données */
+.eva__side{display:flex;flex-direction:column;gap:var(--gap-grid)}
+.epanel{border:1px solid var(--line-dark);border-radius:18px;
+  background:linear-gradient(180deg,rgba(28,26,79,.4),rgba(10,8,36,.5));
+  padding:clamp(1.1rem,.9rem + .9vw,1.6rem)}
+.epanel__head{display:flex;align-items:center;gap:.7rem;margin-bottom:var(--space-block)}
+.epanel__head svg{width:18px;height:18px;color:var(--c-lavender-mid);flex:none}
+.epanel__heading{font-size:var(--text-sm);font-weight:600;letter-spacing:var(--track-label);
+  text-transform:uppercase;color:var(--c-lavender)}
+.emap{width:100%;height:clamp(150px,20vh,210px)}
+.emap__blob{fill:rgba(41,39,98,.55);stroke:var(--line-dark-2);stroke-width:1}
+.emap__grid{stroke:rgba(182,165,255,.12);stroke-width:.6}
+.emap__path{fill:none;stroke:var(--c-gold);stroke-width:1.4;stroke-dasharray:4 5;
+  opacity:.7;stroke-linecap:round}
+.emap__base,.emap__target{stroke-width:0}
+.emap__base{fill:var(--c-lavender-mid)}
+.emap__target{fill:var(--c-gold)}
+.emap__ring{fill:none;stroke:var(--c-gold);stroke-width:1.2;opacity:0;
+  animation:evaRadar 3s var(--ease-out) infinite}
+body[data-eva="done"] .emap__ring{animation:none;opacity:.2}
+@keyframes evaRadar{0%{opacity:.7;r:5}80%,100%{opacity:0;r:30}}
+.emap__label{font-family:var(--ff-body);font-size:10px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase}
+.emap__label.base{fill:var(--c-lavender-mid)}
+.emap__label.target{fill:var(--c-gold)}
+.emap__coords{margin-top:var(--space-element);display:flex;justify-content:space-between;
+  font-size:var(--text-xs);letter-spacing:var(--track-meta);text-transform:uppercase;
+  color:var(--t-on-dark-low);font-variant-numeric:tabular-nums}
+
+/* images / données à venir */
+.edata{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+.edata__slot{aspect-ratio:1;border:1px dashed var(--line-dark-2);border-radius:12px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;
+  text-align:center;padding:.4rem;color:var(--t-on-dark-low)}
+.edata__slot svg{width:20px;height:20px;opacity:.6}
+.edata__slot span{font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.edata__note{margin-top:var(--space-block);font-size:var(--text-sm);line-height:var(--leading-body);
+  font-weight:300;color:var(--t-on-dark-mid)}
+
+@media(max-width:900px){
+  .eva__grid{grid-template-columns:1fr}
+  .eva__head{align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+  .eva__status-dot,.efeed__item--live .efeed__time::after,.emap__ring{animation:none}
+}

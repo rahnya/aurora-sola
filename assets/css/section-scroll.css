@@ -33,11 +33,13 @@ html.has-section-scroll.is-scrolling .snap-section:not(.is-active-section){
 .snap-section.latest,
 .snap-section.about,
 .snap-section.gallery,
+.snap-section.discovery,
 .snap-section.feed{padding:var(--snap-pad-top) var(--gutter) var(--snap-pad-bottom)}
 
 .snap-section.hero{padding-top:0;padding-bottom:0;justify-content:center}
 
 .snap-section.gallery,
+.snap-section.discovery,
 .snap-section.feed{justify-content:flex-start}
 
 @media(max-width:900px){

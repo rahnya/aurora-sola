@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try { initReveal(); } catch (e) { console.error('Reveal init error:', e); }
     try { initLightbox(); } catch (e) { console.error('Lightbox init error:', e); }
     try { initSectionScroll(); } catch (e) { console.error('Section scroll init error:', e); }
+    try { initSystems(); } catch (e) { console.error('Systems init error:', e); }
     try { goToEntrySection(); } catch (e) { console.error('Entry section error:', e); }
   });
 });

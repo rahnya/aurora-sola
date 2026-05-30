@@ -1,4 +1,4 @@
-const SECTION_IDS = ['top', 'latest', 'about', 'gallery', 'feed'];
+const SECTION_IDS = ['top', 'latest', 'about', 'gallery', 'eva', 'discovery', 'journal', 'feed'];
 
 const WHEEL_THRESHOLD = 22;
 const SCROLL_DURATION = 1500;
