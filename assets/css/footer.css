@@ -1,0 +1,16 @@
+/* ═══════════════════════════════════════════════
+   §10 — FOOTER
+   ═══════════════════════════════════════════════ */
+.site-footer{position:relative;background:var(--c-void);padding:clamp(5rem,9vw,7rem) var(--gutter) 2rem;border-top:1px solid var(--line-dark);z-index:5;overflow:hidden}
+.site-footer__container{max-width:var(--container);margin:0 auto}
+.site-footer__display{font-family:var(--ff-display);font-size:clamp(4rem,16vw,14rem);font-weight:500;letter-spacing:.22em;line-height:.85;text-align:center;margin:1rem 0 3rem;background:linear-gradient(180deg,var(--c-lavender),rgba(238,233,255,.08) 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;user-select:none}
+.site-footer__sub{text-align:center;font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--c-gold);margin-bottom:clamp(3rem,6vw,5rem);display:flex;align-items:center;justify-content:center;gap:1rem}
+.site-footer__sub::before,.site-footer__sub::after{content:'';width:60px;height:1px;background:var(--line-gold)}
+.site-footer__columns{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(2rem,5vw,4rem);padding-bottom:3rem;border-bottom:1px solid var(--line-dark);margin-bottom:1.75rem}
+.site-footer__col h4{font-size:10px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--t-on-dark-low);margin-bottom:1.5rem}
+.site-footer__col p{font-size:.9rem;line-height:1.85;color:var(--t-on-dark-mid);font-weight:300;max-width:360px}
+.site-footer__list{list-style:none;display:flex;flex-direction:column;gap:.7rem;font-size:.875rem;font-weight:400;color:var(--c-lavender)}
+.site-footer__list li{padding-left:1rem;position:relative}
+.site-footer__list li::before{content:'';position:absolute;left:0;top:.7em;width:6px;height:1px;background:var(--c-gold)}
+.site-footer__bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--t-on-dark-low)}
+.site-footer__bottom .gold{color:var(--c-gold)}
