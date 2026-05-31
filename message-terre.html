@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Message de la Terre · SOLA</title>
+<meta name="description" content="La réponse de l'humanité à la structure cristalline. Décodez les trois fragments, composez le message.">
+<meta property="og:title" content="Le Message de la Terre">
+<meta property="og:description" content="La structure a parlé. La Terre répond. Décodez le message.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --c-lavender:#EEE9FF;--c-lavender-mid:#B6A5FF;--c-lavender-alt:#C9BEF8;
+  --c-navy:#292762;--c-navy-soft:#1c1a4f;--c-gold:#E8C76A;
+  --c-void:#060418;--c-deep:#0a0824;--c-deep-warm:#12103a;
+  --t-mid:rgba(238,233,255,.82);--t-low:rgba(238,233,255,.52);
+  --line:rgba(182,165,255,.12);--line-2:rgba(182,165,255,.24);--line-gold:rgba(232,199,106,.5);
+  --ff-display:'Cinzel','Times New Roman',serif;
+  --ff-body:'Montserrat',system-ui,sans-serif;
+  --track-label:.24em;--track-meta:.18em;--track-wide:.3em;
+  --gutter:clamp(1.25rem,1rem + 2.5vw,3rem);--container:1180px;--ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-body);background:var(--c-void);color:var(--c-lavender);line-height:1.7;font-weight:300;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh;position:relative}
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.atmo{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 90% 60% at 50% 110%,rgba(232,199,106,.07),transparent 55%),
+    radial-gradient(ellipse 70% 50% at 18% 8%,rgba(182,165,255,.08),transparent 55%),
+    linear-gradient(180deg,var(--c-void),var(--c-deep) 55%,var(--c-deep-warm))}
+.wrap{position:relative;z-index:2;max-width:var(--container);margin:0 auto;padding:0 var(--gutter)}
+a{color:inherit;text-decoration:none}
+
+.statusbar{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;
+  padding:.6rem var(--gutter);font-size:clamp(.62rem,.58rem + .15vw,.72rem);font-weight:600;
+  letter-spacing:var(--track-label);text-transform:uppercase;color:var(--t-mid);
+  background:rgba(6,4,24,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-2)}
+.statusbar .dot{width:8px;height:8px;border-radius:50%;background:var(--c-gold);box-shadow:0 0 0 0 rgba(232,199,106,.6);animation:ping 2.4s var(--ease) infinite}
+.statusbar .upd{margin-left:auto;font-weight:500;letter-spacing:var(--track-meta);text-transform:none;color:var(--t-low)}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(232,199,106,.55)}70%,100%{box-shadow:0 0 0 9px rgba(232,199,106,0)}}
+
+.hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  padding:clamp(3rem,8vh,6rem) var(--gutter) clamp(2rem,5vh,4rem)}
+.eyebrow{display:inline-flex;align-items:center;gap:1rem;font-size:clamp(.66rem,.6rem + .2vw,.8rem);font-weight:500;
+  letter-spacing:var(--track-wide);text-transform:uppercase;color:var(--c-gold);margin-bottom:1.6rem;opacity:0;animation:fade 1.4s .2s var(--ease) forwards}
+.eyebrow::before,.eyebrow::after{content:'';width:clamp(24px,4vw,42px);height:1px;background:var(--line-gold)}
+.hero h1{font-family:var(--ff-display);font-weight:500;line-height:1.02;letter-spacing:.01em;font-size:clamp(2.6rem,1.6rem + 4.4vw,5.5rem);margin-bottom:1.4rem}
+.hero h1 .l{display:block;opacity:0;transform:translateY(26px);animation:rise 1.5s var(--ease) forwards}
+.hero h1 .l:nth-child(1){animation-delay:.45s}
+.hero h1 .l:nth-child(2){animation-delay:.7s;color:var(--c-gold);font-style:italic;font-weight:400}
+.hero__lead{font-family:var(--ff-display);font-weight:400;font-size:clamp(1rem,.94rem + .3vw,1.2rem);line-height:1.7;letter-spacing:.03em;
+  color:var(--t-mid);max-width:34rem;margin:0 auto 2.6rem;opacity:0;animation:fade 1.6s 1s var(--ease) forwards}
+.hero__lead b{color:var(--c-lavender);font-weight:500}
+.crystal{width:clamp(150px,30vw,250px);aspect-ratio:1;position:relative;margin:0 auto 2.6rem;opacity:0;animation:fade 2s 1.2s var(--ease) forwards}
+.crystal::before{content:'';position:absolute;inset:-25%;border-radius:50%;background:radial-gradient(circle,rgba(182,165,255,.18),transparent 62%);filter:blur(10px);animation:halo 4.7s var(--ease) infinite}
+@keyframes halo{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.07)}}
+.crystal svg{width:100%;height:100%;position:relative;animation:float 9s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.tracker{display:flex;align-items:flex-start;justify-content:center;gap:clamp(.5rem,2vw,1.4rem);flex-wrap:wrap;opacity:0;animation:fade 1.6s 1.5s var(--ease) forwards}
+.frag{display:flex;flex-direction:column;align-items:center;gap:.4rem;min-width:96px}
+.frag__word{font-family:var(--ff-display);font-size:clamp(1rem,.9rem + .5vw,1.35rem);font-weight:500;letter-spacing:.12em;color:var(--t-low);transition:color .6s,text-shadow .6s}
+.frag.got .frag__word{color:var(--c-gold);text-shadow:0 0 18px rgba(232,199,106,.4)}
+.frag__tag{font-size:.56rem;font-weight:600;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--t-low);text-align:center}
+.frag.got .frag__tag{color:var(--c-lavender-mid)}
+.tracker .sep{color:var(--line-2);font-size:1.2rem;align-self:flex-start;margin-top:.2rem}
+.scrollcue{margin-top:3rem;font-size:.66rem;letter-spacing:var(--track-wide);text-transform:uppercase;color:var(--t-low);opacity:0;animation:fade 1.6s 2s var(--ease) forwards}
+.scrollcue i{display:block;width:8px;height:8px;border-right:1.5px solid var(--c-gold);border-bottom:1.5px solid var(--c-gold);transform:rotate(45deg);margin:.7rem auto 0;animation:chev 1.6s ease-in-out infinite}
+@keyframes chev{0%,100%{transform:rotate(45deg) translateY(0);opacity:.4}50%{transform:rotate(45deg) translateY(4px);opacity:1}}
+
+section{padding:clamp(3.5rem,9vh,7rem) 0;position:relative}
+.shead{text-align:center;max-width:44rem;margin:0 auto clamp(2.2rem,5vh,3.6rem)}
+.shead .num{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:var(--track-wide);text-transform:uppercase;color:var(--c-gold);margin-bottom:1rem}
+.shead h2{font-family:var(--ff-display);font-weight:500;line-height:1.12;font-size:clamp(1.7rem,1.2rem + 2vw,3rem);margin-bottom:1.1rem}
+.shead h2 em{font-style:italic;color:var(--c-gold)}
+.shead p{font-size:clamp(.95rem,.9rem + .25vw,1.08rem);line-height:1.8;color:var(--t-mid)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+.slots{display:flex;justify-content:center;gap:clamp(.5rem,1.6vw,1rem);flex-wrap:wrap}
+.slot{width:clamp(46px,9vw,68px);aspect-ratio:.82;border:1px solid var(--line-2);border-radius:12px;display:grid;place-items:center;
+  font-family:var(--ff-display);font-size:clamp(1.3rem,1rem + 2vw,2.2rem);font-weight:600;color:var(--t-low);background:rgba(182,165,255,.03);transition:all .6s var(--ease)}
+.slot.filled{color:var(--c-gold);border-color:var(--line-gold);background:rgba(232,199,106,.06);text-shadow:0 0 20px rgba(232,199,106,.4)}
+
+.winput{display:flex;gap:.5rem;justify-content:center;margin-top:1.6rem}
+.winput input{flex:0 1 200px;background:rgba(6,4,24,.6);border:1px solid var(--line-2);border-radius:10px;padding:.75rem .9rem;
+  color:var(--c-lavender);font-family:var(--ff-body);font-size:.95rem;letter-spacing:.28em;text-transform:uppercase;text-align:center;outline:none;transition:border-color .3s}
+.winput input:focus{border-color:var(--line-gold)}
+.winput input:disabled{opacity:.7;border-color:var(--line-gold);color:var(--c-gold)}
+.winput button{border:1px solid var(--line-gold);background:rgba(232,199,106,.1);border-radius:10px;padding:0 1.2rem;color:var(--c-gold);
+  font-family:var(--ff-body);font-weight:600;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .3s}
+.winput button:hover{background:rgba(232,199,106,.2)}
+.wmsg{text-align:center;margin-top:.8rem;font-size:.78rem;letter-spacing:.04em;min-height:1.1em;transition:opacity .3s}
+.wmsg.err{color:#e8836a}
+.station{max-width:48rem;margin:0 auto}
+.locktag{text-align:center;margin-top:1.4rem;font-size:.62rem;font-weight:600;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--c-lavender-mid);opacity:0;transition:opacity .6s}
+.locktag.show{opacity:1}
+
+.signal-panel{position:relative;border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  background:radial-gradient(ellipse 80% 70% at 50% 40%,rgba(28,26,79,.5),rgba(10,8,36,.55));padding:clamp(1.8rem,1.2rem + 2vw,2.8rem) clamp(1.4rem,1rem + 2vw,2.6rem)}
+.signal-panel__hint{text-align:center;font-size:.66rem;font-weight:600;letter-spacing:var(--track-wide);text-transform:uppercase;color:var(--t-low);margin-bottom:1.8rem}
+.reperes{display:flex;justify-content:center;align-items:center;gap:clamp(.8rem,3vw,2.4rem);flex-wrap:wrap}
+.repere{position:relative;width:clamp(58px,13vw,84px);aspect-ratio:1;border-radius:50%;cursor:pointer;border:1px solid var(--line-2);
+  background:rgba(182,165,255,.04);display:grid;place-items:center;transition:all .5s var(--ease)}
+.repere::before{content:'';position:absolute;width:7px;height:7px;border-radius:50%;background:var(--c-lavender-mid);box-shadow:0 0 14px 2px rgba(182,165,255,.6);transition:opacity .4s;animation:beacon 2.6s var(--ease) infinite}
+.repere .lt{font-family:var(--ff-display);font-size:clamp(1.4rem,1.1rem + 1.4vw,2rem);font-weight:600;color:var(--c-gold);opacity:0;transform:scale(.6);transition:all .5s var(--ease);text-shadow:0 0 18px rgba(232,199,106,.5)}
+.repere .ix{position:absolute;bottom:-1.4rem;font-size:.55rem;font-weight:600;letter-spacing:.14em;color:var(--t-low);text-transform:uppercase;white-space:nowrap}
+.repere:hover{border-color:var(--line-gold);transform:translateY(-3px)}
+.repere.on{border-color:var(--line-gold);background:rgba(232,199,106,.07);box-shadow:0 0 30px rgba(232,199,106,.12)}
+.repere.on::before{opacity:0;animation:none}
+.repere.on .lt{opacity:1;transform:scale(1)}
+@keyframes beacon{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.25)}}
+.repere-slots{margin-top:2.6rem}
+.insta-note{text-align:center;margin-top:1.6rem;font-size:.74rem;color:var(--t-low);letter-spacing:.03em}
+
+.traces{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(1rem,2vw,1.6rem)}
+.trace{position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:linear-gradient(180deg,rgba(28,26,79,.4),rgba(10,8,36,.5));
+  padding:clamp(1.4rem,1.1rem + 1vw,2rem);display:flex;flex-direction:column;gap:.9rem;transition:border-color .5s,transform .5s var(--ease),box-shadow .5s}
+.trace:hover{transform:translateY(-4px);border-color:var(--line-2)}
+.trace__top{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.trace__idx{font-size:.66rem;font-weight:600;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--t-low)}
+.trace__letter{width:44px;height:44px;flex:none;display:grid;place-items:center;border-radius:12px;border:1px solid var(--line-2);font-family:var(--ff-display);font-size:1.4rem;font-weight:600;color:var(--t-low);transition:all .6s var(--ease);background:rgba(182,165,255,.05)}
+.trace__word{font-family:var(--ff-display);font-size:clamp(1.3rem,1.1rem + .8vw,1.75rem);font-weight:500;line-height:1.1}
+.trace__line{font-size:.95rem;line-height:1.75;color:var(--t-mid);flex:1}
+.trace__btn{align-self:flex-start;margin-top:.3rem;display:inline-flex;align-items:center;gap:.6rem;padding:.65rem 1.1rem;border:1px solid var(--line-gold);border-radius:999px;background:transparent;color:var(--c-lavender);font-family:var(--ff-body);font-size:.72rem;font-weight:600;letter-spacing:var(--track-label);text-transform:uppercase;cursor:pointer;transition:gap .4s var(--ease),background .4s,color .4s}
+.trace__btn:hover{gap:1rem;background:rgba(232,199,106,.08)}
+.trace__btn .arw{color:var(--c-gold);font-family:var(--ff-display)}
+.trace.done{border-color:var(--line-gold);box-shadow:0 0 40px rgba(232,199,106,.08)}
+.trace.done .trace__letter{color:var(--c-void);background:var(--c-gold);border-color:var(--c-gold);box-shadow:0 0 24px rgba(232,199,106,.5);transform:scale(1.06)}
+.trace.done .trace__btn{border-color:var(--line);color:var(--t-low);pointer-events:none}
+.trace.done .trace__btn .arw{color:var(--t-low)}
+.trace.done .trace__btn .lbl-do{display:none}
+.trace__btn .lbl-done{display:none}
+.trace.done .trace__btn .lbl-done{display:inline}
+.slots-wrap{margin-top:clamp(2.2rem,4vh,3.2rem);text-align:center}
+.slots-wrap .lab{font-size:.66rem;font-weight:600;letter-spacing:var(--track-wide);text-transform:uppercase;color:var(--t-low);margin-bottom:1.2rem}
+
+.videocard{max-width:52rem;margin:0 auto;border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,rgba(28,26,79,.35),rgba(10,8,36,.45));padding:clamp(1.6rem,1.2rem + 2vw,2.6rem);text-align:center}
+.videocard p.intro{font-size:1rem;line-height:1.8;color:var(--t-mid);max-width:38rem;margin:0 auto 1.8rem}
+.btn{border:1px solid var(--line-gold);background:rgba(232,199,106,.08);border-radius:999px;padding:.8rem 1.5rem;color:var(--c-lavender);font-family:var(--ff-body);font-weight:600;font-size:.72rem;letter-spacing:var(--track-label);text-transform:uppercase;cursor:pointer;transition:background .3s,gap .4s;display:inline-flex;align-items:center;gap:.6rem}
+.btn:hover{background:rgba(232,199,106,.18);gap:1rem}
+.btn .arw{color:var(--c-gold);font-family:var(--ff-display)}
+.btn.ghost{background:transparent;border-color:var(--line-2);color:var(--t-mid)}
+.video-wrap{max-height:0;overflow:hidden;opacity:0;transition:max-height .8s var(--ease),opacity .8s var(--ease),margin .6s}
+.video-wrap.show{max-height:960px;opacity:1;margin-top:1.8rem}
+.video-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--line-2);background:#000}
+.video-frame iframe,.video-frame video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;color:var(--t-low);text-align:center;padding:1rem}
+.video-ph .pulse{width:44px;height:44px;border-radius:50%;border:1px solid var(--line-gold);display:grid;place-items:center;position:relative}
+.video-ph .pulse::after{content:'';width:9px;height:9px;border-radius:50%;background:var(--c-gold);box-shadow:0 0 0 0 rgba(232,199,106,.6);animation:ping 1.6s var(--ease) infinite}
+.video-ph small{font-size:.7rem;letter-spacing:.06em}
+
+#recompose{display:none}#recompose.unlocked{display:block}
+.recompose__pool{display:flex;justify-content:center;gap:clamp(.6rem,2vw,1.2rem);flex-wrap:wrap;margin-bottom:2rem}
+.tile{font-family:var(--ff-display);font-size:clamp(1.2rem,1rem + 1.2vw,1.9rem);font-weight:500;letter-spacing:.08em;padding:.7rem 1.4rem;border:1px solid var(--line-2);border-radius:14px;background:rgba(28,26,79,.5);color:var(--c-lavender);cursor:pointer;user-select:none;transition:all .35s var(--ease)}
+.tile:hover{border-color:var(--line-gold);transform:translateY(-3px)}
+.tile.used{opacity:.25;pointer-events:none;transform:none}
+.recompose__line{min-height:3.6rem;display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap;margin-bottom:1.4rem;padding:1rem;border:1px dashed var(--line-2);border-radius:14px}
+.recompose__line .ph{color:var(--t-low);font-size:.8rem;letter-spacing:var(--track-meta);text-transform:uppercase}
+.recompose__line .word{font-family:var(--ff-display);font-size:clamp(1.2rem,1rem + 1.2vw,1.9rem);font-weight:500;letter-spacing:.08em;color:var(--c-gold);cursor:pointer}
+.recompose__actions{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+.recompose__err{text-align:center;margin-top:1rem;font-size:.78rem;color:#e8836a;min-height:1em;opacity:0;transition:opacity .3s}
+.recompose__err.show{opacity:1}
+
+#finale{display:none;text-align:center;padding-top:0}#finale.show{display:block}
+.finale__inner{opacity:0;animation:fade 2s .2s var(--ease) forwards}
+.finale__sig{font-size:.68rem;font-weight:600;letter-spacing:var(--track-wide);text-transform:uppercase;color:var(--c-gold);margin-bottom:1.6rem}
+.finale__phrase{font-family:var(--ff-display);font-weight:500;line-height:1.05;font-size:clamp(2.4rem,1.4rem + 5vw,6rem);letter-spacing:.02em;margin-bottom:.4rem}
+.finale__phrase .h{color:var(--c-gold);font-style:italic;font-weight:400}
+.finale__beat{font-size:.7rem;letter-spacing:var(--track-wide);text-transform:uppercase;color:var(--t-low);margin-bottom:2.8rem}
+.finale__msg{max-width:40rem;margin:0 auto;text-align:left}
+.finale__msg p{font-family:var(--ff-display);font-weight:400;font-size:clamp(1rem,.95rem + .3vw,1.18rem);line-height:1.95;letter-spacing:.02em;color:var(--t-mid);margin-bottom:1.1rem}
+.finale__msg p.from{text-align:right;color:var(--c-lavender);font-style:italic;margin-top:1.6rem}
+.finale__glow{position:relative}
+.finale__glow::before{content:'';position:absolute;left:50%;top:-30%;width:120%;height:160%;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(232,199,106,.12),transparent 60%);pointer-events:none;z-index:-1}
+
+.foot{text-align:center;padding:3rem var(--gutter) 4rem;border-top:1px solid var(--line);font-size:.7rem;letter-spacing:var(--track-meta);text-transform:uppercase;color:var(--t-low)}
+.foot a{color:var(--c-lavender-mid)}
+.mute{position:fixed;right:var(--gutter);bottom:var(--gutter);z-index:70;width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);background:rgba(6,4,24,.7);backdrop-filter:blur(10px);color:var(--c-gold);cursor:pointer;display:grid;place-items:center;transition:border-color .3s}
+.mute:hover{border-color:var(--line-gold)}.mute svg{width:18px;height:18px}
+@keyframes fade{to{opacity:1}}@keyframes rise{to{opacity:1;transform:none}}
+.fly{position:fixed;z-index:80;font-family:var(--ff-display);font-weight:600;color:var(--c-gold);pointer-events:none;text-shadow:0 0 20px rgba(232,199,106,.6)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+@media(max-width:560px){.tracker .sep{display:none}.statusbar .upd{display:none}}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<div class="atmo"></div>
+
+<div class="statusbar">
+  <span class="dot"></span>
+  <span>Transmission sortante · Réponse de la Terre</span>
+  <span class="upd">Protocole CONTACT · Cellule SOLA</span>
+</div>
+
+<header class="hero">
+  <span class="eyebrow">Programme Aurora · Réponse au signal</span>
+  <h1><span class="l">Le Message</span><span class="l">de la Terre</span></h1>
+  <p class="hero__lead">La structure cristalline a parlé la première. La commandante Ripley a donné un ordre : <b>répondez</b>. La réponse de la Terre voyage en trois fragments. Décodez-les un à un, puis recomposez le message.</p>
+  <div class="crystal" aria-hidden="true">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C9BEF8"/><stop offset="55%" stop-color="#6f63b8"/><stop offset="100%" stop-color="#1c1a4f"/></linearGradient>
+        <radialGradient id="cc" cx="50%" cy="42%" r="55%"><stop offset="0%" stop-color="#fff" stop-opacity=".9"/><stop offset="40%" stop-color="#E8C76A" stop-opacity=".5"/><stop offset="100%" stop-color="#E8C76A" stop-opacity="0"/></radialGradient>
+      </defs>
+      <polygon points="100,14 150,70 128,176 72,176 50,70" fill="url(#cg)" stroke="#B6A5FF" stroke-width="1" stroke-opacity=".5"/>
+      <polyline points="100,14 100,176" fill="none" stroke="#EEE9FF" stroke-width=".8" stroke-opacity=".35"/>
+      <polyline points="50,70 100,90 150,70" fill="none" stroke="#EEE9FF" stroke-width=".8" stroke-opacity=".35"/>
+      <polyline points="100,90 72,176" fill="none" stroke="#EEE9FF" stroke-width=".6" stroke-opacity=".25"/>
+      <polyline points="100,90 128,176" fill="none" stroke="#EEE9FF" stroke-width=".6" stroke-opacity=".25"/>
+      <circle cx="100" cy="92" r="40" fill="url(#cc)"/>
+    </svg>
+  </div>
+  <div class="tracker" id="tracker">
+    <div class="frag" data-f="voici"><span class="frag__word">·····</span><span class="frag__tag">Fragment 1 · le signal visuel</span></div>
+    <span class="sep">·</span>
+    <div class="frag" data-f="notre"><span class="frag__word">·····</span><span class="frag__tag">Fragment 2 · les cinq traces</span></div>
+    <span class="sep">·</span>
+    <div class="frag" data-f="coeur"><span class="frag__word">·····</span><span class="frag__tag">Fragment 3 · le battement</span></div>
+  </div>
+  <a href="#f1" class="scrollcue">Décoder le premier fragment<i></i></a>
+</header>
+
+<!-- FRAGMENT 1 — VOICI -->
+<section id="f1">
+  <div class="wrap station">
+    <div class="shead reveal">
+      <span class="num">Fragment 1 / 3 · le signal visuel</span>
+      <h2>Cinq repères dans le <em>ciel</em>.</h2>
+      <p>Le premier fragment a été émis dans le ciel — cinq signes lumineux, une lettre chacun. Activez les cinq repères, lisez le mot qu'ils dessinent, puis saisissez-le.</p>
+    </div>
+    <div class="signal-panel reveal">
+      <div class="signal-panel__hint">Observez les cinq repères du signal</div>
+      <div class="reperes" id="reperes">
+        <button class="repere" data-l="V"><span class="lt">V</span><span class="ix">Repère 1</span></button>
+        <button class="repere" data-l="O"><span class="lt">O</span><span class="ix">Repère 2</span></button>
+        <button class="repere" data-l="I"><span class="lt">I</span><span class="ix">Repère 3</span></button>
+        <button class="repere" data-l="C"><span class="lt">C</span><span class="ix">Repère 4</span></button>
+        <button class="repere" data-l="I"><span class="lt">I</span><span class="ix">Repère 5</span></button>
+      </div>
+      <p class="insta-note">Ce signal a aussi été diffusé sur nos réseaux. Si vous l'avez déjà déchiffré, saisissez directement le mot.</p>
+    </div>
+    <div class="winput">
+      <input id="inVoici" type="text" maxlength="5" placeholder="• • • • •" aria-label="Fragment 1" autocomplete="off">
+      <button data-target="voici">Valider</button>
+    </div>
+    <div class="wmsg" id="msgVoici"></div>
+    <div class="locktag" id="lockVoici">Fragment 1 verrouillé · VOICI</div>
+  </div>
+</section>
+
+<!-- FRAGMENT 2 — NOTRE -->
+<section id="f2">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="num">Fragment 2 / 3 · cinq traces humaines</span>
+      <h2>Qu'avons-nous de <em>meilleur</em> à offrir&nbsp;?</h2>
+      <p>On ne résume pas l'humanité en un mot. Alors nous en avons choisi cinq — cinq gestes que nous répétons depuis toujours. Activez chaque trace : leurs initiales composent le deuxième fragment.</p>
+    </div>
+    <div class="traces" id="traces">
+      <article class="trace reveal" data-letter="N"><div class="trace__top"><span class="trace__idx">Trace 01</span><span class="trace__letter">N</span></div><h3 class="trace__word">Naître</h3><p class="trace__line">Chaque vie commence par un premier souffle — fragile, improbable, et pourtant là. Nous savons recommencer le monde à chaque enfant.</p><button class="trace__btn"><span class="lbl-do">Transmettre cette trace</span><span class="lbl-done">Trace transmise</span><span class="arw">→</span></button></article>
+      <article class="trace reveal" data-letter="O"><div class="trace__top"><span class="trace__idx">Trace 02</span><span class="trace__letter">O</span></div><h3 class="trace__word">Oser</h3><p class="trace__line">Nous avons quitté nos rivages, franchi le vide entre les étoiles — juste pour savoir s'il y avait quelqu'un. C'est nous qui sommes venus.</p><button class="trace__btn"><span class="lbl-do">Transmettre cette trace</span><span class="lbl-done">Trace transmise</span><span class="arw">→</span></button></article>
+      <article class="trace reveal" data-letter="T"><div class="trace__top"><span class="trace__idx">Trace 03</span><span class="trace__letter">T</span></div><h3 class="trace__word">Transmettre</h3><p class="trace__line">Ce que nous apprenons, nous le confions à ceux qui viennent après nous. Une chanson, un nom, une science — rien ne se perd vraiment.</p><button class="trace__btn"><span class="lbl-do">Transmettre cette trace</span><span class="lbl-done">Trace transmise</span><span class="arw">→</span></button></article>
+      <article class="trace reveal" data-letter="R"><div class="trace__top"><span class="trace__idx">Trace 04</span><span class="trace__letter">R</span></div><h3 class="trace__word">Ressentir</h3><p class="trace__line">Nous pleurons, nous rions, nous aimons — souvent sans raison. C'est notre désordre le plus précieux, celui qu'aucune machine n'a su copier.</p><button class="trace__btn"><span class="lbl-do">Transmettre cette trace</span><span class="lbl-done">Trace transmise</span><span class="arw">→</span></button></article>
+      <article class="trace reveal" data-letter="E"><div class="trace__top"><span class="trace__idx">Trace 05</span><span class="trace__letter">E</span></div><h3 class="trace__word">Espérer</h3><p class="trace__line">Même dans la nuit la plus noire, nous gardons une lumière allumée. C'est peut-être naïf. C'est surtout ce qui nous a menés jusqu'à toi.</p><button class="trace__btn"><span class="lbl-do">Transmettre cette trace</span><span class="lbl-done">Trace transmise</span><span class="arw">→</span></button></article>
+    </div>
+    <div class="slots-wrap">
+      <div class="lab">Les initiales composent le fragment</div>
+      <div class="winput">
+        <input id="inNotre" type="text" maxlength="5" placeholder="• • • • •" aria-label="Fragment 2" autocomplete="off">
+        <button data-target="notre">Valider</button>
+      </div>
+      <div class="wmsg" id="msgNotre"></div>
+      <div class="locktag" id="lockNotre">Fragment 2 verrouillé · NOTRE</div>
+    </div>
+  </div>
+</section>
+
+<!-- FRAGMENT 3 — COEUR -->
+<section id="f3">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="num">Fragment 3 / 3 · le battement</span>
+      <h2>Le dernier fragment ne se lit pas, il <em>bat</em>.</h2>
+      <p>Cinq lettres se révèlent au rythme du signal, dans la vidéo. Découvrez-la, relevez les cinq lettres, puis saisissez le mot.</p>
+    </div>
+    <div class="videocard reveal">
+      <p class="intro">Écoutez ce qui bat. Le troisième fragment apparaît brièvement, à chaque pulsation.</p>
+      <button class="btn" id="revealVideo">Découvrir la vidéo<span class="arw">→</span></button>
+      <div class="video-wrap" id="videoWrap"><div class="video-frame" id="videoFrame"></div></div>
+      <div class="winput">
+        <input id="inCoeur" type="text" maxlength="5" placeholder="• • • • •" aria-label="Fragment 3" autocomplete="off">
+        <button data-target="coeur">Valider</button>
+      </div>
+      <div class="wmsg" id="msgCoeur"></div>
+      <div class="locktag" id="lockCoeur">Fragment 3 verrouillé · COEUR</div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOMPOSITION -->
+<section id="recompose">
+  <div class="wrap">
+    <div class="shead reveal in">
+      <span class="num">Dernière étape · l'ordre du message</span>
+      <h2>Recomposez le <em>message final</em>.</h2>
+      <p>Les trois fragments sont réunis. Mais dans quel ordre la Terre veut-elle parler&nbsp;? À vous de rendre la phrase juste.</p>
+    </div>
+    <div class="recompose__line" id="recLine"><span class="ph">Touchez les fragments dans l'ordre</span></div>
+    <div class="recompose__pool" id="recPool"></div>
+    <div class="recompose__actions">
+      <button class="btn" id="recSend">Transmettre le message</button>
+      <button class="btn ghost" id="recReset">Recommencer</button>
+    </div>
+    <div class="recompose__err" id="recErr">Le message n'est pas encore juste. Réessayez.</div>
+  </div>
+</section>
+
+<!-- FINALE -->
+<section id="finale">
+  <div class="wrap finale__inner finale__glow">
+    <div class="finale__sig">Message transmis · 30.05.2079 · destination&nbsp;: secteur 7</div>
+    <div class="finale__phrase">Voici <span class="h">notre</span> cœur.</div>
+    <div class="finale__beat">— Réponse de la Terre à la structure cristalline —</div>
+    <div class="finale__msg">
+      <p>À celui qui nous a parlé le premier.</p>
+      <p>Nous sommes nés d'une poussière d'étoile, sur une planète bleue qui tourne autour d'un soleil ordinaire. Nous sommes petits, faillibles, et nous ne durons qu'un instant. Et pourtant, nous levons les yeux, et nous cherchons.</p>
+      <p>Nous avons appris à aimer, à créer, à nous tromper, à pardonner et à recommencer. Ce que nous t'envoyons n'est ni une arme, ni une carte, ni une preuve de force.</p>
+      <p>C'est ce que nous avons de plus fragile et de plus vrai. Le voici, sans le décoder, sans le défendre.</p>
+      <p class="from">Voici notre cœur. — La Terre</p>
+    </div>
+    <div class="recompose__actions" style="margin-top:2.6rem"><button class="btn ghost" id="replay" onclick="window.location.href='https://rahnya.github.io/aurora-sola/index.html'">Revoir la transmission</button></div>
+  </div>
+</section>
+
+<footer class="foot">Cellule SOLA · Centre de Contrôle Aurora — Réponse au signal de Kepler-452c<br><a href="#top">Programme Aurora</a></footer>
+
+<button class="mute" id="mute" aria-label="Activer le son">
+  <svg id="muteIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg>
+</button>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   CONFIG — À ÉDITER : lien de la vidéo (fragment COEUR).
+   Accepte YouTube (watch?v=… ou youtu.be/…), un lien d'intégration,
+   ou un fichier .mp4. Laisser vide = aperçu "à venir".
+   ═══════════════════════════════════════════════════════════ */
+const VIDEO_URL = ""; // ex : "https://youtu.be/VOTRE_ID"
+/* ═══════════════════════════════════════════════════════════ */
+const ANSWERS={voici:["VOICI"],notre:["NOTRE"],coeur:["COEUR","CŒUR"]};
+const found={voici:false,notre:false,coeur:false};
+
+/* Starfield */
+(function(){const c=document.getElementById('stars'),x=c.getContext('2d');let w,h,stars;
+  function size(){w=c.width=innerWidth;h=c.height=innerHeight;stars=Array.from({length:Math.min(150,Math.floor(w*h/9000))},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.3+.2,a:Math.random()*.6+.2,s:Math.random()*.4+.05,p:Math.random()*Math.PI*2}));}
+  size();addEventListener('resize',size,{passive:true});const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function draw(t){x.clearRect(0,0,w,h);for(const st of stars){const tw=reduce?st.a:st.a*(.6+.4*Math.sin(t*.001+st.p));x.beginPath();x.arc(st.x,st.y,st.r,0,7);x.fillStyle=`rgba(${st.r>1?'232,199,106':'238,233,255'},${tw})`;x.fill();if(!reduce){st.y+=st.s;if(st.y>h)st.y=0;}}requestAnimationFrame(draw);}requestAnimationFrame(draw);})();
+
+/* Audio */
+let audioOn=false,actx=null;
+function ping(f){if(!audioOn)return;try{actx=actx||new(window.AudioContext||window.webkitAudioContext)();const o=actx.createOscillator(),g=actx.createGain();o.type='sine';o.frequency.value=f;o.connect(g);g.connect(actx.destination);const n=actx.currentTime;g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime(.12,n+.02);g.gain.exponentialRampToValueAtTime(.0001,n+.6);o.start(n);o.stop(n+.62);}catch(e){}}
+const muteBtn=document.getElementById('mute'),muteIcon=document.getElementById('muteIcon');
+muteBtn.addEventListener('click',()=>{audioOn=!audioOn;muteBtn.setAttribute('aria-label',audioOn?'Couper le son':'Activer le son');muteIcon.innerHTML=audioOn?'<path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>':'<path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/>';if(audioOn)ping(523);});
+
+/* Reveal */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.16});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* Fly */
+function flyLetter(fromEl,toEl,letter){const a=fromEl.getBoundingClientRect(),b=toEl.getBoundingClientRect();const s=document.createElement('div');s.className='fly';s.textContent=letter;s.style.left=a.left+a.width/2+'px';s.style.top=a.top+a.height/2+'px';s.style.fontSize='1.6rem';s.style.transform='translate(-50%,-50%) scale(1)';s.style.transition='left 1s cubic-bezier(.16,1,.3,1),top 1s cubic-bezier(.16,1,.3,1),opacity 1s,transform 1s';document.body.appendChild(s);requestAnimationFrame(()=>{s.style.left=b.left+b.width/2+'px';s.style.top=b.top+b.height/2+'px';s.style.transform='translate(-50%,-50%) scale(1.8)';s.style.opacity='.2';});setTimeout(()=>s.remove(),1100);}
+
+/* Fragment 1 : repères */
+const voiciSlots=[...document.querySelectorAll('#slotsVoici .slot')];let voiciIdx=0;
+document.querySelectorAll('#reperes .repere').forEach(r=>{r.addEventListener('click',()=>{if(r.classList.contains('on'))return;r.classList.add('on');ping(440+voiciIdx*60);const letter=r.dataset.l,slot=voiciSlots[voiciIdx++];flyLetter(r,slot,letter);setTimeout(()=>{slot.textContent=letter;slot.classList.add('filled');},900);});});
+
+/* Fragment 2 : traces */
+const order=['N','O','T','R','E'];const notreSlots=[...document.querySelectorAll('#slotsNotre .slot')];const collected=new Set();
+document.querySelectorAll('#traces .trace').forEach(card=>{const btn=card.querySelector('.trace__btn'),letter=card.dataset.letter;btn.addEventListener('click',()=>{if(collected.has(letter))return;collected.add(letter);card.classList.add('done');ping(392+order.indexOf(letter)*70);const idx=order.indexOf(letter),slot=notreSlots[idx];flyLetter(card.querySelector('.trace__letter'),slot,letter);setTimeout(()=>{slot.textContent=letter;slot.classList.add('filled');},900);});});
+
+/* Fragment 3 : vidéo */
+function toEmbed(u){if(!u)return"";const m=u.match(/(?:youtu\.be\/|[?&]v=|embed\/|shorts\/)([\w-]{6,})/);if(m)return"https://www.youtube.com/embed/"+m[1]+"?rel=0";return u;}
+const revealBtn=document.getElementById('revealVideo'),vWrap=document.getElementById('videoWrap'),vFrame=document.getElementById('videoFrame');
+revealBtn.addEventListener('click',()=>{vWrap.classList.add('show');revealBtn.style.display='none';ping(523);
+  if(!VIDEO_URL){vFrame.innerHTML='<div class="video-ph"><span class="pulse"></span><span>La vidéo sera intégrée ici.</span><small>Renseignez VIDEO_URL dans le code.</small></div>';}
+  else if(/\.mp4($|\?)/i.test(VIDEO_URL)){vFrame.innerHTML='<video src="'+VIDEO_URL+'" controls playsinline></video>';}
+  else{vFrame.innerHTML='<iframe src="'+toEmbed(VIDEO_URL)+'" title="Le battement" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>';}
+  setTimeout(()=>vWrap.scrollIntoView({behavior:'smooth',block:'center'}),200);});
+
+/* Validation */
+function norm(s){return(s||'').trim().toUpperCase().replace(/[^A-ZÀ-Ÿ]/g,'');}
+function cap(s){return s[0].toUpperCase()+s.slice(1);}
+function lockFragment(key,word){found[key]=true;const frag=document.querySelector('.frag[data-f="'+key+'"]');frag.classList.add('got');frag.querySelector('.frag__word').textContent=word;frag.querySelector('.frag__tag').textContent='Fragment '+({voici:1,notre:2,coeur:3}[key])+' · capté';document.getElementById('lock'+cap(key)).classList.add('show');const inp=document.getElementById('in'+cap(key));inp.value=word;inp.disabled=true;ping(660);maybeUnlock();}
+document.querySelectorAll('.winput button[data-target]').forEach(b=>{const key=b.dataset.target,inp=document.getElementById('in'+cap(key)),msg=document.getElementById('msg'+cap(key));
+  function submit(){if(found[key])return;const v=norm(inp.value);if(ANSWERS[key].includes(v)){msg.textContent='';msg.className='wmsg';lockFragment(key,ANSWERS[key][0]);}else{msg.textContent='Ce n\'est pas encore le bon fragment. Regardez à nouveau.';msg.className='wmsg err';}}
+  b.addEventListener('click',submit);inp.addEventListener('keydown',e=>{if(e.key==='Enter')submit();else{msg.textContent='';msg.className='wmsg';}});});
+
+/* Recomposition */
+let unlocked=false;
+function maybeUnlock(){if(unlocked)return;if(found.voici&&found.notre&&found.coeur){unlocked=true;const sec=document.getElementById('recompose');sec.classList.add('unlocked');buildPool();setTimeout(()=>sec.scrollIntoView({behavior:'smooth'}),350);}}
+const recLine=document.getElementById('recLine'),recPool=document.getElementById('recPool'),recErr=document.getElementById('recErr');const TARGET=['VOICI','NOTRE','COEUR'];let sequence=[];
+function buildPool(){recPool.innerHTML='';sequence=[];renderLine();TARGET.slice().sort(()=>Math.random()-.5).forEach(w=>{const t=document.createElement('button');t.className='tile';t.textContent=w;t.dataset.w=w;t.addEventListener('click',()=>{if(t.classList.contains('used'))return;t.classList.add('used');sequence.push(w);ping(440);renderLine();});recPool.appendChild(t);});}
+function renderLine(){if(!sequence.length){recLine.innerHTML='<span class="ph">Touchez les fragments dans l\'ordre</span>';return;}recLine.innerHTML='';sequence.forEach((w,i)=>{const s=document.createElement('span');s.className='word';s.textContent=w;s.title='Retirer';s.addEventListener('click',()=>{sequence.splice(i,1);[...recPool.children].forEach(c=>{if(c.dataset.w===w&&!sequence.includes(w))c.classList.remove('used');});renderLine();});recLine.appendChild(s);});}
+document.getElementById('recReset').addEventListener('click',()=>{buildPool();recErr.classList.remove('show');});
+document.getElementById('recSend').addEventListener('click',()=>{if(sequence.join(' ')===TARGET.join(' ')){recErr.classList.remove('show');ping(784);const fin=document.getElementById('finale');fin.classList.add('show');setTimeout(()=>fin.scrollIntoView({behavior:'smooth'}),120);}else recErr.classList.add('show');});
+document.getElementById('replay').addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+</script>
+<span id="top"></span>
+</body>
+</html>
