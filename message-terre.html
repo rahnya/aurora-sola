@@ -394,13 +394,13 @@ const order=['N','O','T','R','E'];const notreSlots=[...document.querySelectorAll
 document.querySelectorAll('#traces .trace').forEach(card=>{const btn=card.querySelector('.trace__btn'),letter=card.dataset.letter;btn.addEventListener('click',()=>{if(collected.has(letter))return;collected.add(letter);card.classList.add('done');ping(392+order.indexOf(letter)*70);const idx=order.indexOf(letter),slot=notreSlots[idx];flyLetter(card.querySelector('.trace__letter'),slot,letter);setTimeout(()=>{slot.textContent=letter;slot.classList.add('filled');},900);});});
 
 /* Fragment 3 : vidéo */
-const revealBtn = document.getElementById('revealVideo');
-const vWrap = document.getElementById('videoWrap');
-
-revealBtn.addEventListener('click', () => {
-  vWrap.classList.add('show');
-  revealBtn.style.display = 'none';
-});
+function toEmbed(u){if(!u)return"";const m=u.match(/(?:youtu\.be\/|[?&]v=|embed\/|shorts\/)([\w-]{6,})/);if(m)return"https://www.youtube.com/embed/"+m[1]+"?rel=0";return u;}
+const revealBtn=document.getElementById('revealVideo'),vWrap=document.getElementById('videoWrap'),vFrame=document.getElementById('videoFrame');
+revealBtn.addEventListener('click',()=>{vWrap.classList.add('show');revealBtn.style.display='none';ping(523);
+  if(!VIDEO_URL){vFrame.innerHTML='<div class="video-ph"><span class="pulse"></span><span>La vidéo sera intégrée ici.</span><small>Renseignez VIDEO_URL dans le code.</small></div>';}
+  else if(/\.mp4($|\?)/i.test(VIDEO_URL)){vFrame.innerHTML='<video src="'+VIDEO_URL+'" controls playsinline></video>';}
+  else{vFrame.innerHTML='<iframe src="'+toEmbed(VIDEO_URL)+'" title="Le battement" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>';}
+  setTimeout(()=>vWrap.scrollIntoView({behavior:'smooth',block:'center'}),200);});
 /* Validation */
 function norm(s){return(s||'').trim().toUpperCase().replace(/[^A-ZÀ-Ÿ]/g,'');}
 function cap(s){return s[0].toUpperCase()+s.slice(1);}
