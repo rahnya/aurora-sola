@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archives · Mission AURORA · Odyssey IV · Kepler-452c</title>
+<meta name="description" content="Archive complète et navigable de la mission AURORA — Odyssey IV vers Kepler-452c. Chronologie interactive, livrables, transmissions, découverte.">
+<meta name="theme-color" content="#060418">
+<meta name="author" content="Cellule SOLA · Centre de Contrôle Aurora">
+<link rel="canonical" href="https://rahnya.github.io/aurora-sola/archives.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Archives · Mission AURORA">
+<meta property="og:description" content="Archive complète de la mission Odyssey IV vers Kepler-452c. Programme AURORA, 2079.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23060418'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23B6A5FF' stroke-width='1' opacity='.5'/%3E%3Cpath d='M16 7 L17 13 L23 16 L17 19 L16 25 L15 19 L9 16 L15 13 Z' fill='%23E8C76A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --c-lavender:#EEE9FF;
+  --c-lavender-mid:#B6A5FF;
+  --c-lavender-alt:#C9BEF8;
+  --c-navy:#292762;
+  --c-navy-soft:#1c1a4f;
+  --c-gold:#E8C76A;
+  --c-gold-dim:rgba(232,199,106,.5);
+  --c-void:#060418;
+  --c-deep:#0a0824;
+  --c-deep-warm:#12103a;
+  --t-on-dark:rgba(238,233,255,1);
+  --t-on-dark-mid:rgba(238,233,255,.7);
+  --t-on-dark-low:rgba(238,233,255,.4);
+  --line:rgba(182,165,255,.1);
+  --line-2:rgba(182,165,255,.22);
+  --line-gold:rgba(232,199,106,.4);
+  --ff-display:'Cinzel','Times New Roman',serif;
+  --ff-body:'Montserrat',system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ease-in:cubic-bezier(.55,.055,.675,.19);
+  --gutter:clamp(1.25rem,1rem+2.5vw,3rem);
+  --container:1200px;
+  --radius:6px;
+}
+
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--ff-body);background:var(--c-void);color:var(--c-lavender);
+  line-height:1.7;font-weight:300;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+button{font-family:var(--ff-body);cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--c-gold);outline-offset:3px;border-radius:2px}
+
+/* ═══════ BACKGROUND ═══════ */
+.bg-atmo{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 110%,rgba(232,199,106,.06),transparent 55%),
+    radial-gradient(ellipse 70% 50% at 18% 8%,rgba(182,165,255,.07),transparent 55%),
+    linear-gradient(180deg,var(--c-void),var(--c-deep) 55%,var(--c-deep-warm));
+}
+#starCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ═══════ SCROLL PROGRESS ═══════ */
+.scroll-bar{
+  position:fixed;top:0;left:0;z-index:200;height:2px;width:0%;
+  background:var(--c-gold);transition:width .1s linear;
+}
+
+/* ═══════ SKIP LINK ═══════ */
+.skip-link{
+  position:absolute;left:-100%;top:1rem;
+  background:var(--c-gold);color:var(--c-void);padding:.4rem 1rem;
+  font-weight:600;font-size:.8rem;border-radius:var(--radius);
+  transition:left .2s;z-index:1000;
+}
+.skip-link:focus{left:1rem}
+
+/* ═══════ HEADER ═══════ */
+.arch-header{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;gap:1.5rem;
+  padding:.85rem var(--gutter);
+  background:rgba(6,4,24,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line-2);
+}
+.arch-header__back{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--t-on-dark-mid);transition:color .2s;
+}
+.arch-header__back:hover{color:var(--c-gold)}
+.arch-header__back svg{transition:transform .2s}
+.arch-header__back:hover svg{transform:translateX(-3px)}
+.arch-header__title{
+  font-family:var(--ff-display);font-size:clamp(.75rem,.68rem+.2vw,.9rem);
+  font-weight:500;letter-spacing:.12em;color:var(--c-lavender-alt);
+  flex:1;text-align:center;
+}
+.arch-header__status{
+  display:flex;align-items:center;gap:.5rem;
+  font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--t-on-dark-low);
+}
+.arch-header__pulse{
+  width:6px;height:6px;border-radius:50%;background:var(--c-gold);
+  animation:pulse 2.4s var(--ease) infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(232,199,106,.55)}
+  70%,100%{box-shadow:0 0 0 8px rgba(232,199,106,0)}
+}
+
+/* ═══════ HERO ARCHIVES ═══════ */
+.arch-hero{
+  position:relative;z-index:1;
+  min-height:88vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:clamp(4rem,10vh,8rem) var(--gutter) clamp(3rem,6vh,5rem);
+  overflow:hidden;
+}
+.arch-hero__glow{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 60%,rgba(182,165,255,.12),transparent 65%),
+    radial-gradient(ellipse 40% 30% at 50% 45%,rgba(232,199,106,.06),transparent 60%);
+}
+.arch-hero__eyebrow{
+  display:inline-flex;align-items:center;gap:1.2rem;
+  font-size:clamp(.64rem,.58rem+.18vw,.78rem);font-weight:500;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--c-gold);
+  margin-bottom:2rem;opacity:0;animation:fadeUp 1.2s .1s var(--ease) forwards;
+}
+.arch-hero__eyebrow::before,.arch-hero__eyebrow::after{
+  content:'';width:clamp(20px,3.5vw,48px);height:1px;background:var(--line-gold);
+}
+.arch-hero__h1{
+  font-family:var(--ff-display);font-weight:400;
+  font-size:clamp(2.8rem,1.5rem+5vw,7rem);
+  line-height:1;letter-spacing:.01em;
+  margin-bottom:1.5rem;
+  opacity:0;animation:fadeUp 1.2s .25s var(--ease) forwards;
+}
+.arch-hero__h1 em{
+  display:block;font-style:normal;color:var(--c-lavender-mid);
+  font-size:clamp(1.6rem,0.8rem+3vw,3.8rem);font-weight:300;
+  margin-top:.3rem;
+}
+.arch-hero__lead{
+  max-width:560px;margin:0 auto 2.5rem;
+  font-size:clamp(.9rem,.82rem+.25vw,1.08rem);font-weight:300;
+  color:var(--t-on-dark-mid);line-height:1.8;
+  opacity:0;animation:fadeUp 1.2s .4s var(--ease) forwards;
+}
+.arch-hero__stats{
+  display:flex;align-items:center;justify-content:center;gap:clamp(1.5rem,4vw,4rem);
+  flex-wrap:wrap;
+  opacity:0;animation:fadeUp 1.2s .55s var(--ease) forwards;
+  padding-top:1.5rem;border-top:1px solid var(--line);
+  margin-top:1rem;
+}
+.arch-hero__stat{text-align:center}
+.arch-hero__stat-n{
+  font-family:var(--ff-display);font-size:clamp(1.4rem,1rem+1.5vw,2.2rem);
+  font-weight:400;color:var(--c-gold);line-height:1;
+}
+.arch-hero__stat-l{
+  font-size:.66rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--t-on-dark-low);margin-top:.3rem;
+}
+.arch-hero__scroll{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  opacity:0;animation:fadeUp 1.2s .7s var(--ease) forwards;
+  color:var(--t-on-dark-low);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;
+}
+.arch-hero__scroll-chevrons{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+}
+.arch-hero__scroll-chevrons i{
+  display:block;width:14px;height:7px;
+  border-left:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+  transform:rotate(-45deg);animation:chevBob 1.8s ease-in-out infinite;
+  list-style:none;
+}
+.arch-hero__scroll-chevrons i:nth-child(2){animation-delay:.3s;opacity:.55}
+@keyframes chevBob{0%,100%{transform:rotate(-45deg) translateY(0)}50%{transform:rotate(-45deg) translateY(4px)}}
+
+/* ═══════ WRAPPER & SECTION LAYOUTS ═══════ */
+.wrap{
+  position:relative;z-index:1;
+  max-width:var(--container);margin:0 auto;padding:0 var(--gutter);
+}
+.arch-section{padding:clamp(4rem,8vh,7rem) 0}
+.arch-section + .arch-section{border-top:1px solid var(--line)}
+
+.section-eyebrow{
+  display:flex;align-items:center;gap:.8rem;
+  font-size:.68rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--c-gold);margin-bottom:1.2rem;
+}
+.section-eyebrow .num{
+  font-family:var(--ff-display);font-size:.75rem;
+  border:1px solid var(--line-gold);padding:.15rem .45rem;border-radius:2px;
+}
+.section-h2{
+  font-family:var(--ff-display);font-weight:400;
+  font-size:clamp(1.6rem,1.2rem+1.5vw,2.6rem);
+  line-height:1.12;letter-spacing:.01em;margin-bottom:1rem;
+}
+.section-h2 em{font-style:italic;color:var(--c-lavender-mid)}
+.section-lead{
+  max-width:600px;font-size:clamp(.88rem,.82rem+.2vw,1.02rem);
+  color:var(--t-on-dark-mid);font-weight:300;line-height:1.8;margin-bottom:3rem;
+}
+
+/* ═══════ REVEAL ANIMATION ═══════ */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.is-visible{opacity:1;transform:none}
+.reveal--d1{transition-delay:.08s}
+.reveal--d2{transition-delay:.16s}
+.reveal--d3{transition-delay:.24s}
+.reveal--d4{transition-delay:.32s}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* ═══════ NAVIGATION TABS ═══════ */
+.arch-tabs{
+  position:sticky;top:57px;z-index:90;
+  background:rgba(6,4,24,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line-2);
+}
+.arch-tabs__inner{
+  display:flex;gap:0;overflow-x:auto;scrollbar-width:none;
+  max-width:var(--container);margin:0 auto;
+}
+.arch-tabs__inner::-webkit-scrollbar{display:none}
+.arch-tabs__link{
+  flex-shrink:0;display:flex;align-items:center;gap:.5rem;
+  padding:.8rem clamp(.7rem,1.5vw,1.4rem);
+  font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--t-on-dark-low);border-bottom:2px solid transparent;
+  transition:color .2s,border-color .2s;white-space:nowrap;
+}
+.arch-tabs__link:hover{color:var(--c-lavender-mid)}
+.arch-tabs__link.active,.arch-tabs__link[aria-current]{
+  color:var(--c-gold);border-bottom-color:var(--c-gold);
+}
+
+/* ═══════ CHRONOLOGIE ═══════ */
+.timeline{
+  position:relative;padding-left:clamp(1.5rem,3vw,2.5rem);
+}
+.timeline::before{
+  content:'';position:absolute;left:0;top:.5rem;bottom:.5rem;width:1px;
+  background:linear-gradient(to bottom,transparent,var(--line-2) 8%,var(--line-2) 92%,transparent);
+}
+
+.tl-group{margin-bottom:3rem}
+.tl-group-label{
+  font-size:.64rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--c-gold);margin-bottom:1.2rem;padding-left:.5rem;
+}
+
+.tl-event{
+  position:relative;margin-bottom:1.2rem;
+  background:rgba(182,165,255,.04);border:1px solid var(--line);
+  border-radius:var(--radius);padding:1.2rem 1.4rem;
+  transition:background .2s,border-color .2s;cursor:pointer;
+}
+.tl-event:hover,.tl-event.is-open{
+  background:rgba(182,165,255,.08);border-color:var(--line-2);
+}
+.tl-event::before{
+  content:'';position:absolute;left:calc(-1 * clamp(1.5rem,3vw,2.5rem) - 0.5px);
+  top:1.3rem;width:9px;height:9px;border-radius:50%;
+  background:var(--c-deep);border:1.5px solid var(--line-2);
+  transition:background .2s,border-color .2s;
+}
+.tl-event:hover::before,.tl-event.is-open::before{
+  background:var(--c-navy);border-color:var(--c-lavender-mid);
+}
+.tl-event--major{border-color:rgba(232,199,106,.25)}
+.tl-event--major::before{background:var(--c-gold-dim);border-color:var(--c-gold)}
+
+.tl-event--contact{
+  border-color:rgba(182,165,255,.4);
+  background:rgba(182,165,255,.07);
+}
+.tl-event--contact::before{
+  background:var(--c-lavender-mid);border-color:var(--c-lavender-mid);
+  box-shadow:0 0 0 4px rgba(182,165,255,.15);
+}
+
+.tl-event__head{display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap}
+.tl-event__meta{display:flex;align-items:center;gap:.6rem;flex-shrink:0;flex-wrap:wrap}
+.tl-event__id{
+  font-family:var(--ff-display);font-size:.72rem;font-weight:500;
+  color:var(--c-lavender-mid);letter-spacing:.08em;
+}
+.tl-event__type{
+  font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  padding:.18rem .55rem;border-radius:2px;
+  background:rgba(182,165,255,.1);color:var(--t-on-dark-mid);
+}
+.tl-event__type--alerte{background:rgba(255,120,80,.12);color:#ff9c7a}
+.tl-event__type--mystère{background:rgba(182,165,255,.18);color:var(--c-lavender-mid)}
+.tl-event__type--découverte,.tl-event__type--contact{background:rgba(232,199,106,.15);color:var(--c-gold)}
+.tl-event__type--émotion{background:rgba(200,120,180,.12);color:#e0a0d0}
+.tl-event__type--conclusion{background:rgba(100,220,160,.1);color:#80e8b0}
+
+.tl-event__main{flex:1;min-width:0}
+.tl-event__title{
+  font-family:var(--ff-display);font-weight:400;font-size:clamp(.88rem,.8rem+.25vw,1.05rem);
+  color:var(--c-lavender);margin-bottom:.3rem;line-height:1.3;
+}
+.tl-event__date{
+  font-size:.66rem;font-weight:500;letter-spacing:.16em;
+  color:var(--t-on-dark-low);text-transform:uppercase;
+}
+.tl-event__chevron{
+  width:20px;height:20px;flex-shrink:0;margin-left:auto;
+  color:var(--t-on-dark-low);transition:transform .3s var(--ease),color .2s;
+}
+.tl-event.is-open .tl-event__chevron{transform:rotate(180deg);color:var(--c-lavender-mid)}
+
+.tl-event__body{
+  max-height:0;overflow:hidden;
+  transition:max-height .5s var(--ease);
+}
+.tl-event.is-open .tl-event__body{max-height:600px}
+.tl-event__body-inner{
+  padding-top:1rem;margin-top:1rem;
+  border-top:1px solid var(--line);
+}
+.tl-event__transmission{
+  font-size:.85rem;font-weight:300;line-height:1.8;
+  color:var(--t-on-dark-mid);font-style:italic;
+  border-left:2px solid var(--line-gold);padding-left:1rem;margin-bottom:1rem;
+}
+.tl-event__missions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+.tl-event__mission-tag{
+  font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  padding:.2rem .6rem;border-radius:2px;
+  border:1px solid var(--line);color:var(--t-on-dark-low);
+  transition:border-color .2s,color .2s;
+}
+.tl-event__mission-tag:hover{border-color:var(--c-lavender-mid);color:var(--c-lavender-mid)}
+.tl-event__mission-tag--done{border-color:rgba(100,220,160,.25);color:#80e8b0}
+.tl-event__link{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.72rem;font-weight:500;letter-spacing:.12em;
+  color:var(--c-gold);margin-top:.8rem;
+  transition:gap .2s;
+}
+.tl-event__link:hover{gap:.7rem}
+
+/* ═══════ CAPSULE VIDÉO ═══════ */
+.video-section{background:rgba(6,4,24,.6)}
+.video-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:2rem;
+  align-items:start;
+}
+.video-main{
+  border-radius:var(--radius);overflow:hidden;
+  background:rgba(182,165,255,.04);border:1px solid var(--line-2);
+}
+.video-frame-wrap{
+  position:relative;padding-bottom:56.25%;
+  background:#0a0824;
+}
+.video-frame-wrap iframe{
+  position:absolute;inset:0;width:100%;height:100%;border:0;
+}
+.video-placeholder{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:1rem;
+  background:rgba(6,4,24,.9);
+}
+.video-placeholder svg{width:48px;height:48px;color:var(--c-gold);opacity:.6}
+.video-placeholder p{
+  font-size:.78rem;font-weight:400;letter-spacing:.12em;
+  color:var(--t-on-dark-low);text-align:center;
+}
+.video-caption{padding:1.2rem 1.4rem}
+.video-caption h3{
+  font-family:var(--ff-display);font-size:.95rem;font-weight:500;
+  color:var(--c-lavender);margin-bottom:.5rem;
+}
+.video-caption p{font-size:.82rem;color:var(--t-on-dark-mid);line-height:1.7;margin-bottom:.6rem}
+.video-caption .meta{
+  font-size:.66rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--t-on-dark-low);
+}
+
+.video-list{display:flex;flex-direction:column;gap:1rem}
+.video-item{
+  padding:1rem 1.2rem;border-radius:var(--radius);
+  background:rgba(182,165,255,.04);border:1px solid var(--line);
+  display:flex;align-items:flex-start;gap:1rem;
+  transition:border-color .2s,background .2s;
+}
+.video-item:hover{background:rgba(182,165,255,.08);border-color:var(--line-2)}
+.video-item__icon{
+  width:36px;height:36px;flex-shrink:0;border-radius:50%;
+  background:rgba(182,165,255,.08);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--c-lavender-mid);
+}
+.video-item__content{}
+.video-item__id{
+  font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--c-gold);margin-bottom:.2rem;
+}
+.video-item__title{font-size:.85rem;font-weight:400;color:var(--c-lavender);line-height:1.4}
+.video-item__desc{font-size:.75rem;font-weight:300;color:var(--t-on-dark-low);margin-top:.25rem}
+
+/* ═══════ PRODUCTIONS GRID ═══════ */
+.productions-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:1.2rem;margin-top:2rem;
+}
+.prod-card{
+  border-radius:var(--radius);padding:1.2rem 1.4rem;
+  background:rgba(182,165,255,.04);border:1px solid var(--line);
+  transition:border-color .2s,background .2s,transform .2s;
+  display:flex;flex-direction:column;gap:.6rem;
+}
+.prod-card:hover{
+  background:rgba(182,165,255,.08);border-color:var(--line-2);
+  transform:translateY(-2px);
+}
+.prod-card__label{
+  font-size:.6rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--t-on-dark-low);
+}
+.prod-card__type{
+  display:inline-block;font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  padding:.15rem .5rem;border-radius:2px;margin-bottom:.2rem;
+}
+.prod-card__type--Visuel{background:rgba(182,165,255,.12);color:var(--c-lavender-mid)}
+.prod-card__type--Rédaction{background:rgba(232,199,106,.1);color:var(--c-gold)}
+.prod-card__type--Web{background:rgba(100,180,255,.1);color:#8dd0ff}
+.prod-card__type--Vidéo{background:rgba(200,120,180,.1);color:#e0a0d0}
+.prod-card__title{
+  font-family:var(--ff-display);font-size:.88rem;font-weight:400;
+  color:var(--c-lavender);line-height:1.35;
+}
+.prod-card__id{
+  font-size:.65rem;font-weight:500;color:var(--t-on-dark-low);letter-spacing:.1em;
+}
+.prod-card__status{
+  margin-top:auto;display:flex;align-items:center;gap:.4rem;
+  font-size:.63rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+}
+.prod-card__status--done{color:#80e8b0}
+.prod-card__status--done::before{content:'●';font-size:.5rem}
+.prod-card__status--pending{color:var(--c-gold)}
+.prod-card__status--pending::before{content:'◐';font-size:.5rem}
+
+/* ═══════ SECTION FILTRES ═══════ */
+.filter-bar{
+  display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;
+}
+.filter-btn{
+  padding:.35rem .9rem;border-radius:20px;
+  border:1px solid var(--line);
+  font-size:.66rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--t-on-dark-low);transition:all .2s;cursor:pointer;
+}
+.filter-btn:hover,.filter-btn.active{
+  background:rgba(182,165,255,.1);border-color:var(--c-lavender-mid);
+  color:var(--c-lavender-mid);
+}
+.filter-btn.active--gold{
+  background:rgba(232,199,106,.1);border-color:var(--c-gold);color:var(--c-gold);
+}
+
+/* ═══════ QUICK-NAV SECTIONS ═══════ */
+.site-map{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:1rem;margin-top:2rem;
+}
+.smap-card{
+  display:flex;flex-direction:column;gap:.8rem;
+  padding:1.4rem 1.4rem;border-radius:var(--radius);
+  background:rgba(182,165,255,.04);border:1px solid var(--line);
+  transition:all .2s;
+}
+.smap-card:hover{
+  background:rgba(182,165,255,.09);border-color:var(--line-2);
+  transform:translateY(-2px);
+}
+.smap-card__icon{
+  width:38px;height:38px;border-radius:8px;
+  background:rgba(182,165,255,.08);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--c-lavender-mid);
+}
+.smap-card__num{
+  font-family:var(--ff-display);font-size:.65rem;color:var(--c-gold);
+  letter-spacing:.12em;font-weight:500;
+}
+.smap-card__title{
+  font-family:var(--ff-display);font-size:.95rem;font-weight:400;
+  color:var(--c-lavender);line-height:1.3;
+}
+.smap-card__desc{
+  font-size:.78rem;font-weight:300;color:var(--t-on-dark-low);line-height:1.6;
+}
+.smap-card__link{
+  margin-top:auto;display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--c-gold);transition:gap .2s;
+}
+.smap-card__link:hover{gap:.7rem}
+
+/* ═══════ CONTACT FINAL ═══════ */
+.arch-finale{
+  text-align:center;padding:clamp(5rem,10vh,9rem) var(--gutter);
+  background:radial-gradient(ellipse 60% 40% at 50% 50%,rgba(182,165,255,.06),transparent 65%);
+  position:relative;z-index:1;
+}
+.arch-finale__eyebrow{
+  display:inline-flex;align-items:center;gap:1rem;
+  font-size:.68rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--c-gold);margin-bottom:1.8rem;
+}
+.arch-finale__eyebrow::before,.arch-finale__eyebrow::after{
+  content:'';width:clamp(18px,3vw,40px);height:1px;background:var(--line-gold);
+}
+.arch-finale__title{
+  font-family:var(--ff-display);font-weight:400;
+  font-size:clamp(2rem,1.2rem+3.5vw,4.5rem);
+  line-height:1.05;letter-spacing:.01em;margin-bottom:1.2rem;
+}
+.arch-finale__sub{
+  font-size:clamp(.9rem,.82rem+.25vw,1.05rem);font-weight:300;
+  color:var(--t-on-dark-mid);line-height:1.8;max-width:540px;margin:0 auto 2.5rem;
+}
+.arch-finale__cta{
+  display:inline-flex;align-items:center;gap:.7rem;
+  padding:.9rem 2.2rem;border-radius:3px;
+  border:1px solid var(--c-gold);
+  font-size:.78rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--c-gold);transition:all .2s;
+}
+.arch-finale__cta:hover{background:rgba(232,199,106,.1)}
+
+/* ═══════ FOOTER ═══════ */
+.arch-footer{
+  position:relative;z-index:1;
+  border-top:1px solid var(--line);padding:2rem var(--gutter);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+}
+.arch-footer__left{
+  font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--t-on-dark-low);display:flex;align-items:center;gap:.8rem;
+}
+.arch-footer__nav{display:flex;gap:1.2rem;flex-wrap:wrap}
+.arch-footer__nav a{
+  font-size:.65rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--t-on-dark-low);transition:color .2s;
+}
+.arch-footer__nav a:hover{color:var(--c-lavender-mid)}
+.arch-footer__credit{
+  font-size:.65rem;color:var(--t-on-dark-low);letter-spacing:.08em;
+}
+.arch-footer__credit span{color:var(--c-gold)}
+
+/* ═══════ STATS BANDEAUX ═══════ */
+.stats-band{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border:1px solid var(--line-2);border-radius:var(--radius);overflow:hidden;
+  margin:2rem 0;
+}
+.stats-band__item{
+  padding:1.4rem 1.6rem;text-align:center;
+  border-right:1px solid var(--line);
+}
+.stats-band__item:last-child{border-right:none}
+.stats-band__n{
+  font-family:var(--ff-display);font-size:clamp(1.8rem,1.2rem+1.5vw,2.8rem);
+  font-weight:400;color:var(--c-gold);line-height:1;margin-bottom:.4rem;
+}
+.stats-band__l{
+  font-size:.62rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--t-on-dark-low);
+}
+
+/* ═══════ CITATION BLOC ═══════ */
+.quote-block{
+  border-left:3px solid var(--c-gold);padding:1.5rem 2rem;
+  background:rgba(232,199,106,.04);border-radius:0 var(--radius) var(--radius) 0;
+  margin:2rem 0;
+}
+.quote-block blockquote{
+  font-family:var(--ff-display);font-size:clamp(1rem,.9rem+.4vw,1.35rem);
+  font-weight:400;font-style:italic;line-height:1.6;color:var(--c-lavender);
+  margin-bottom:.8rem;
+}
+.quote-block cite{
+  font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--c-gold);font-style:normal;
+}
+
+/* ═══════ RESPONSIVE ═══════ */
+@media(max-width:900px){
+  .video-grid{grid-template-columns:1fr}
+  .stats-band{grid-template-columns:repeat(2,1fr)}
+  .stats-band__item:nth-child(2){border-right:none}
+  .stats-band__item:nth-child(3){border-right:1px solid var(--line)}
+  .stats-band__item:nth-child(3),.stats-band__item:nth-child(4){border-top:1px solid var(--line)}
+}
+@media(max-width:600px){
+  .arch-header__status{display:none}
+  .stats-band{grid-template-columns:1fr 1fr}
+  .arch-tabs__link{padding:.7rem .8rem;font-size:.6rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+
+/* ═══════ VIDEO ITEM — INTERACTIVE ═══════ */
+.video-item{cursor:pointer;user-select:none;transition:border-color .2s,background .2s}
+.video-item.is-active{border-color:rgba(232,199,106,.5);background:rgba(232,199,106,.06)}
+.video-item.is-active .video-item__icon{background:rgba(232,199,106,.1);border-color:rgba(232,199,106,.4);color:var(--c-gold)}
+.video-item.is-active .video-item__id{color:var(--c-gold)}
+.video-item__play-arrow{margin-left:auto;flex-shrink:0;opacity:0;transition:opacity .2s;color:var(--c-lavender-mid)}
+.video-item:hover .video-item__play-arrow,.video-item.is-active .video-item__play-arrow{opacity:1}
+.video-item.is-active .video-item__play-arrow{color:var(--c-gold)}
+
+/* ═══════ PROD CARD — INTERACTIVE ═══════ */
+.prod-card{cursor:pointer}
+.prod-card:focus-visible{outline:2px solid var(--c-gold);outline-offset:3px}
+.prod-card__view{
+  margin-top:auto;display:inline-flex;align-items:center;gap:.3rem;padding-top:.5rem;
+  font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--c-lavender-mid);opacity:0;transition:opacity .2s;
+}
+.prod-card:hover .prod-card__view{opacity:1}
+.prod-card:hover{border-color:var(--c-lavender-mid)}
+
+/* ═══════ MISSION TAG — INTERACTIVE ═══════ */
+.tl-event__mission-tag--done{
+  cursor:pointer;transition:border-color .15s,color .15s,background .15s;
+  font-family:var(--ff-body);
+}
+.tl-event__mission-tag--done:hover{
+  background:rgba(100,220,160,.08);border-color:rgba(100,220,160,.5);color:#80e8b0;
+}
+.tl-event__body-inner{position:relative}
+
+/* ═══════ TIMELINE BODY HEIGHT ═══════ */
+.tl-event.is-open .tl-event__body{max-height:1200px}
+
+/* ═══════ VIDEO PLACEHOLDER IN PLAYER ═══════ */
+.video-placeholder-full{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:1.1rem;padding:2rem;
+  background:rgba(6,4,24,.92);text-align:center;border-radius:var(--radius);
+}
+.video-placeholder-full svg{width:42px;height:42px;color:var(--c-gold);opacity:.55}
+.video-placeholder-full h4{
+  font-family:var(--ff-display);font-size:.95rem;color:var(--c-lavender);font-weight:400;
+}
+.video-placeholder-full p{
+  font-size:.78rem;color:var(--t-on-dark-mid);line-height:1.7;max-width:300px;
+}
+.video-placeholder-full a{
+  display:inline-flex;align-items:center;gap:.5rem;margin-top:.3rem;
+  font-size:.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--c-gold);padding:.5rem 1.2rem;border:1px solid rgba(232,199,106,.5);
+  border-radius:3px;transition:background .2s;
+}
+.video-placeholder-full a:hover{background:rgba(232,199,106,.1)}
+
+/* ═══════ PRODUCTION MODAL ═══════ */
+.prod-modal{
+  position:fixed;inset:0;z-index:600;
+  display:flex;align-items:center;justify-content:center;padding:var(--gutter);
+  opacity:0;pointer-events:none;transition:opacity .3s var(--ease);
+}
+.prod-modal.is-open{opacity:1;pointer-events:all}
+.prod-modal__overlay{
+  position:absolute;inset:0;background:rgba(6,4,24,.85);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);cursor:pointer;
+}
+.prod-modal__panel{
+  position:relative;z-index:1;
+  width:100%;max-width:820px;max-height:92vh;
+  background:var(--c-deep);border:1px solid var(--line-2);
+  border-radius:12px;overflow:hidden;
+  display:flex;flex-direction:column;
+  transform:translateY(20px) scale(.98);
+  transition:transform .3s var(--ease);
+}
+.prod-modal.is-open .prod-modal__panel{transform:none}
+.prod-modal__head{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;
+  padding:1.4rem 1.6rem 1.1rem;border-bottom:1px solid var(--line);flex-shrink:0;
+}
+.prod-modal__meta{display:flex;align-items:center;gap:.6rem;margin-bottom:.35rem;flex-wrap:wrap}
+.prod-modal__id{
+  font-family:var(--ff-display);font-size:.72rem;font-weight:500;
+  color:var(--c-gold);letter-spacing:.1em;
+}
+.prod-modal__badge{
+  font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  padding:.15rem .55rem;border-radius:2px;
+}
+.prod-modal__badge--Visuel{background:rgba(182,165,255,.12);color:var(--c-lavender-mid)}
+.prod-modal__badge--Rédaction{background:rgba(232,199,106,.1);color:var(--c-gold)}
+.prod-modal__badge--Web{background:rgba(100,180,255,.1);color:#8dd0ff}
+.prod-modal__badge--Vidéo{background:rgba(200,120,180,.1);color:#e0a0d0}
+.prod-modal__title{
+  font-family:var(--ff-display);font-size:clamp(.95rem,.88rem+.4vw,1.28rem);
+  font-weight:400;color:var(--c-lavender);line-height:1.3;
+}
+.prod-modal__close{
+  flex-shrink:0;width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+  color:var(--t-on-dark-low);transition:all .2s;margin-top:-.1rem;
+}
+.prod-modal__close:hover{border-color:var(--c-lavender-mid);color:var(--c-lavender)}
+.prod-modal__body{
+  overflow-y:auto;flex:1;padding:1.6rem;
+  scrollbar-width:thin;scrollbar-color:var(--line-2) transparent;
+}
+.prod-modal__body::-webkit-scrollbar{width:4px}
+.prod-modal__body::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:2px}
+
+/* Modal content */
+.modal-video-wrap{
+  position:relative;padding-bottom:56.25%;background:#000;
+  border-radius:var(--radius);overflow:hidden;margin-bottom:1.2rem;
+}
+.modal-video-wrap iframe,.modal-video-wrap video{
+  position:absolute;inset:0;width:100%;height:100%;border:0;
+}
+.modal-img{
+  width:100%;border-radius:var(--radius);margin-bottom:1.2rem;
+  max-height:420px;object-fit:contain;background:rgba(0,0,0,.4);
+  display:block;
+}
+.modal-gallery{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:.7rem;margin-bottom:1.2rem;
+}
+.modal-gallery img{
+  width:100%;aspect-ratio:4/3;object-fit:cover;
+  border-radius:4px;cursor:zoom-in;transition:opacity .2s;border:1px solid var(--line);
+}
+.modal-gallery img:hover{opacity:.8}
+.modal-desc{font-size:.88rem;color:var(--t-on-dark-mid);line-height:1.85;margin-bottom:1.2rem}
+.modal-text-block{
+  padding:1.3rem 1.5rem;background:rgba(182,165,255,.04);
+  border:1px solid var(--line);border-radius:var(--radius);margin-bottom:1.2rem;
+}
+.modal-text-block p{
+  font-size:.87rem;line-height:1.85;color:var(--t-on-dark-mid);
+  border-left:2px solid var(--line-gold);padding-left:1rem;font-style:italic;
+}
+.modal-cta{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.7rem 1.6rem;border:1px solid var(--c-gold);border-radius:3px;
+  font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--c-gold);transition:background .2s;
+}
+.modal-cta:hover{background:rgba(232,199,106,.1)}
+.modal-no-preview{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.8rem;padding:2.5rem 1.5rem;margin-bottom:1.2rem;
+  border:1px dashed var(--line-2);border-radius:var(--radius);text-align:center;
+}
+.modal-no-preview svg{width:36px;height:36px;color:var(--c-lavender-mid);opacity:.35}
+.modal-no-preview p{font-size:.8rem;color:var(--t-on-dark-low);line-height:1.7;max-width:300px}
+
+@media(max-width:600px){
+  .prod-modal{padding:.4rem}
+  .prod-modal__head{padding:1rem 1.1rem .9rem}
+  .prod-modal__body{padding:1.1rem}
+}
+
+</style>
+</head>
+<body>
+<div class="bg-atmo"></div>
+<canvas id="starCanvas"></canvas>
+<div class="scroll-bar" id="scrollBar"></div>
+<a href="#main" class="skip-link">Aller au contenu principal</a>
+
+<!-- ═══════ HEADER ═══════ -->
+<header class="arch-header">
+  <a href="index.html" class="arch-header__back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M10 3L5 8l5 5"/></svg>
+    Centre SOLA
+  </a>
+  <div class="arch-header__title">Archives · Mission AURORA</div>
+  <div class="arch-header__status">
+    <span class="arch-header__pulse"></span>
+    Mission terminée
+  </div>
+</header>
+
+<!-- ═══════ TABS ═══════ -->
+<nav class="arch-tabs" aria-label="Sections archives">
+  <div class="arch-tabs__inner">
+    <a href="#chronologie" class="arch-tabs__link active">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      Chronologie
+    </a>
+    <a href="#capsule" class="arch-tabs__link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Capsule vidéo
+    </a>
+    <a href="#productions" class="arch-tabs__link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Productions
+    </a>
+    <a href="#navigation" class="arch-tabs__link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Site complet
+    </a>
+    <a href="index.html" class="arch-tabs__link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Site principal
+    </a>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ═══════ HERO ═══════ -->
+<section class="arch-hero">
+  <div class="arch-hero__glow"></div>
+  <div class="arch-hero__eyebrow">Programme AURORA · Cellule SOLA · 2079</div>
+  <h1 class="arch-hero__h1">
+    Archives<br>
+    <em>Mission Odyssey IV</em>
+  </h1>
+  <p class="arch-hero__lead">
+    Archive complète et navigable de la mission AURORA — premier contact humain avec Kepler-452c. 
+    16 événements, 47 missions, 48 heures d'histoire.
+  </p>
+  <div class="arch-hero__stats">
+    <div class="arch-hero__stat">
+      <div class="arch-hero__stat-n">16</div>
+      <div class="arch-hero__stat-l">Événements</div>
+    </div>
+    <div class="arch-hero__stat">
+      <div class="arch-hero__stat-n">47</div>
+      <div class="arch-hero__stat-l">Missions</div>
+    </div>
+    <div class="arch-hero__stat">
+      <div class="arch-hero__stat-n">48h</div>
+      <div class="arch-hero__stat-l">Durée mission</div>
+    </div>
+    <div class="arch-hero__stat">
+      <div class="arch-hero__stat-n">1 400</div>
+      <div class="arch-hero__stat-l">Années-lumière</div>
+    </div>
+    <div class="arch-hero__stat">
+      <div class="arch-hero__stat-n">6</div>
+      <div class="arch-hero__stat-l">Membres équipage</div>
+    </div>
+  </div>
+  <div class="arch-hero__scroll" aria-hidden="true">
+    Parcourir
+    <div class="arch-hero__scroll-chevrons">
+      <i></i><i></i>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CHRONOLOGIE ═══════ -->
+<section class="arch-section" id="chronologie">
+  <div class="wrap">
+    <div class="section-eyebrow reveal"><span class="num">01</span><span>Chronologie complète</span></div>
+    <h2 class="section-h2 reveal reveal--d1">La mission <em>de bout en bout.</em></h2>
+    <p class="section-lead reveal reveal--d2">
+      Chaque événement de la mission AURORA, dans l'ordre chronologique. 
+      Cliquez sur un événement pour déplier la transmission et les missions associées.
+    </p>
+
+    <div class="stats-band reveal reveal--d2">
+      <div class="stats-band__item">
+        <div class="stats-band__n">29.05</div>
+        <div class="stats-band__l">Début · 19h31 UTC</div>
+      </div>
+      <div class="stats-band__item">
+        <div class="stats-band__n">31.05</div>
+        <div class="stats-band__l">Fin · 13h00 UTC</div>
+      </div>
+      <div class="stats-band__item">
+        <div class="stats-band__n">42/47</div>
+        <div class="stats-band__l">Missions complétées</div>
+      </div>
+      <div class="stats-band__item">
+        <div class="stats-band__n">4 650</div>
+        <div class="stats-band__l">CM accumulés</div>
+      </div>
+    </div>
+
+    <div class="timeline" id="timelineList">
+
+      <!-- ── 29 MAI ── -->
+      <div class="tl-group reveal">
+        <div class="tl-group-label">29 mai 2079 · Premier contact</div>
+
+        <div class="tl-event tl-event--major" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-event__head">
+            <div class="tl-event__meta">
+              <span class="tl-event__id">EVT-01</span>
+              <span class="tl-event__type tl-event__type--découverte">Découverte</span>
+            </div>
+            <div class="tl-event__main">
+              <div class="tl-event__title">Premier contact visuel</div>
+              <div class="tl-event__date">29.05.2079 · 19:31 UTC</div>
+            </div>
+            <svg class="tl-event__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="tl-event__body">
+            <div class="tl-event__body-inner">
+              <p class="tl-event__transmission">« CCA, ici Laurent. On vient de terminer le premier survol basse altitude de la zone Alpha. Les images arrivent. C'est... c'est vraiment autre chose de le voir de près. La vallée d'Aurelia est immense. On distingue ce qui ressemble à des formations rocheuses stratifiées. Patel est comme un gosse devant un sapin de Noël. »</p>
+              <div class="tl-event__missions">
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT01-A · Communiqué</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT01-B · Visuel réseaux</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT01-C · Galerie photo</span>
+              </div>
+              <a href="index.html#gallery" class="tl-event__link">Voir la galerie → <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-event" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-event__head">
+            <div class="tl-event__meta">
+              <span class="tl-event__id">EVT-02</span>
+              <span class="tl-event__type">Information</span>
+            </div>
+            <div class="tl-event__main">
+              <div class="tl-event__title">Incident technique mineur</div>
+              <div class="tl-event__date">29.05.2079 · 22:00 UTC</div>
+            </div>
+            <svg class="tl-event__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="tl-event__body">
+            <div class="tl-event__body-inner">
+              <p class="tl-event__transmission">« Défaillance capteur thermique module 3. Diagnostic en cours. Impact mission : négligeable. Réparation estimée : 4h. Rien de grave, c'est un capteur redondant. Davis et moi on s'en occupe. »</p>
+              <div class="tl-event__missions">
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT02-A · Briefing interne</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT02-B · Journal technique</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT02-C · Infographie Odyssey IV</span>
+              </div>
+              <a href="index.html#journal" class="tl-event__link">Voir le journal de bord → <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-event" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-event__head">
+            <div class="tl-event__meta">
+              <span class="tl-event__id">EVT-03</span>
+              <span class="tl-event__type tl-event__type--émotion">Émotion</span>
+            </div>
+            <div class="tl-event__main">
+              <div class="tl-event__title">Message personnel viral</div>
+              <div class="tl-event__date">30.05.2079 · 00:30 UTC</div>
+            </div>
+            <svg class="tl-event__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="tl-event__body">
+            <div class="tl-event__body-inner">
+              <p class="tl-event__transmission">« Maman, Papa... Je sais que vous recevrez ça dans 20 minutes. Aujourd'hui ça fait exactement 2 ans que je suis partie de la maison. La Terre me manque. Vous me manquez. Mais quand je regarde par le hublot et que je vois cette planète qu'aucun humain n'a jamais vue de si près... je sais pourquoi je suis là. Je vous aime. »</p>
+              <div class="tl-event__missions">
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT03-A · Message officiel</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT03-B · Visuel citation</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT03-C · Séquence émotion</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── 30 MAI ── -->
+      <div class="tl-group reveal reveal--d1">
+        <div class="tl-group-label">30 mai 2079 · Crise & Découverte</div>
+
+        <div class="tl-event" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-event__head">
+            <div class="tl-event__meta">
+              <span class="tl-event__id">EVT-04</span>
+              <span class="tl-event__type tl-event__type--alerte">Alerte</span>
+            </div>
+            <div class="tl-event__main">
+              <div class="tl-event__title">Tempête solaire classe M4</div>
+              <div class="tl-event__date">30.05.2079 · 03:00 UTC</div>
+            </div>
+            <svg class="tl-event__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="tl-event__body">
+            <div class="tl-event__body-inner">
+              <p class="tl-event__transmission">« Tempête solaire de classe M4 détectée. Impact sur les communications dans 45 minutes. Durée estimée : 6-8 heures. Débit réduit à 10%. Protocole COM-DEGRAD activé. »</p>
+              <div class="tl-event__missions">
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT04-A · Communiqué alerte</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT04-B · Visuel alerte</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT04-C · Interface glitch</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT04-D · Transmission dégradée</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-event" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-event__head">
+            <div class="tl-event__meta">
+              <span class="tl-event__id">EVT-05</span>
+              <span class="tl-event__type">Respiration</span>
+            </div>
+            <div class="tl-event__main">
+              <div class="tl-event__title">Point d'étape · fin de première nuit</div>
+              <div class="tl-event__date">30.05.2079 · 06:00 UTC</div>
+            </div>
+            <svg class="tl-event__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="tl-event__body">
+            <div class="tl-event__body-inner">
+              <p class="tl-event__transmission">« CCA, rapport de fin de nuit. Tempête solaire en décroissance, signal qui se stabilise. L'équipage va bien. Le capteur est réparé. On se prépare pour la suite : première EVA de reconnaissance sur le site Delta prévue cet après-midi. Bonne matinée, la Terre. »</p>
+              <div class="tl-event__missions"><span class="tl-event__mission-tag">Aucune mission associée</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-event" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-event__head">
+            <div class="tl-event__meta">
+              <span class="tl-event__id">EVT-06</span>
+              <span class="tl-event__type tl-event__type--mystère">Mystère</span>
+            </div>
+            <div class="tl-event__main">
+              <div class="tl-event__title">Signal anormal · log automatique</div>
+              <div class="tl-event__date">30.05.2079 · 08:47 UTC</div>
+            </div>
+            <svg class="tl-event__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="tl-event__body">
+            <div class="tl-event__body-inner">
+              <p class="tl-event__transmission">« Détection signal électromagnétique anormal. Source : Vallée d'Aurelia, secteur 7. Durée : 3 min 42s. Fréquence : non répertoriée dans les bases de données connues. Équipage informé. »</p>
+              <div class="tl-event__missions">
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT06-A · Rapport d'anomalie</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT06-B · Cartographie signal</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT06-C · Système d'alerte web</span>
+              </div>
+              <a href="index.html#discovery" class="tl-event__link">Voir la section découverte → <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-event" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-event__head">
+            <div class="tl-event__meta">
+              <span class="tl-event__id">EVT-07</span>
+              <span class="tl-event__type tl-event__type--mystère">Mystère</span>
+            </div>
+            <div class="tl-event__main">
+              <div class="tl-event__title">Briefing confidentiel · le signal</div>
+              <div class="tl-event__date">30.05.2079 · 10:01 UTC</div>
+            </div>
+            <svg class="tl-event__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="tl-event__body">
+            <div class="tl-event__body-inner">
+              <p class="tl-event__transmission">« Ce signal... il ne correspond à rien de connu. Ça peut être géologique, atmosphérique, ou... quelque chose d'autre. La fréquence est trop régulière pour être du bruit. Il FAUT qu'on aille voir. »</p>
+              <div class="tl-event__missions">
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT07-A · Note de synthèse</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT07-B · Éléments de langage</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT07-C · Visualisation signal</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-event" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-event__head">
+            <div class="tl-event__meta">
+              <span class="tl-event__id">EVT-08</span>
+              <span class="tl-event__type">Information</span>
+            </div>
+            <div class="tl-event__main">
+              <div class="tl-event__title">EVA en direct · exploration secteur 7</div>
+              <div class="tl-event__date">30.05.2079 · 11:33 UTC</div>
+            </div>
+            <svg class="tl-event__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="tl-event__body">
+            <div class="tl-event__body-inner">
+              <p class="tl-event__transmission">« C'est... c'est une formation cristalline. Jamais vu ça. Elle est translucide, haute d'environ 3 mètres, et elle... elle pulse. Faiblement, mais de manière régulière. Patel va perdre la tête quand il verra les images. »</p>
+              <div class="tl-event__missions">
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT08-A · Fil d'actualité live</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT08-B · Visuel EVA</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT08-C · Page suivi EVA</span>
+              </div>
+              <a href="eva.html" class="tl-event__link">Voir la page EVA → <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-event tl-event--major" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-event__head">
+            <div class="tl-event__meta">
+              <span class="tl-event__id">EVT-09</span>
+              <span class="tl-event__type tl-event__type--découverte">Découverte majeure</span>
+            </div>
+            <div class="tl-event__main">
+              <div class="tl-event__title">Découverte confirmée · Protocole NOVA</div>
+              <div class="tl-event__date">30.05.2079 · 16:01 UTC</div>
+            </div>
+            <svg class="tl-event__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="tl-event__body">
+            <div class="tl-event__body-inner">
+              <p class="tl-event__transmission">« Ce que Laurent et Wong ont trouvé... c'est une structure cristalline bioluminescente. Elle mesure 3,2 mètres de haut. Elle émet de la lumière selon un cycle de 47 secondes. Ce n'est pas un artefact. Ce n'est pas un bug. C'est quelque chose de fondamentalement nouveau. »</p>
+              <div class="tl-event__missions">
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT09-A · Communiqué découverte</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT09-B · Vulgarisation</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT09-C · Représentation artistique</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT09-D · Section découverte</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT09-E · Capsule vidéo découverte</span>
+              </div>
+              <a href="index.html#discovery" class="tl-event__link">Voir la section découverte → <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-event" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-event__head">
+            <div class="tl-event__meta">
+              <span class="tl-event__id">EVT-10</span>
+              <span class="tl-event__type tl-event__type--alerte">Alerte</span>
+            </div>
+            <div class="tl-event__main">
+              <div class="tl-event__title">Manipulation & désinformation · #AuroraAlien</div>
+              <div class="tl-event__date">30.05.2079 · 19:00 UTC</div>
+            </div>
+            <svg class="tl-event__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="tl-event__body">
+            <div class="tl-event__body-inner">
+              <p class="tl-event__transmission">« Restez factuel, restez intègre. On compte sur vous. » — Cdt. E. Ripley, à propos du hashtag #AuroraAlien et de la manipulation du classement.</p>
+              <div class="tl-event__missions">
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT10-A · Analyse manipulation</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT10-B · Kit réponse désinformation</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT10-C · Visuels anti-désinformation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-event" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-event__head">
+            <div class="tl-event__meta">
+              <span class="tl-event__id">EVT-11</span>
+              <span class="tl-event__type tl-event__type--alerte">Crise totale</span>
+            </div>
+            <div class="tl-event__main">
+              <div class="tl-event__title">Crise médiatique · familles harcelées</div>
+              <div class="tl-event__date">30.05.2079 · 22:00 UTC</div>
+            </div>
+            <svg class="tl-event__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="tl-event__body">
+            <div class="tl-event__body-inner">
+              <p class="tl-event__transmission">« #AuroraAlien repris par 4 médias TV nationaux. Deepfake vidéo montrant un « alien dans le vaisseau » en circulation. Appels au standard CCA : +2000%. Nécessité de réponse coordonnée immédiate tous canaux. »</p>
+              <div class="tl-event__missions">
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT11-A · Démenti officiel</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT11-B · Message familles</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT11-C · Preuve de vie vidéo</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT11-D · Centre de crise</span>
+              </div>
+              <a href="index.html#crise" class="tl-event__link">Voir le centre de crise → <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── 31 MAI ── -->
+      <div class="tl-group reveal reveal--d2">
+        <div class="tl-group-label">31 mai 2079 · Contact & Conclusion</div>
+
+        <div class="tl-event" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-event__head">
+            <div class="tl-event__meta">
+              <span class="tl-event__id">EVT-12</span>
+              <span class="tl-event__type">Respiration</span>
+            </div>
+            <div class="tl-event__main">
+              <div class="tl-event__title">Accalmie · la crise retombe</div>
+              <div class="tl-event__date">31.05.2079 · 01:00 UTC</div>
+            </div>
+            <svg class="tl-event__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="tl-event__body">
+            <div class="tl-event__body-inner">
+              <p class="tl-event__transmission">« Les familles ont été rassurées. Ma mère m'a envoyé un message, elle va bien. Merci pour votre réactivité. Ça nous a secoués, cette histoire de deepfake. Ça rappelle qu'on est loin... et qu'on compte sur vous là-bas. »</p>
+              <div class="tl-event__missions"><span class="tl-event__mission-tag">Aucune mission associée</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-event" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-event__head">
+            <div class="tl-event__meta">
+              <span class="tl-event__id">EVT-13</span>
+              <span class="tl-event__type">Information</span>
+            </div>
+            <div class="tl-event__main">
+              <div class="tl-event__title">Tension interne · log confidentiel</div>
+              <div class="tl-event__date">31.05.2079 · 08:49 UTC</div>
+            </div>
+            <svg class="tl-event__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="tl-event__body">
+            <div class="tl-event__body-inner">
+              <p class="tl-event__transmission">« Altercation verbale entre Dr. Patel et Lt. Laurent. Sujet : priorité EVA scientifique vs protocoles de sécurité. Situation stabilisée par Cdt. Ripley. Note : fatigue accumulée, stress post-crise. »</p>
+              <div class="tl-event__missions"><span class="tl-event__mission-tag">Aucune mission associée</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-event tl-event--contact" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-event__head">
+            <div class="tl-event__meta">
+              <span class="tl-event__id">EVT-CONTACT</span>
+              <span class="tl-event__type tl-event__type--contact">Contact</span>
+            </div>
+            <div class="tl-event__main">
+              <div class="tl-event__title">Le signal retour · Alerte maximale</div>
+              <div class="tl-event__date">31.05.2079 · 09:00 UTC</div>
+            </div>
+            <svg class="tl-event__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="tl-event__body">
+            <div class="tl-event__body-inner">
+              <p class="tl-event__transmission">« La structure cristalline du secteur 7 a modifié son cycle de pulsation. Fréquence passée de 47 secondes à 4,7 secondes. Le spectre du signal ne correspond plus à rien de naturel. Il contient une séquence qui se répète. Une séquence structurée. »</p>
+              <p class="tl-event__transmission" style="margin-top:.8rem">« Quelque chose a répondu. Et c'est à vous de décider ce que l'humanité dit en retour. Répondez. » — Cdt. E. Ripley</p>
+              <div class="tl-event__missions">
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">CONTACT-A · Le message de la Terre</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">CONTACT-B · Visuel premier contact</span>
+              </div>
+              <a href="message-terre.html" class="tl-event__link">Voir le message de la Terre → <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-event tl-event--major" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-event__head">
+            <div class="tl-event__meta">
+              <span class="tl-event__id">EVT-15</span>
+              <span class="tl-event__type tl-event__type--conclusion">Conclusion</span>
+            </div>
+            <div class="tl-event__main">
+              <div class="tl-event__title">Message final de l'équipage · fin de mission</div>
+              <div class="tl-event__date">31.05.2079 · 13:00 UTC</div>
+            </div>
+            <svg class="tl-event__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="tl-event__body">
+            <div class="tl-event__body-inner">
+              <p class="tl-event__transmission">« Ici l'équipage de l'Odyssey IV, au complet. Merci de raconter ce qu'on vit. Merci de nous défendre quand les rumeurs s'emballent. Vous êtes notre voix, notre lien avec la Terre. Sans vous, cette mission ne serait que des données dans un serveur. Avec vous, c'est une histoire humaine. À bientôt, la Terre. »</p>
+              <div class="tl-event__missions">
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT15-A · Capsule audiovisuelle finale</span>
+                <span class="tl-event__mission-tag">EVT15-B · Rétrospective visuelle</span>
+                <span class="tl-event__mission-tag tl-event__mission-tag--done">EVT15-C · Version finale du site</span>
+                <span class="tl-event__mission-tag">EVT15-D · Bilan de communication</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /timeline -->
+  </div>
+</section>
+
+<!-- ═══════ CAPSULE VIDÉO ═══════ -->
+<section class="arch-section video-section" id="capsule">
+  <div class="wrap">
+    <div class="section-eyebrow reveal"><span class="num">02</span><span>Productions audiovisuelles</span></div>
+    <h2 class="section-h2 reveal reveal--d1">Capsule vidéo <em>& productions audiovisuelles.</em></h2>
+    <p class="section-lead reveal reveal--d2">
+      L'ensemble des séquences vidéo produites par la cellule SOLA durant la mission — 
+      de l'émotion du premier contact à la capsule finale.
+    </p>
+
+    <div class="video-grid">
+      <div class="video-main reveal">
+        <div class="video-frame-wrap" id="videoFrameWrap">
+          <iframe
+            id="videoIframe" src="https://streamable.com/e/euccnv"
+            title="Preuve de vie · Message officiel équipage Odyssey IV"
+            allow="autoplay; fullscreen"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-caption" id="videoCaption">
+          <h3 id="videoTitle">Message officiel · équipage Odyssey IV</h3>
+          <p id="videoDesc">Preuve de vie — les six membres de l'équipage réunis pour répondre à la désinformation. Produit dans le cadre d'EVT11-C, lors de la crise médiatique.</p>
+          <span class="meta" id="videoMeta">EVT11-C · 30.05.2079 · 20:00 UTC</span>
+        </div>
+      </div>
+
+      <div class="video-list reveal reveal--d2">
+        <div class="video-item" data-vid-id="EVT03-C" data-vid-src="" data-vid-title="Séquence émotion · Dr. Silva" data-vid-desc="Capsule autour du message personnel viral du 30.05 · 00:30 UTC" data-vid-meta="EVT03-C · 30.05.2079 · 00:30 UTC" data-vid-href="">
+          <div class="video-item__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <div class="video-item__content">
+            <div class="video-item__id">EVT03-C · Émotion</div>
+            <div class="video-item__title">Séquence émotion · message Dr. Silva</div>
+            <div class="video-item__desc">Capsule autour du message personnel viral du 30.05 · 00:30 UTC</div>
+          </div>
+        </div>
+        <div class="video-item" data-vid-id="EVT04-D" data-vid-src="" data-vid-title="Transmission dégradée · tempête solaire" data-vid-desc="Séquence simulant la perturbation des communications par la tempête M4" data-vid-meta="EVT04-D · 30.05.2079 · 03:00 UTC" data-vid-href="">
+          <div class="video-item__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <div class="video-item__content">
+            <div class="video-item__id">EVT04-D · Alerte</div>
+            <div class="video-item__title">Transmission dégradée · tempête solaire</div>
+            <div class="video-item__desc">Séquence simulant la perturbation des communications par la tempête M4</div>
+          </div>
+        </div>
+        <div class="video-item" data-vid-id="EVT09-E" data-vid-src="" data-vid-title="Le moment de la découverte" data-vid-desc="Reconstitution de l'approche de Laurent et Wong, de l'approche à la révélation de la structure cristalline bioluminescente" data-vid-meta="EVT09-E · 30.05.2079 · 16:01 UTC" data-vid-href="">
+          <div class="video-item__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <div class="video-item__content">
+            <div class="video-item__id">EVT09-E · Découverte</div>
+            <div class="video-item__title">Le moment de la découverte · reconstruction</div>
+            <div class="video-item__desc">Reconstitution de l'approche et de la révélation de la structure cristalline</div>
+          </div>
+        </div>
+        <div class="video-item" data-vid-id="CONTACT-A" data-vid-src="https://www.youtube.com/embed/3ItluVn6yyw" data-vid-title="Le message de la Terre" data-vid-desc="La réponse de l'humanité à la structure cristalline — format totalement libre" data-vid-meta="CONTACT-A · 31.05.2079 · 09:00 UTC" data-vid-href="message-terre.html">
+          <div class="video-item__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <div class="video-item__content">
+            <div class="video-item__id">CONTACT-A · Premier contact</div>
+            <div class="video-item__title">Le message de la Terre</div>
+            <div class="video-item__desc">La réponse de l'humanité à la structure cristalline — format libre</div>
+          </div>
+        </div>
+        <div class="video-item" style="border-color:rgba(232,199,106,.25)">
+          <div class="video-item__icon" style="color:var(--c-gold)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+          </div>
+          <div class="video-item__content">
+            <div class="video-item__id" style="color:var(--c-gold)">EVT15-A · Livrable culminant</div>
+            <div class="video-item__title">Capsule audiovisuelle finale · Mission AURORA</div>
+            <div class="video-item__desc">Assemblage complet résumant les 48h de la mission — livrable principal du hackathon</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PRODUCTIONS COMPLÈTES ═══════ -->
+<section class="arch-section" id="productions">
+  <div class="wrap">
+    <div class="section-eyebrow reveal"><span class="num">03</span><span>Toutes les productions</span></div>
+    <h2 class="section-h2 reveal reveal--d1">42 missions <em>accomplies.</em></h2>
+    <p class="section-lead reveal reveal--d2">
+      L'intégralité des productions de la cellule SOLA — visuels, rédactions, pages web, séquences vidéo.
+    </p>
+
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">Tout</button>
+      <button class="filter-btn" data-filter="Visuel">Visuels</button>
+      <button class="filter-btn" data-filter="Rédaction">Rédactions</button>
+      <button class="filter-btn" data-filter="Web">Web</button>
+      <button class="filter-btn" data-filter="Vidéo">Vidéos</button>
+    </div>
+
+    <div class="productions-grid" id="prodGrid">
+      <!-- SOCLE -->
+      <div class="prod-card" data-type="Visuel"><span class="prod-card__type prod-card__type--Visuel">Visuel</span><div class="prod-card__label">SOC-01 · Socle</div><div class="prod-card__title">Identité visuelle de la cellule</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">SOC-02 · Socle</div><div class="prod-card__title">Charte éditoriale</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Web"><span class="prod-card__type prod-card__type--Web">Web</span><div class="prod-card__label">SOC-03 · Socle</div><div class="prod-card__title">Site vitrine du CCA</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">SOC-04 · Socle</div><div class="prod-card__title">Communiqué de lancement</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Visuel"><span class="prod-card__type prod-card__type--Visuel">Visuel</span><div class="prod-card__label">SOC-05 · Socle</div><div class="prod-card__title">Kit réseaux sociaux</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">SOC-06 · Socle</div><div class="prod-card__title">Stratégie de communication</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Visuel"><span class="prod-card__type prod-card__type--Visuel">Visuel</span><div class="prod-card__label">SOC-07 · Socle</div><div class="prod-card__title">Présentation de l'équipage</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <!-- EVT-01 -->
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">EVT01-A · Découverte</div><div class="prod-card__title">Communiqué « Premières images »</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Visuel"><span class="prod-card__type prod-card__type--Visuel">Visuel</span><div class="prod-card__label">EVT01-B · Découverte</div><div class="prod-card__title">Visuel réseaux « Premier contact »</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Web"><span class="prod-card__type prod-card__type--Web">Web</span><div class="prod-card__label">EVT01-C · Découverte</div><div class="prod-card__title">Galerie photo sur le site</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <!-- EVT-02 -->
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">EVT02-A · Information</div><div class="prod-card__title">Note de briefing interne</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Web"><span class="prod-card__type prod-card__type--Web">Web</span><div class="prod-card__label">EVT02-B · Information</div><div class="prod-card__title">Journal de bord technique</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Visuel"><span class="prod-card__type prod-card__type--Visuel">Visuel</span><div class="prod-card__label">EVT02-C · Information</div><div class="prod-card__title">Infographie : Anatomie Odyssey IV</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <!-- EVT-03 -->
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">EVT03-A · Émotion</div><div class="prod-card__title">Message officiel d'accompagnement</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Visuel"><span class="prod-card__type prod-card__type--Visuel">Visuel</span><div class="prod-card__label">EVT03-B · Émotion</div><div class="prod-card__title">Visuel citation spatiale</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Vidéo"><span class="prod-card__type prod-card__type--Vidéo">Vidéo</span><div class="prod-card__label">EVT03-C · Émotion</div><div class="prod-card__title">Séquence émotion pour la capsule</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <!-- EVT-04 -->
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">EVT04-A · Alerte</div><div class="prod-card__title">Communiqué d'alerte publique</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Visuel"><span class="prod-card__type prod-card__type--Visuel">Visuel</span><div class="prod-card__label">EVT04-B · Alerte</div><div class="prod-card__title">Visuel d'alerte tempête</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Web"><span class="prod-card__type prod-card__type--Web">Web</span><div class="prod-card__label">EVT04-C · Alerte</div><div class="prod-card__title">Mode dégradé : interface glitch</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Vidéo"><span class="prod-card__type prod-card__type--Vidéo">Vidéo</span><div class="prod-card__label">EVT04-D · Alerte</div><div class="prod-card__title">Transmission dégradée</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <!-- EVT-06 -->
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">EVT06-A · Mystère</div><div class="prod-card__title">Rapport d'anomalie classifié</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Visuel"><span class="prod-card__type prod-card__type--Visuel">Visuel</span><div class="prod-card__label">EVT06-B · Mystère</div><div class="prod-card__title">Cartographie du signal</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Web"><span class="prod-card__type prod-card__type--Web">Web</span><div class="prod-card__label">EVT06-C · Mystère</div><div class="prod-card__title">Système d'alerte sur le site</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <!-- EVT-07 -->
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">EVT07-A · Mystère</div><div class="prod-card__title">Note de synthèse confidentielle</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">EVT07-B · Mystère</div><div class="prod-card__title">Éléments de langage anti-sensationnalisme</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Visuel"><span class="prod-card__type prod-card__type--Visuel">Visuel</span><div class="prod-card__label">EVT07-C · Mystère</div><div class="prod-card__title">Visualisation des données du signal</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <!-- EVT-08 -->
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">EVT08-A · Information</div><div class="prod-card__title">Fil d'actualité en direct</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Visuel"><span class="prod-card__type prod-card__type--Visuel">Visuel</span><div class="prod-card__label">EVT08-B · Information</div><div class="prod-card__title">Visuel « EVA en cours »</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Web"><span class="prod-card__type prod-card__type--Web">Web</span><div class="prod-card__label">EVT08-C · Information</div><div class="prod-card__title">Page de suivi EVA en direct</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <!-- EVT-09 -->
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">EVT09-A · Découverte majeure</div><div class="prod-card__title">Communiqué découverte scientifique</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">EVT09-B · Découverte majeure</div><div class="prod-card__title">Note de vulgarisation scientifique</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Visuel"><span class="prod-card__type prod-card__type--Visuel">Visuel</span><div class="prod-card__label">EVT09-C · Découverte majeure</div><div class="prod-card__title">Représentation artistique de la structure</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Web"><span class="prod-card__type prod-card__type--Web">Web</span><div class="prod-card__label">EVT09-D · Découverte majeure</div><div class="prod-card__title">Section découverte sur le site</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Vidéo"><span class="prod-card__type prod-card__type--Vidéo">Vidéo</span><div class="prod-card__label">EVT09-E · Découverte majeure</div><div class="prod-card__title">Capsule vidéo : le moment de la découverte</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <!-- EVT-10 -->
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">EVT10-A · Alerte</div><div class="prod-card__title">Analyse de la manipulation interne</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">EVT10-B · Alerte</div><div class="prod-card__title">Kit de réponse désinformation</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Visuel"><span class="prod-card__type prod-card__type--Visuel">Visuel</span><div class="prod-card__label">EVT10-C · Alerte</div><div class="prod-card__title">Visuels anti-désinformation</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <!-- EVT-11 -->
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">EVT11-A · Crise</div><div class="prod-card__title">Démenti officiel du CCA</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">EVT11-B · Crise</div><div class="prod-card__title">Message de soutien aux familles</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Vidéo"><span class="prod-card__type prod-card__type--Vidéo">Vidéo</span><div class="prod-card__label">EVT11-C · Crise</div><div class="prod-card__title">Preuve de vie · vidéo équipage complet</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Web"><span class="prod-card__type prod-card__type--Web">Web</span><div class="prod-card__label">EVT11-D · Crise</div><div class="prod-card__title">Centre de crise en ligne</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <!-- CONTACT -->
+      <div class="prod-card" data-type="Vidéo" style="border-color:rgba(182,165,255,.3)"><span class="prod-card__type prod-card__type--Vidéo">Vidéo</span><div class="prod-card__label">CONTACT-A · Premier contact</div><div class="prod-card__title">Le message de la Terre</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Visuel" style="border-color:rgba(182,165,255,.3)"><span class="prod-card__type prod-card__type--Visuel">Visuel</span><div class="prod-card__label">CONTACT-B · Premier contact</div><div class="prod-card__title">Visuel iconique du premier contact</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <!-- EVT-15 -->
+      <div class="prod-card" data-type="Vidéo" style="border-color:rgba(232,199,106,.3)"><span class="prod-card__type prod-card__type--Vidéo">Vidéo</span><div class="prod-card__label">EVT15-A · Conclusion</div><div class="prod-card__title">Capsule audiovisuelle finale</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Visuel"><span class="prod-card__type prod-card__type--Visuel">Visuel</span><div class="prod-card__label">EVT15-B · Conclusion</div><div class="prod-card__title">Rétrospective visuelle de la mission</div><div class="prod-card__status prod-card__status--pending">En attente</div></div>
+      <div class="prod-card" data-type="Web" style="border-color:rgba(232,199,106,.3)"><span class="prod-card__type prod-card__type--Web">Web</span><div class="prod-card__label">EVT15-C · Conclusion</div><div class="prod-card__title">Version finale du site · archives</div><div class="prod-card__status prod-card__status--done">Effectuée</div></div>
+      <div class="prod-card" data-type="Rédaction"><span class="prod-card__type prod-card__type--Rédaction">Rédaction</span><div class="prod-card__label">EVT15-D · Conclusion</div><div class="prod-card__title">Bilan de communication de la mission</div><div class="prod-card__status prod-card__status--pending">En attente</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ NAVIGATION SITE ═══════ -->
+<section class="arch-section" id="navigation">
+  <div class="wrap">
+    <div class="section-eyebrow reveal"><span class="num">04</span><span>Naviguer dans le site</span></div>
+    <h2 class="section-h2 reveal reveal--d1">Toutes les sections <em>en un coup d'œil.</em></h2>
+    <p class="section-lead reveal reveal--d2">
+      La plateforme SOLA rassemble l'ensemble des livrables web de la mission. 
+      Chaque section correspond à une mission ou un événement précis.
+    </p>
+
+    <div class="site-map reveal reveal--d1">
+      <a href="index.html" class="smap-card">
+        <div class="smap-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="smap-card__num">Accueil</div>
+        <div class="smap-card__title">Centre SOLA</div>
+        <div class="smap-card__desc">Page principale · hero · statut de la mission</div>
+        <div class="smap-card__link">Accéder <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="index.html#latest" class="smap-card">
+        <div class="smap-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.16h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.11 6.11l1.27-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div class="smap-card__num">EVT-15</div>
+        <div class="smap-card__title">Dernière transmission</div>
+        <div class="smap-card__desc">Message final de l'équipage — TX-077</div>
+        <div class="smap-card__link">Accéder <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="index.html#crise" class="smap-card">
+        <div class="smap-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <div class="smap-card__num">EVT-11-D</div>
+        <div class="smap-card__title">Centre de crise</div>
+        <div class="smap-card__desc">Démentis, preuves, fil horodaté · #AuroraAlien</div>
+        <div class="smap-card__link">Accéder <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="index.html#gallery" class="smap-card">
+        <div class="smap-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <div class="smap-card__num">EVT-01-C</div>
+        <div class="smap-card__title">Archive visuelle</div>
+        <div class="smap-card__desc">Galerie des premières images de Kepler-452c · 5 visuels</div>
+        <div class="smap-card__link">Accéder <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="eva.html" class="smap-card">
+        <div class="smap-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21"/><line x1="3" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21" y2="12"/></svg></div>
+        <div class="smap-card__num">EVT-08-C</div>
+        <div class="smap-card__title">Suivi EVA en direct</div>
+        <div class="smap-card__desc">Tableau de bord sortie extravéhiculaire · secteur 7</div>
+        <div class="smap-card__link">Accéder <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="index.html#discovery" class="smap-card">
+        <div class="smap-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="smap-card__num">EVT-09-D</div>
+        <div class="smap-card__title">Section découverte</div>
+        <div class="smap-card__desc">Structure cristalline · Vallée d'Aurelia · Protocole NOVA</div>
+        <div class="smap-card__link">Accéder <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="index.html#journal" class="smap-card">
+        <div class="smap-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <div class="smap-card__num">EVT-02-B</div>
+        <div class="smap-card__title">Journal de bord</div>
+        <div class="smap-card__desc">Tableau d'incidents techniques · Odyssey IV</div>
+        <div class="smap-card__link">Accéder <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="index.html#feed" class="smap-card">
+        <div class="smap-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+        <div class="smap-card__num">Chronologie</div>
+        <div class="smap-card__title">Fil des transmissions</div>
+        <div class="smap-card__desc">Chronologie publique des transmissions officielles</div>
+        <div class="smap-card__link">Accéder <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="message-terre.html" class="smap-card" style="border-color:rgba(182,165,255,.3)">
+        <div class="smap-card__icon" style="color:var(--c-gold)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="smap-card__num" style="color:var(--c-gold)">CONTACT-A</div>
+        <div class="smap-card__title">Le message de la Terre</div>
+        <div class="smap-card__desc">La réponse de l'humanité à la structure cristalline</div>
+        <div class="smap-card__link">Accéder <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CITATION FINALE ═══════ -->
+<section class="arch-section">
+  <div class="wrap">
+    <div class="quote-block reveal">
+      <blockquote>
+        « Sans vous, cette mission ne serait que des données dans un serveur. Avec vous, c'est une histoire humaine. »
+      </blockquote>
+      <cite>Équipage Odyssey IV · Message final · 31.05.2079</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FINALE ═══════ -->
+<div class="arch-finale">
+  <div class="arch-finale__eyebrow">Fin de mission · Programme AURORA</div>
+  <h2 class="arch-finale__title">L'histoire<br>est racontée.</h2>
+  <p class="arch-finale__sub">
+    48 heures. 16 événements. Une découverte qui changera l'humanité.
+    La cellule SOLA a été le lien entre un équipage et la Terre entière.
+  </p>
+  <a href="index.html" class="arch-finale__cta">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Retour au centre SOLA
+  </a>
+</div>
+
+
+<!-- ═══════ PRODUCTION MODAL ═══════ -->
+<div class="prod-modal" id="prodModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="prod-modal__overlay" id="modalOverlay"></div>
+  <div class="prod-modal__panel">
+    <div class="prod-modal__head">
+      <div>
+        <div class="prod-modal__meta">
+          <span class="prod-modal__id" id="modalId">·</span>
+          <span class="prod-modal__badge" id="modalBadge">·</span>
+        </div>
+        <h2 class="prod-modal__title" id="modalTitle">·</h2>
+      </div>
+      <button class="prod-modal__close" id="modalClose" aria-label="Fermer">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="prod-modal__body" id="modalBody"></div>
+  </div>
+</div>
+
+</main>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="arch-footer">
+  <div class="arch-footer__left">
+    <span>SOLA · CCA</span>
+    <span>©&nbsp;2079 · ASI</span>
+  </div>
+  <nav class="arch-footer__nav">
+    <a href="index.html">Accueil</a>
+    <a href="eva.html">EVA</a>
+    <a href="message-terre.html">Message Terre</a>
+    <a href="#chronologie">Chronologie</a>
+  </nav>
+  <div class="arch-footer__credit">Cellule <span>SOLA</span> · Mission Aurora · Kepler-452c</div>
+</footer>
+
+<script>
+// ═══════ STARFIELD ═══════
+(function(){
+  const c=document.getElementById('starCanvas');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  let W,H,stars=[];
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;init()}
+  function init(){
+    stars=[];
+    for(let i=0;i<200;i++){
+      stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*.9+.2,o:Math.random()*.7+.1,s:Math.random()*.3+.05});
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    stars.forEach(s=>{
+      s.o+=s.s*(.5-Math.random());
+      s.o=Math.max(.05,Math.min(.9,s.o));
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(238,233,255,${s.o})`;ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);
+  resize();draw();
+})();
+
+// ═══════ SCROLL PROGRESS ═══════
+(function(){
+  const bar=document.getElementById('scrollBar');
+  if(!bar)return;
+  window.addEventListener('scroll',()=>{
+    const p=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+    bar.style.width=p+'%';
+  },{passive:true});
+})();
+
+// ═══════ REVEAL ON SCROLL ═══════
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  if(!els.length)return;
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}});
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(el=>io.observe(el));
+})();
+
+// ═══════ TABS ACTIVE ═══════
+(function(){
+  const tabs=document.querySelectorAll('.arch-tabs__link[href^="#"]');
+  const sections=[...tabs].map(t=>t.getAttribute('href')).filter(h=>h.startsWith('#')).map(h=>document.querySelector(h));
+  function update(){
+    let active=0;
+    sections.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<160)active=i});
+    tabs.forEach((t,i)=>{t.classList.toggle('active',i===active)});
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  update();
+})();
+
+// ═══════ ACCORDION TIMELINE ═══════
+(function(){
+  document.querySelectorAll('.tl-event').forEach(el=>{
+    function toggle(e){
+      // Don't toggle if clicking a mission tag
+      if(e&&e.target.closest('.tl-event__mission-tag--done'))return;
+      const open=el.classList.toggle('is-open');
+      el.setAttribute('aria-expanded',open);
+    }
+    el.addEventListener('click',toggle);
+    el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(e)}});
+  });
+})();
+
+// ═══════ FILTER PRODUCTIONS ═══════
+(function(){
+  const btns=document.querySelectorAll('.filter-btn');
+  const cards=document.querySelectorAll('#prodGrid .prod-card');
+  btns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      btns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f=btn.dataset.filter;
+      cards.forEach(c=>{
+        const t=c.dataset.type;
+        c.style.display=(f==='all'||t===f)?'':'none';
+      });
+    });
+  });
+})();
+
+// ═══════════════════════════════════════════════════════════
+// PRODUCTIONS DATA & MODAL
+// ═══════════════════════════════════════════════════════════
+const PRODUCTIONS = {
+  'SOC-01':{'type':'Visuel','title':'Identité visuelle SOLA','img':'assets/images/sola-logo.png','desc':'Logo, palette de couleurs et typographies de la cellule SOLA — couleurs violettes et dorées, famille Cinzel/Montserrat. Conçu pour évoquer lexploration spatiale et la rigueur scientifique.'},
+  'SOC-02':{'type':'Rédaction','title':'Charte éditoriale','desc':'Ton professionnel et factuel, vocabulaire scientifique vulgarisé, positionnement de liaison officielle entre léquipage et la Terre. La cellule SOLA privilégie la précision et lanti-sensationnalisme.'},
+  'SOC-03':{'type':'Web','title':'Site vitrine du CCA','href':'index.html','desc':'Page daccueil du site SOLA avec hero, dernières transmissions, section découverte, journal technique, chronologie complète.'},
+  'SOC-04':{'type':'Rédaction','title':'Communiqué de lancement','desc':'Communiqué officiel annonçant lactivation de la cellule SOLA et le début de la mission AURORA. Diffusé à J-0, 29.05.2079 · Liaison Odyssey IV - Kepler-452c établie.'},
+  'SOC-05':{'type':'Visuel','title':'Kit réseaux sociaux','desc':'Templates de publication, bannières et avatars aux couleurs SOLA — palette sombre violette et or, typographie Cinzel, format adapté aux différentes plateformes sociales.'},
+  'SOC-06':{'type':'Rédaction','title':'Stratégie de communication','desc':'Plan global 48h couvrant la gestion des événements narratifs, protocoles de crise, ligne éditoriale anti-sensationnalisme, vocabulaire autorisé/interdit (Protocole NOVA), répartition des tâches.'},
+  'SOC-07':{'type':'Web','title':'Présentation de léquipage','href':'index.html#about','desc':'Fiches des 6 membres de lOdyssey IV : Ripley (Commandante), Laurent (Pilote/EVA), Patel (Scientifique), Silva (Médecin), Davis (Ingénieure), Wong (Géologue/EVA).'},
+
+  'EVT01-A':{'type':'Rédaction','title':'Communiqué « Premières images »','desc':'Communiqué officiel CCA annonçant la réception des premières images haute résolution de Kepler-452c, transmises depuis lorbite basse. Premier regard de lhumanité sur une autre Terre.'},
+  'EVT01-B':{'type':'Visuel','title':'Visuel réseaux « Premier contact »','img':'assets/images/kep-452c-001.png','desc':'Publication réseaux sociaux annonçant les premières images — première lumière sur Kepler-452c, 29.05.2079 · 14:23 UTC. Lt. A. Laurent · Camera Alpha 850mm.'},
+  'EVT01-C':{'type':'Visuel','title':'Galerie photo · Kepler-452c','imgs':['assets/images/kep-452c-001.png','assets/images/kep-452c-002.png','assets/images/kep-452c-003.png','assets/images/kep-452c-004.png','assets/images/kep-452c-005.png'],'href':'index.html#gallery','desc':'5 images haute résolution : Première lumière · Vallée d Aurelia · Limbe atmosphérique · Formations stratifiées · Coucher double sur Cassini.'},
+
+  'EVT02-A':{'type':'Rédaction','title':'Note de briefing interne','desc':'Note confidentielle équipes CCA sur la défaillance du capteur thermique module 3. Diagnostic : capteur redondant, impact mission négligeable. Davis et Laurent en charge. Réparation estimée 4h.'},
+  'EVT02-B':{'type':'Web','title':'Journal de bord technique','href':'index.html#journal','desc':'Tableau dincidents techniques Odyssey IV — première entrée : défaillance capteur thermique module 3 · 29.05.2079 · 22:00 UTC · Statut : Résolu.'},
+  'EVT02-C':{'type':'Web','title':'Infographie · Anatomie Odyssey IV','href':'index.html','desc':'Infographie présentant le vaisseau Odyssey IV et ses systèmes — propulsion, module scientifique, habitat, EVA, réseau de capteurs. Lincident du capteur y est localisé.'},
+
+  'EVT03-A':{'type':'Rédaction','title':'Message officiel d accompagnement','desc': 'Message CCA accompagnant le partage public du message de Dr. Silva — « Ce moment dhumanité nous rappelle pourquoi nous explorons. Merci, Dr. Silva, d avoir partagé cela avec nous. »'},
+  'EVT03-B':{'type':'Visuel','title':'Visuel citation spatiale Dr. Silva','desc':'Mise en valeur de la citation : « quand je regarde par le hublot et que je vois cette planète quaucun humain n a jamais vue de si près... je sais pourquoi je suis là. » Design immersif, fond étoilé.'},
+  'EVT03-C':{'type':'Vidéo','title':'Séquence émotion · Dr. Silva','video':null,'desc':'Séquence audiovisuelle capturant l émotion du message personnel viral du Dr. Silva — 30.05.2079 · 00:30 UTC. Conçue pour la capsule audiovisuelle finale.'},
+
+  'EVT04-A':{'type':'Rédaction','title':'Communiqué d alerte publique','desc':'Communiqué informant le public de la perturbation des communications — tempête solaire classe M4, durée estimée 6-8h, débit réduit à 10%. Protocole COM-DEGRAD activé.'},
+  'EVT04-B':{'type':'Visuel','title':'Visuel d alerte tempête M4','desc':'Visuel d alerte pour les réseaux sociaux — codes couleur orangé/rouge, icônes alerte solaire, message « COMM DÉGRADÉ · TEMPÊTE SOLAIRE M4 · Protocole COM-DEGRAD ». Impact visuel maximal.'},
+  'EVT04-C':{'type':'Web','title':'Mode dégradé · interface glitch','href':'index.html','desc':'Site SOLA adapté en mode dégradé : effets VHS/glitch, scanlines, perturbations visuelles simulant les communications pendant la tempête solaire M4.'},
+  'EVT04-D':{'type':'Vidéo','title':'Transmission dégradée · tempête solaire','video':null,'desc':'Séquence vidéo simulant une transmission perturbée par la tempête M4 — artefacts visuels, glitches audio, perte de signal progressive, protocole d urgence COM-DEGRAD.'},
+
+  'EVT06-A':{'type':'Rédaction','title':'Rapport d anomalie classifié','desc':'Rapport factuel classifié à destination de la direction CCA — signal EM anormal, source : secteur 7, durée 3min42s, fréquence non répertoriée. Niveau d incertitude : élevé. Aucune conclusion hâtive.'},
+  'EVT06-B':{'type':'Visuel','title':'Cartographie du signal','desc':'Carte de la zone Alpha avec localisation précise secteur 7, spectre du signal anormal (fréquence inconnue), timeline de la détection, intensité du champ électromagnétique mesuré.'},
+  'EVT06-C':{'type':'Web','title':'Système d alerte · site web','href':'index.html','desc':'Indicateur de veille intégré au site SOLA — statut confidentiel initialement, passage automatique en mode public lors de la révélation officielle (Protocole NOVA).'},
+
+  'EVT07-A':{'type':'Rédaction','title':'Note de synthèse confidentielle','desc':'Synthèse interne signal anormal — fréquence trop régulière pour du bruit naturel. Dr. Patel demande EVA d investigation d urgence. Cdt. Ripley évalue les risques. Décision en cours.'},
+  'EVT07-B':{'type':'Rédaction','title':'Éléments de langage anti-sensationnalisme','desc':'VOCABULAIRE INTERDIT : vie, extraterrestre, alien, organisme, créature. VOCABULAIRE AUTORISÉ : phénomène naturel inexpliqué, structure d origine inconnue, découverte scientifique majeure, anomalie géologique active.'},
+  'EVT07-C':{'type':'Visuel','title':'Visualisation données du signal','desc':'Représentation visuelle du signal secteur 7 — spectre de fréquence (non répertoriée), durée 3min42s précises, intensité EM, superposition avec les données géologiques de la zone.'},
+
+  'EVT08-A':{'type':'Rédaction','title':'Fil d actualité EVA en direct','desc':'Fil temps réel EVA Laurent & Wong — « Une formation cristalline. Jamais vu ça. Elle est translucide, haute d environ 3 mètres, et elle... elle pulse. Faiblement, mais de manière régulière. »'},
+  'EVT08-B':{'type':'Visuel','title':'Visuel « EVA en cours »','img':'assets/images/eva-en-direct.png','desc':'Indicateur visuel live annonçant la sortie extravéhiculaire en cours — Laurent & Wong · secteur 7 · 30.05.2079 · 11:33 UTC. Design alerte, pulsation dynamique.'},
+  'EVT08-C':{'type':'Web','title':'Page de suivi EVA · en direct','href':'eva.html','desc':'Tableau de bord temps réel EVA — positions de l équipe, données atmosphériques Kepler-452c, communications en direct, alertes secteur 7, détection cristalline.'},
+
+  'EVT09-A':{'type':'Rédaction','title':'Communiqué découverte scientifique','desc':'Communiqué officiel Protocole NOVA — structure cristalline bioluminescente 3,2m, cycle de pulsation 47s, champ EM mesurable. « Phénomène naturel inexpliqué · découverte scientifique majeure. »'},
+  'EVT09-B':{'type':'Rédaction','title':'Note de vulgarisation scientifique','desc':'Article grand public — structure cristalline bioluminescente, champ électromagnétique, cycle de pulsation, vocabulaire contrôlé Protocole NOVA. Aucune mention de vie ou d extraterrestre.'},
+  'EVT09-C':{'type':'Visuel','title':'Représentation artistique de la structure','desc':'Illustration de la structure cristalline bioluminescente — secteur 7, vallée d Aurelia, Kepler-452c. Lumière pulsante violette, hauteur 3,2m, environnement rocheux stratifié.'},
+  'EVT09-D':{'type':'Web','title':'Section découverte · site SOLA','href':'index.html#discovery','desc':'Section dédiée sur le site — présentation complète de la structure cristalline, données scientifiques, protocole NOVA, carte du secteur 7, galerie des relevés.'},
+  'EVT09-E':{'type':'Vidéo','title':'Le moment de la découverte','video':null,'desc':'Reconstitution audiovisuelle de l approche de Laurent et Wong — de la détection du reflet à la révélation de la structure cristalline bioluminescente. Narration factuelle.'},
+
+  'EVT10-A':{'type':'Rédaction','title':'Analyse de la manipulation','desc':'Documentation de l injection frauduleuse de +3 600 CM dans le classement CCA, et analyse de la vague de désinformation #AuroraAlien. Identification des vecteurs, chronologie.'},
+  'EVT10-B':{'type':'Rédaction','title':'Kit de réponse désinformation','desc':'Réponses préparées pour contrer #AuroraAlien — déclarations officielles, éléments de preuve scientifiques, protocole de communication de crise multi-canaux.'},
+  'EVT10-C':{'type':'Visuel','title':'Visuels anti-désinformation','desc':'Visuels percutants rétablissant les faits — « Nous avons trouvé une structure cristalline, pas des petits hommes verts » — données scientifiques, sources officielles, clarté visuelle.'},
+
+  'EVT11-A':{'type':'Rédaction','title':'Démenti officiel du CCA','desc':'Communiqué ferme et incontestable — démenti des rumeurs #AuroraAlien, condamnation du deepfake, données scientifiques officielles Protocole NOVA. Invitation à consulter les sources CCA.'},
+  'EVT11-B':{'type':'Rédaction','title':'Message de soutien aux familles','desc':'Message chaleureux destiné aux familles harcelées — « Votre proche est en bonne santé. L équipage de l Odyssey IV est ensemble et en sécurité. Nous veillons sur eux. »'},
+  'EVT11-C':{'type':'Vidéo','title':'Preuve de vie · équipage complet','video':'https://streamable.com/e/euccnv','desc':'Les 6 membres de l Odyssey IV réunis pour démentir les rumeurs — produit en urgence lors de la crise médiatique du 30.05.2079. Message direct et factuel.'},
+  'EVT11-D':{'type':'Web','title':'Centre de crise en ligne','href':'index.html#crise','desc':'Section d urgence centralisant démentis officiels, preuves, fil horodaté des événements #AuroraAlien — opérationnel 24h/24 pendant la crise.'},
+
+  'CONTACT-A':{'type':'Vidéo','title':'Le message de la Terre','video':'https://www.youtube.com/embed/3ItluVn6yyw','href':'message-terre.html','desc':'La réponse de l humanité à la structure cristalline — format totalement libre. « Le battement. » Conçu comme message intemporel entre deux intelligences.'},
+  'CONTACT-B':{'type':'Visuel','title':'Visuel iconique du premier contact','img':'assets/images/visuel-terre.png','desc':'L image iconique du premier contact entre la Terre et la structure cristalline — destinée à figurer dans les livres d histoire. Signal mystérieux, connexion humaine.'},
+
+  'EVT15-A':{'type':'Vidéo','title':'Capsule audiovisuelle finale','video':null,'desc':'Livrable culminant — assemblage complet résumant les 48h de la mission AURORA : premier contact visuel, incident technique, tempête solaire, signal mystérieux, découverte majeure, premier contact, message final.'},
+  'EVT15-B':{'type':'Visuel','title':'Rétrospective visuelle','desc':'Série de visuels rétrospectifs résumant les moments clés de la mission AURORA — en cours de finalisation pour la capsule finale.'},
+  'EVT15-C':{'type':'Web','title':'Version finale du site · Archives','href':'archives.html','desc':'Archive complète et navigable — chronologie interactive, capsule vidéo, toutes les productions intégrées et accessibles. Vous y êtes !'},
+  'EVT15-D':{'type':'Rédaction','title':'Bilan de communication','desc':'Analyse rétrospective de la stratégie SOLA — 42/47 missions complétées, 4 650 CM, gestion de crise #AuroraAlien, Protocole NOVA, impact médiatique de la découverte.'},
+};
+
+// ═══════ VIDEO SWITCHER ═══════
+(function(){
+  const frameWrap = document.getElementById('videoFrameWrap');
+  const titleEl = document.getElementById('videoTitle');
+  const descEl = document.getElementById('videoDesc');
+  const metaEl = document.getElementById('videoMeta');
+  const items = document.querySelectorAll('.video-item[data-vid-id]');
+  if(!frameWrap) return;
+
+  function toEmbed(url) {
+    if (!url) return '';
+    if (/streamable\.com\/e\//.test(url)) return url;
+    if (/streamable\.com\//.test(url)) return url.replace('streamable.com/', 'streamable.com/e/');
+    if (/youtube\.com\/embed\//.test(url)) return url;
+    if (/youtube\.com\/watch\?v=(.+)/.test(url)) return url.replace('youtube.com/watch?v=', 'youtube.com/embed/');
+    if (/youtu\.be\/(.+)/.test(url)) return 'https://www.youtube.com/embed/' + url.split('youtu.be/')[1];
+    return url;
+  }
+
+  function switchVideo(item) {
+    const src = item.dataset.vidSrc;
+    const title = item.dataset.vidTitle;
+    const desc = item.dataset.vidDesc;
+    const meta = item.dataset.vidMeta;
+    const href = item.dataset.vidHref;
+
+    // Update caption
+    if(titleEl) titleEl.textContent = title;
+    if(descEl) descEl.textContent = desc;
+    if(metaEl) metaEl.textContent = meta;
+
+    // Update player
+    if (src) {
+      const embedSrc = toEmbed(src);
+      frameWrap.innerHTML = `<iframe id="videoIframe" src="${embedSrc}" title="${title}" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>`;
+    } else {
+      const hrefPart = href ? `<a href="${href}">Accéder à la page dédiée →</a>` : '';
+      frameWrap.innerHTML = `<div class="video-placeholder-full">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        <h4>${title}</h4>
+        <p>${desc}</p>
+        ${hrefPart}
+      </div>`;
+    }
+
+    // Update active state
+    items.forEach(i => i.classList.remove('is-active'));
+    item.classList.add('is-active');
+  }
+
+  items.forEach(item => {
+    item.addEventListener('click', () => switchVideo(item));
+    item.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();switchVideo(item)} });
+    item.setAttribute('role', 'button');
+    item.setAttribute('tabindex', '0');
+  });
+})();
+
+// ═══════ PRODUCTION MODAL ═══════
+(function(){
+  const modal = document.getElementById('prodModal');
+  const overlay = document.getElementById('modalOverlay');
+  const closeBtn = document.getElementById('modalClose');
+  const modalId = document.getElementById('modalId');
+  const modalBadge = document.getElementById('modalBadge');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalBody = document.getElementById('modalBody');
+  if(!modal) return;
+
+  const BADGE_CLASSES = {
+    'Visuel':'prod-modal__badge--Visuel',
+    'Rédaction':'prod-modal__badge--Rédaction',
+    'Web':'prod-modal__badge--Web',
+    'Vidéo':'prod-modal__badge--Vidéo',
+  };
+
+  function toEmbed(url) {
+    if (!url) return '';
+    if (/streamable\.com\/e\//.test(url)) return url;
+    if (/streamable\.com\//.test(url)) return url.replace('streamable.com/', 'streamable.com/e/');
+    if (/youtube\.com\/embed\//.test(url)) return url;
+    if (/youtube\.com\/watch\?v=/.test(url)) return url.replace('youtube.com/watch?v=', 'youtube.com/embed/');
+    if (/youtu\.be\//.test(url)) return 'https://www.youtube.com/embed/' + url.split('youtu.be/')[1];
+    return url;
+  }
+
+  function buildContent(prod) {
+    let html = '';
+    const type = prod.type;
+    const desc = prod.desc || '';
+    const href = prod.href || null;
+
+    if (type === 'Vidéo') {
+      if (prod.video) {
+        const embedUrl = toEmbed(prod.video);
+        html += `<div class="modal-video-wrap"><iframe src="${embedUrl}" title="${prod.title}" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe></div>`;
+      } else {
+        html += `<div class="modal-no-preview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+          <p>Vidéo intégrée à la capsule audiovisuelle finale. Retrouvez-la dans le livrable complet de la mission.</p>
+        </div>`;
+      }
+      html += `<p class="modal-desc">${desc}</p>`;
+      if (href) html += `<a href="${href}" class="modal-cta">Accéder à la page <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>`;
+    }
+    else if (type === 'Visuel') {
+      if (prod.imgs && prod.imgs.length > 1) {
+        html += `<div class="modal-gallery">${prod.imgs.map(img => `<img src="${img}" loading="lazy" onclick="window.open(this.src,'_blank')">`).join('')}</div>`;
+        html += `<p class="modal-desc">${desc}</p>`;
+        if (href) html += `<a href="${href}" class="modal-cta">Voir la galerie complète <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>`;
+      } else if (prod.img) {
+        html += `<img src="${prod.img}" class="modal-img" onclick="window.open(this.src,'_blank')" title="Cliquer pour agrandir" style="cursor:zoom-in">`;
+        html += `<p class="modal-desc">${desc}</p>`;
+      } else {
+        html += `<div class="modal-no-preview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <p>Ce visuel est intégré dans la capsule finale ou dans la galerie du site principal.</p>
+        </div>`;
+        html += `<p class="modal-desc">${desc}</p>`;
+      }
+    }
+    else if (type === 'Web') {
+      if (href) {
+        html += `<div class="modal-text-block"><p>${desc}</p></div>`;
+        html += `<a href="${href}" class="modal-cta">Accéder à la section <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>`;
+      } else {
+        html += `<div class="modal-text-block"><p>${desc}</p></div>`;
+      }
+    }
+    else if (type === 'Rédaction') {
+      html += `<div class="modal-text-block"><p>${desc}</p></div>`;
+    }
+
+    return html;
+  }
+
+  function openModal(prodId) {
+    const prod = PRODUCTIONS[prodId];
+    if (!prod) return;
+
+    modalId.textContent = prodId;
+    // Reset badge classes
+    modalBadge.className = 'prod-modal__badge';
+    if (BADGE_CLASSES[prod.type]) modalBadge.classList.add(BADGE_CLASSES[prod.type]);
+    modalBadge.textContent = prod.type;
+    modalTitle.textContent = prod.title;
+    modalBody.innerHTML = buildContent(prod);
+
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+  // Expose globally
+  window.openProductionModal = openModal;
+
+  // ── Make prod-cards interactive ──
+  document.querySelectorAll('.prod-card').forEach(card => {
+    const label = card.querySelector('.prod-card__label');
+    if (!label) return;
+    const prodId = label.textContent.trim().split(' · ')[0];
+    if (!PRODUCTIONS[prodId]) return;
+    card.dataset.prodId = prodId;
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    // Add "voir →" indicator
+    const viewEl = document.createElement('div');
+    viewEl.className = 'prod-card__view';
+    viewEl.innerHTML = `Voir <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+    card.appendChild(viewEl);
+    card.addEventListener('click', () => openModal(prodId));
+    card.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();openModal(prodId)} });
+  });
+
+  // ── Make done mission tags in timeline interactive ──
+  document.querySelectorAll('.tl-event__mission-tag--done').forEach(tag => {
+    const content = tag.textContent.trim();
+    const prodId = content.split(' · ')[0];
+    if (!PRODUCTIONS[prodId]) return;
+    tag.dataset.prodId = prodId;
+    tag.setAttribute('role', 'button');
+    tag.setAttribute('tabindex', '0');
+    tag.title = 'Voir la réalisation';
+    tag.style.cursor = 'pointer';
+    tag.addEventListener('click', e => { e.stopPropagation(); openModal(prodId); });
+    tag.addEventListener('keydown', e => {
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();openModal(prodId);}
+    });
+  });
+})();
+</script>
+</body>
