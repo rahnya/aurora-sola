@@ -185,7 +185,23 @@ section{padding:clamp(3.5rem,9vh,7rem) 0;position:relative}
 .fly{position:fixed;z-index:80;font-family:var(--ff-display);font-weight:600;color:var(--c-gold);pointer-events:none;text-shadow:0 0 20px rgba(232,199,106,.6)}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
 @media(max-width:560px){.tracker .sep{display:none}.statusbar .upd{display:none}}
-</style>
+
+.signal-image{
+  border:1px solid var(--line-dark);
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.signal-image img{
+  display:block;
+  width:100%;
+  height:auto; /* image complète */
+  transition:transform .6s var(--ease-out);
+}
+
+.signal-image:hover img{
+  transform:scale(1.02);
+}</style>
 </head>
 <body>
 <canvas id="stars"></canvas>
@@ -233,23 +249,26 @@ section{padding:clamp(3.5rem,9vh,7rem) 0;position:relative}
       <h2>Cinq repères dans le <em>ciel</em>.</h2>
       <p>Le premier fragment a été émis dans le ciel — cinq signes lumineux, une lettre chacun. Activez les cinq repères, lisez le mot qu'ils dessinent, puis saisissez-le.</p>
     </div>
-    <div class="signal-panel reveal">
-      <div class="signal-panel__hint">Observez les cinq repères du signal</div>
-      <div class="reperes" id="reperes">
-        <button class="repere" data-l="V"><span class="lt">V</span><span class="ix">Repère 1</span></button>
-        <button class="repere" data-l="O"><span class="lt">O</span><span class="ix">Repère 2</span></button>
-        <button class="repere" data-l="I"><span class="lt">I</span><span class="ix">Repère 3</span></button>
-        <button class="repere" data-l="C"><span class="lt">C</span><span class="ix">Repère 4</span></button>
-        <button class="repere" data-l="I"><span class="lt">I</span><span class="ix">Repère 5</span></button>
+    <div class="signal-panel reveal">    
+      <div class="signal-image">
+        <a href="assets/images/visuel-terre.png" target="_blank">
+          <img src="assets/images/visuel-terre.png" alt="Signal mystérieux">
+        </a>
       </div>
-      <p class="insta-note">Ce signal a aussi été diffusé sur nos réseaux. Si vous l'avez déjà déchiffré, saisissez directement le mot.</p>
+      <p class="insta-note">
+        Voir plus loin que l’image.<br>
+        Observer avant d’interpréter.<br>
+        Imaginer ce que le signal cherche à dire.<br>
+        Chercher là où le message commence.<br>
+        Identifier le premier fragment.
+      </p>
     </div>
     <div class="winput">
       <input id="inVoici" type="text" maxlength="5" placeholder="• • • • •" aria-label="Fragment 1" autocomplete="off">
       <button data-target="voici">Valider</button>
     </div>
     <div class="wmsg" id="msgVoici"></div>
-    <div class="locktag" id="lockVoici">Fragment 1 verrouillé · VOICI</div>
+    <div class="locktag" id="lockVoici">Fragment 1 déverrouillé · VOICI</div>
   </div>
 </section>
 
@@ -275,7 +294,7 @@ section{padding:clamp(3.5rem,9vh,7rem) 0;position:relative}
         <button data-target="notre">Valider</button>
       </div>
       <div class="wmsg" id="msgNotre"></div>
-      <div class="locktag" id="lockNotre">Fragment 2 verrouillé · NOTRE</div>
+      <div class="locktag" id="lockNotre">Fragment 2 déverrouillé · NOTRE</div>
     </div>
   </div>
 </section>
@@ -297,7 +316,7 @@ section{padding:clamp(3.5rem,9vh,7rem) 0;position:relative}
         <button data-target="coeur">Valider</button>
       </div>
       <div class="wmsg" id="msgCoeur"></div>
-      <div class="locktag" id="lockCoeur">Fragment 3 verrouillé · COEUR</div>
+      <div class="locktag" id="lockCoeur">Fragment 3 déverrouillé · COEUR</div>
     </div>
   </div>
 </section>
